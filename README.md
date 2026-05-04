@@ -76,3 +76,12 @@ Plaintext
     [ ] Seamless OAuth integration (Google & GitHub) via Auth.js.
 
     [ ] User dashboard to track purchased trips and itineraries.
+
+## 📸 Acknowledgements & Credits
+
+Special thanks to the talented photographers on **Unsplash** for the incredible planetary and space imagery used in this project:
+
+BoliviaInteligente  'https://unsplash.com/it/@boliviainteligente?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText'
+
+JavierMiranda "https://unsplash.com/it/@nuvaproductions?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" 
+      

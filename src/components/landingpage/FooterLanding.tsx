@@ -19,10 +19,10 @@ export default function FooterLanding() {
       <div className={footerGridClass}>
         <div className={footerBrandClass}>
           <div className={cn('logo')}>
-            <span>LogoBrand</span>
+            <span>Galactic Horizons</span>
           </div>
           <p className={footerDescClass}>
-            La prima agenzia di viaggi spaziali per civili nel mondo. Esplora nuove dimensioni con noi.
+            The firs space-travel agency for the Solar System. We are dedicated to making your travel experience unforgettable.
           </p>
           <div className={footerSocialsClass}>
             <a href="#" className={socialBtnClass}>FB</a>
@@ -32,25 +32,25 @@ export default function FooterLanding() {
         </div>
 
         <div className={footerColClass}>
-          <h5>Link Utili</h5>
+          <h5>Links</h5>
           <div className={footerLinksClass}>
-            <a href="#pianeti">Destinazioni</a>
-            <a href="#sicurezza">La Sicurezza</a>
-            <a href="#perche-noi">Vantaggi</a>
+            <a href="#pianeti">Destinations</a>
+            <a href="#sicurezza">Security</a>
+            <a href="#perche-noi">Why Us</a>
           </div>
         </div>
 
         <div className={footerColClass}>
-          <h5>Azienda</h5>
+          <h5>Info</h5>
           <div className={footerLinksClass}>
-            <a href="#about">Chi Siamo</a>
-            <a href="#careers">Lavora con Noi</a>
-            <a href="#press">Press Kit</a>
+            <a href="#about">About</a>
+            <a href="#careers">Careers</a>
+            <a href="#press">Press</a>
           </div>
         </div>
 
         <div className={footerColClass}>
-          <h5>Contatti</h5>
+          <h5>Contacts</h5>
           <div className={footerContactClass}>
             <div className={footerContactItemClass}>📧 info@logobrand.com</div>
             <div className={footerContactItemClass}>📞 +123 456 789</div>
@@ -60,10 +60,10 @@ export default function FooterLanding() {
       </div>
 
       <div className={footerBottomClass}>
-        <p>&copy; {new Date().getFullYear()} LogoBrand Space. Tutti i diritti riservati.</p>
+        <p>&copy; {new Date().getFullYear()} Galaxic Horizons. All rights reserved.</p>
         <div className={footerLegalClass}>
           <a href="#privacy">Privacy Policy</a>
-          <a href="#terms">Termini e Condizioni</a>
+          <a href="#terms">Terms & Conditions</a>
         </div>
       </div>
     </footer>

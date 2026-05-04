@@ -290,7 +290,7 @@ useEffect(() => {
             )}
             style={{ textShadow: "0 2px 12px rgba(0,0,0,0.9)" }}
           >
-            Move your cursor to explore
+            Take a break in the space
           </p>
 
           <div
