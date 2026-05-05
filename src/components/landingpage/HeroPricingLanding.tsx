@@ -1,34 +1,24 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { Button } from "../ui/button";
 
 import SpaceParallaxHero from "./HeroSec";
 
 export default function HeroPricingLanding() {
   // Hero Classes
   const heroPlaceholderClass = cn("hero-placeholder");
-  const starsBgClass = cn("stars-bg");
-  const orbitRing1Class = cn("orbit-ring");
-  const orbitRing2Class = cn("orbit-ring");
-  const heroInnerClass = cn("hero-placeholder-inner");
-  const heroBadgeClass = cn("hero-badge");
-  const heroDotClass = cn("hero-badge-dot");
-  const heroLabelClass = cn("hero-label");
-  const heroSubtitleClass = cn("hero-subtitle");
-  const ctaGroupClass = cn("hero-cta-group");
-  const btnPrimaryClass = cn("btn-primary");
-  const btnOutlineClass = cn("btn-outline");
-  const heroNoteClass = cn("hero-note");
+
 
   // Planets (Pricing) Classes
   const planetsSectionClass = cn("section", "planets-section");
-  const containerClass = cn("container");
-  const sectionLabelClass = cn("section-label");
-  const sectionTitleClass = cn("section-title");
-  const sectionSubClass = cn("section-sub");
-  const planetsGridClass = cn("planets-grid");
+  const containerClass = cn(`${'container'} text-left flex flex-col items-center  justify-center`);
+  const sectionLabelClass = cn(`${'section-label'} text-left w-full`);
+  const sectionTitleClass = cn(`${"section-title"} text-left w-full`);
+  const sectionSubClass = cn(`${"section-sub"}  text-left w-full!`);
+  const planetsGridClass = cn(`${"planets-grid"} w-full flex flex-wrap justify-center  items-center gap-4!`);
 
   // Planet Cards Classes
-  const planetCardClass = cn("planet-card");
+  const planetCardClass = cn(`${'planet-card'} max-w-110  sm:min-h-130 sm:min-w-5/11 sm:max-w-5/12 sm:max-h-125 `);
   const planetImgClass = cn("planet-img");
   const planetBodyClass = cn("planet-body");
   const planetTagClass = cn("planet-tag");
@@ -62,7 +52,6 @@ export default function HeroPricingLanding() {
             <div className={planetCardClass}>
               <div className={planetImgClass}>
                 <Image src="/planets/mars.webp" alt="Mars" fill />
-                
               </div>
               <div className={planetBodyClass}>
                 <span className={planetTagClass}>Basic</span>
@@ -87,7 +76,7 @@ export default function HeroPricingLanding() {
             {/* CARD 2 - JUPITER */}
             <div className={planetCardClass}>
               <div className={planetImgClass}>
-                <Image src="/planets/jupiter.jpg" alt="Jupiter" fill />
+                <Image src="/planets/jupiter.webp" alt="Jupiter" fill />
               </div>
               <div className={planetBodyClass}>
                 <span className={planetTagClass}>Premium</span>

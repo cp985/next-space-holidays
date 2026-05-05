@@ -400,8 +400,8 @@ table {
 
   .logo-icon {
     position: relative;
-      width: 50px;
-      height: 50px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
     
       background: linear-gradient(135deg, var(--accent), var(--accent2));
@@ -700,7 +700,7 @@ table {
       font-size: 1.05rem;
       color: var(--txt3);
       font-weight: 300;
-      max-width: 540px;
+     
       line-height: 1.7
   }
 
@@ -710,8 +710,7 @@ table {
   }
 
   .planets-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      display: flex;
       gap: 1.5rem;
       margin-top: 3rem
   }
@@ -1509,7 +1508,7 @@ table {
           padding: 4rem 1.25rem
       }
 
-      .planets-grid,
+    
       .t-grid,
       .whyus-grid {
           grid-template-columns: 1fr

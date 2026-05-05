@@ -279,7 +279,7 @@ useEffect(() => {
               textShadow: "0 0 80px rgba(120,160,255,0.35), 0 2px 24px rgba(0,0,0,0.9)",
             }}
           >
-            Solar System
+           Travel in the Solar System
           </h1>
 
           <p
