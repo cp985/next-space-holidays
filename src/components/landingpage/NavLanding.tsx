@@ -2,7 +2,8 @@
 
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { Button } from "../ui/button";
+import { Button, buttonVariants } from "../ui/button";
+import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
@@ -38,6 +39,7 @@ export default function NavLanding() {
             alt="Logo"
             fill
             priority
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>
         <span className={spanLogo}>Galactic Horizons</span>
@@ -57,8 +59,9 @@ export default function NavLanding() {
         <Button type="button" onClick={() => setTheme(theme === "dark" ? "light" : "dark")} className={darkToggleClass}>
           {theme === "dark" ? "🌞" : "🌙"}
         </Button>
-        <Button type="button" className={navCtaClass}>
-          Book Now
+     
+        <Button type="button"   className={navCtaClass} asChild>
+           <Link href="/login"> Book Now</Link>
         </Button>
       </div>
     </nav>

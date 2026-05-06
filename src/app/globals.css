@@ -878,7 +878,8 @@ table {
 
   /* TESTIMONIALS */
   .testimonials-section {
-      background: var(--bg)
+      background: var(--bg);
+      padding: 40px 20px
   }
 
   .testimonial-wrap {
@@ -999,7 +1000,8 @@ table {
       display: flex;
       align-items: center;
       gap: 1rem;
-      margin-top: 2.5rem
+      margin-top: 2.5rem;
+      justify-content: center
   }
 
   .t-btn {

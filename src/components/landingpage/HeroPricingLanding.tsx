@@ -51,7 +51,7 @@ export default function HeroPricingLanding() {
             {/* CARD 1 - MARS */}
             <div className={planetCardClass}>
               <div className={planetImgClass}>
-                <Image src="/planets/mars.webp" alt="Mars" fill />
+                <Image src="/planets/mars.webp" alt="Mars" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
               </div>
               <div className={planetBodyClass}>
                 <span className={planetTagClass}>Basic</span>
@@ -76,7 +76,7 @@ export default function HeroPricingLanding() {
             {/* CARD 2 - JUPITER */}
             <div className={planetCardClass}>
               <div className={planetImgClass}>
-                <Image src="/planets/jupiter.webp" alt="Jupiter" fill />
+                <Image src="/planets/jupiter.webp" alt="Jupiter" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
               </div>
               <div className={planetBodyClass}>
                 <span className={planetTagClass}>Premium</span>
@@ -100,7 +100,7 @@ export default function HeroPricingLanding() {
             {/* CARD 3 - SATURN */}
             <div className={planetCardClass}>
               <div className={planetImgClass}>
-                <Image src="/planets/saturn.webp" alt="Saturn" fill />
+                <Image src="/planets/saturn.webp" alt="Saturn" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
                 <div className={cn("saturn-ring")}></div>
               </div>
               <div className={planetBodyClass}>
