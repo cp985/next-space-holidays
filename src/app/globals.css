@@ -1221,7 +1221,8 @@ table {
 
   /* WHY US */
   .whyus-section {
-      background: var(--bg)
+      background: var(--bg);
+      
   }
 
   .whyus-grid {

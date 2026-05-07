@@ -1,4 +1,4 @@
-import cn from 'clsx';
+import { cn } from "@/lib/utils";
 
 export default function FooterLanding() {
   const footerClass = cn('footer');

@@ -1,4 +1,6 @@
-import cn from 'clsx';
+import { cn } from "@/lib/utils";
+import Link from "next/link";
+
 
 export default function FeaturesFaqCtaLanding() {
   // Safety Section Classes
@@ -42,88 +44,119 @@ export default function FeaturesFaqCtaLanding() {
     <div>
       {/* 1. SEZIONE SICUREZZA (FEATURES) */}
       <section className={safetySectionClass} id="sicurezza">
-        <div className={containerClass}>
-          <span className={sectionLabelClass}>Security</span>
-          <h2 className={sectionTitleClass}>Navigation <em>100% Secure</em></h2>
-          <p className={sectionSubClass}>
-            Our spacecraft are equipped with cutting-edge technology to ensure the safety of your travel experience.
-          </p>
-          <div className={safetyGridClass}>
-            <div className={safetyVisualClass}>
-              <div className={shieldGraphicClass}>
-                <div className={shieldRing1Class}></div>
-                <div className={shieldRing2Class}></div>
-                <div className={shieldCenterClass}>🛡️</div>
-              </div>
+      <section className="safety-section" id="safety">
+  <div className="container">
+    <div className="safety-grid">
+      <div>
+        <span className="section-label ">Safety First</span>
+        <h2 className="section-title ">Zero-Compromise<br/><em>Crew Protection</em></h2>
+        <p className="section-sub " style={{marginBottom:"2rem"}}>Every system, every protocol, every crew member is certified to standards that go beyond NASA and ESA requirements combined.</p>
+        <div className="safety-items">
+          <div className="safety-item">
+            <div className="safety-icon">🛡</div>
+            <div>
+              <div className="safety-item-title">Gen-IV Thermal Shielding</div>
+              <div className="safety-item-desc">Our proprietary ablative hull sustains re-entry temperatures up to 2,800 °C — 40% beyond regulatory minimums.</div>
             </div>
-            <div className={safetyItemsClass}>
-              <div className={safetyItemClass}>
-                <div className={safetyIconClass}>⚡</div>
-                <div>
-                  <h4 className={safetyItemTitleClass}>Thermal Protection of the last generation</h4>
-                  <p className={safetyItemDescClass}>They are tested for thermal protection until 3000 degrees.</p>
-                </div>
-              </div>
-              <div className={safetyItemClass}>
-                <div className={safetyIconClass}>🤖</div>
-                <div>
-                  <h4 className={safetyItemTitleClass}>AI Navigation</h4>
-                  <p className={safetyItemDescClass}>They are equipped with advanced AI navigation systems for a smooth and safe journey.</p>
-                </div>
-              </div>
-              <div className={statGridClass}>
-                <div className={statBoxClass}>
-                  <div className={statNumClass}>99%</div>
-                  <div className={statLabelClass}>Safe</div>
-                </div>
-                <div className={statBoxClass}>
-                  <div className={statNumClass}>24/7</div>
-                  <div className={statLabelClass}>Support</div>
-                </div>
-                <div className={statBoxClass}>
-                  <div className={statNumClass}>0</div>
-                  <div className={statLabelClass}>Incidents</div>
-                </div>
-              </div>
+          </div>
+          <div className="safety-item ">
+            <div className="safety-icon">🧠</div>
+            <div>
+              <div className="safety-item-title">NASA-Certified Crew Training</div>
+              <div className="safety-item-desc">Every pilot and mission specialist completes a 3,200-hour programme developed in partnership with NASA's Johnson Space Center.</div>
+            </div>
+          </div>
+          <div className="safety-item ">
+            <div className="safety-icon">📡</div>
+            <div>
+              <div className="safety-item-title">NMOSTRA Protocols</div>
+              <div className="safety-item-desc">Triply-redundant life support, real-time telemetry to ground control, and autonomous emergency return systems on every vessel.</div>
+            </div>
+          </div>
+          <div className="safety-item ">
+            <div className="safety-icon">🩺</div>
+            <div>
+              <div className="safety-item-title">On-Board Medical Suite</div>
+              <div className="safety-item-desc">Each ship carries a full surgical suite and two flight surgeons. Remote consultation with Earth specialists available at all times.</div>
             </div>
           </div>
         </div>
+        <div className="stat-grid" style={{marginTop : "2rem"}}>
+          <div  className="stat-box "><div className="stat-num">100%</div><div className="stat-label">Mission Success</div></div>
+          <div className="stat-box "><div className="stat-num">2,418</div><div className="stat-label">Safe Voyages</div></div>
+          <div className="stat-box "><div className="stat-num">0</div><div className="stat-label">Incidents</div></div>
+        </div>
+      </div>
+      <div className="safety-visual ">
+        <div className="shield-graphic">
+          <div className="shield-ring"></div>
+          <div className="shield-ring"></div>
+          <div className="shield-ring"></div>
+          <div className="shield-center">🛡</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
       </section>
 
       {/* 2. SEZIONE PERCHÉ NOI */}
-      <section className={whyusSectionClass} id="perche-noi">
-        <div className={containerClass}>
-          <span className={sectionLabelClass}>Why Us</span>
-          <h2 className={sectionTitleClass}>Why <em>Choose Us</em></h2>
-          <div className={whyusGridClass}>
-            <div className={featureCardClass}>
-              <div className={featureIconWrapClass}>🚀</div>
-              <h4 className={featureTitleClass}>The Ultimate Technology</h4>
-              <p className={featureDescClass}>Our spacecraft are equipped with cutting-edge technology to ensure the safety of your travel experience.</p>
-            </div>
-            <div className={featureCardClass}>
-              <div className={featureIconWrapClass}>👨‍🚀</div>
-              <h4 className={featureTitleClass}>Qualified Crew</h4>
-              <p className={featureDescClass}>Our crew have beyond 1000 hours of space flight experience.</p>
-            </div>
-            <div className={featureCardClass}>
-              <div className={featureIconWrapClass}>🌍</div>
-              <h4 className={featureTitleClass}>Zero Environmental Impact</h4>
-              <p className={featureDescClass}>We reduce the impact of our spacecraft on the environment.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+<section className={whyusSectionClass} id="perche-noi">
+  <div className="container">
+    <span className="section-label">Why Choose Us</span>
+    <h2 className="section-title">The Gold Standard<br/>of <em>Space Travel</em></h2>
+    <p className="section-sub">Nine years of orbital experience, an obsessive commitment to comfort, and an appetite for the impossible.</p>
+    <div className="whyus-grid" style={{marginTop:"3rem"}}>
+
+      <div className="feature-card">
+        <div className="feature-icon-wrap">🚀</div>
+        <div className="feature-title">Hypersonic Transit</div>
+        <div className="feature-desc">Our Helios-class vessels cruise at Mach 28 in low orbit, cutting Mars transfer time to just 89 days — half the industry average.</div>
+      </div>
+
+      <div className="feature-card">
+        <div className="feature-icon-wrap">🏨</div>
+        <div className="feature-title">Orbital Luxury Hotels</div>
+        <div className="feature-desc">Six-star accommodations in zero gravity. Private suites with panoramic Earth views, Michelin-starred zero-G dining and spa facilities.</div>
+      </div>
+
+      <div className="feature-card">
+        <div className="feature-icon-wrap">🌍</div>
+        <div className="feature-title">Carbon-Neutral Launches</div>
+        <div className="feature-desc">Our hydrogen-fuelled launch system is the world's first certified carbon-neutral orbital ascent, partnered with the Global Climate Initiative.</div>
+      </div>
+
+      <div className="feature-card">
+        <div className="feature-icon-wrap">🎓</div>
+        <div className="feature-title">Pre-Flight Academy</div>
+        <div className="feature-desc">Every passenger undergoes our 14-day immersive astronaut preparation programme — no prior experience required. You land confident.</div>
+      </div>
+
+      <div className="feature-card">
+        <div className="feature-icon-wrap">💎</div>
+        <div className="feature-title">Fully Inclusive Pricing</div>
+        <div className="feature-desc">One transparent price covers suit hire, training, accommodation, all meals, planetary excursions, and a lifetime membership to Galactic Club.</div>
+      </div>
+
+      <div className="feature-card ">
+        <div className="feature-icon-wrap">🤝</div>
+        <div className="feature-title">24/7 Mission Support</div>
+        <div className="feature-desc">A dedicated Mission Advisor accompanies your journey from booking to touchdown. Real humans, always reachable, in any time zone.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
       {/* 3. CTA BANNER FINALE */}
       <section className={ctaSectionClass}>
-        <div className={containerClass}>
-          <div className={ctaInnerClass}>
-            <h2>Book Your Adventure Now</h2>
-            <p>Experience the thrill of space travel with Galactic Horizons</p>
-            <button className={btnPrimaryClass}>Book Now</button>
-          </div>
-        </div>
+  <div className="container">
+    <div className="cta-inner" id="signup">
+      <h2>Ready to Leave<br/>the Atmosphere?</h2>
+      <p>Create your account and secure a spot on our 2027 launch calendar.<br/>The universe won't wait — neither should you.</p>
+      <Link href="/login" className="btn-primary" >Create Your Account ✦</Link>
+    </div>
+  </div>
       </section>
     </div>
   );
