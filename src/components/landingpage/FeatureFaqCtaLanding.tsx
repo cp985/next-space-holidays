@@ -1,10 +1,12 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { motion, Variants } from "framer-motion";
 
 export default function FeaturesFaqCtaLanding() {
   // Safety Section Classes
   const safetySectionClass = cn("section", "safety-section");
-
 
   // Why Us Classes
   const whyusSectionClass = cn("section", "whyus-section");
@@ -12,12 +14,69 @@ export default function FeaturesFaqCtaLanding() {
   // CTA Classes
   const ctaSectionClass = cn("cta-section");
 
+  //motion framer
+  const secVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        staggerChildren: 0.3,
+      },
+    },
+  };
+
+  const contVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
+
+  // Variant per le card (Entrata da SINISTRA)
+  const cardVariantsX: Variants = {
+    hidden: { opacity: 0, x: -150 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        type: "spring",
+        stiffness: 50,
+        damping: 15,
+        mass: 1.5,
+        duration: 0.5,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
+
   return (
     <div>
       {/* 1. SEZIONE SICUREZZA (FEATURES) */}
-      <section className={safetySectionClass} id="safety">
+      <motion.section
+        variants={secVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        className={safetySectionClass}
+        id="safety"
+      >
         <div className="container">
-          <div className="safety-grid">
+          <motion.div variants={contVariants} className="safety-grid">
             <div>
               <span className="section-label ">Safety First</span>
               <h2 className="section-title ">
@@ -29,8 +88,8 @@ export default function FeaturesFaqCtaLanding() {
                 Every system, every protocol, every crew member is certified to
                 standards that go beyond NASA and ESA requirements combined.
               </p>
-              <div className="safety-items">
-                <div className="safety-item">
+              <motion.div variants={contVariants} className="safety-items">
+                <motion.div variants={cardVariantsX} className="safety-item">
                   <div className="safety-icon">🛡</div>
                   <div>
                     <div className="safety-item-title">
@@ -42,8 +101,8 @@ export default function FeaturesFaqCtaLanding() {
                       minimums.
                     </div>
                   </div>
-                </div>
-                <div className="safety-item ">
+                </motion.div>
+                <motion.div variants={cardVariantsX} className="safety-item ">
                   <div className="safety-icon">🧠</div>
                   <div>
                     <div className="safety-item-title">
@@ -55,8 +114,8 @@ export default function FeaturesFaqCtaLanding() {
                       Space Center.
                     </div>
                   </div>
-                </div>
-                <div className="safety-item ">
+                </motion.div>
+                <motion.div variants={cardVariantsX} className="safety-item ">
                   <div className="safety-icon">📡</div>
                   <div>
                     <div className="safety-item-title">NMOSTRA Protocols</div>
@@ -66,8 +125,8 @@ export default function FeaturesFaqCtaLanding() {
                       every vessel.
                     </div>
                   </div>
-                </div>
-                <div className="safety-item ">
+                </motion.div>
+                <motion.div variants={cardVariantsX} className="safety-item ">
                   <div className="safety-icon">🩺</div>
                   <div>
                     <div className="safety-item-title">
@@ -79,22 +138,26 @@ export default function FeaturesFaqCtaLanding() {
                       available at all times.
                     </div>
                   </div>
-                </div>
-              </div>
-              <div className="stat-grid" style={{ marginTop: "2rem" }}>
-                <div className="stat-box ">
+                </motion.div>
+              </motion.div>
+              <motion.div
+                variants={contVariants}
+                className="stat-grid"
+                style={{ marginTop: "2rem" }}
+              >
+                <motion.div variants={cardVariants} className="stat-box ">
                   <div className="stat-num">100%</div>
                   <div className="stat-label">Mission Success</div>
-                </div>
-                <div className="stat-box ">
+                </motion.div>
+                <motion.div variants={cardVariants} className="stat-box ">
                   <div className="stat-num">2,418</div>
                   <div className="stat-label">Safe Voyages</div>
-                </div>
-                <div className="stat-box ">
+                </motion.div>
+                <motion.div variants={cardVariants} className="stat-box ">
                   <div className="stat-num">0</div>
                   <div className="stat-label">Incidents</div>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             </div>
             <div className="safety-visual ">
               <div className="shield-graphic">
@@ -104,13 +167,20 @@ export default function FeaturesFaqCtaLanding() {
                 <div className="shield-center">🛡</div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 2. SEZIONE PERCHÉ NOI */}
-      <section className={whyusSectionClass} id="why-us">
-        <div className="container">
+      <motion.section
+        variants={secVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        className={whyusSectionClass}
+        id="why-us"
+      >
+        <motion.div variants={contVariants} className="container">
           <span className="section-label">Why Choose Us</span>
           <h2 className="section-title">
             The Gold Standard
@@ -122,16 +192,16 @@ export default function FeaturesFaqCtaLanding() {
             comfort, and an appetite for the impossible.
           </p>
           <div className="whyus-grid" style={{ marginTop: "3rem" }}>
-            <div className="feature-card">
+            <motion.div variants={cardVariants}  className="feature-card">
               <div className="feature-icon-wrap">🚀</div>
               <div className="feature-title">Hypersonic Transit</div>
               <div className="feature-desc">
                 Our Helios-class vessels cruise at Mach 28 in low orbit, cutting
                 Mars transfer time to just 89 days — half the industry average.
               </div>
-            </div>
+            </motion.div>
 
-            <div className="feature-card">
+            <motion.div variants={cardVariants} className="feature-card">
               <div className="feature-icon-wrap">🏨</div>
               <div className="feature-title">Orbital Luxury Hotels</div>
               <div className="feature-desc">
@@ -139,9 +209,9 @@ export default function FeaturesFaqCtaLanding() {
                 panoramic Earth views, Michelin-starred zero-G dining and spa
                 facilities.
               </div>
-            </div>
+            </motion.div>
 
-            <div className="feature-card">
+            <motion.div variants={cardVariants} className="feature-card">
               <div className="feature-icon-wrap">🌍</div>
               <div className="feature-title">Carbon-Neutral Launches</div>
               <div className="feature-desc">
@@ -149,9 +219,9 @@ export default function FeaturesFaqCtaLanding() {
                 certified carbon-neutral orbital ascent, partnered with the
                 Global Climate Initiative.
               </div>
-            </div>
+            </motion.div>
 
-            <div className="feature-card">
+            <motion.div variants={cardVariants} className="feature-card">
               <div className="feature-icon-wrap">🎓</div>
               <div className="feature-title">Pre-Flight Academy</div>
               <div className="feature-desc">
@@ -159,9 +229,9 @@ export default function FeaturesFaqCtaLanding() {
                 preparation programme — no prior experience required. You land
                 confident.
               </div>
-            </div>
+            </motion.div>
 
-            <div className="feature-card">
+            <motion.div variants={cardVariants} className="feature-card">
               <div className="feature-icon-wrap">💎</div>
               <div className="feature-title">Fully Inclusive Pricing</div>
               <div className="feature-desc">
@@ -169,7 +239,7 @@ export default function FeaturesFaqCtaLanding() {
                 all meals, planetary excursions, and a lifetime membership to
                 Galactic Club.
               </div>
-            </div>
+            </motion.div>
 
             <div className="feature-card ">
               <div className="feature-icon-wrap">🤝</div>
@@ -181,12 +251,15 @@ export default function FeaturesFaqCtaLanding() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
       {/* 3. CTA BANNER FINALE */}
-      <section className={ctaSectionClass}>
-        <div className="container">
+      <motion.section         variants={secVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }} className={ctaSectionClass}>
+        <motion.div variants={contVariants} className="container">
           <div className="cta-inner" id="signup">
             <h2>
               Ready to Leave
@@ -202,8 +275,8 @@ export default function FeaturesFaqCtaLanding() {
               Create Your Account ✦
             </Link>
           </div>
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
     </div>
   );
 }
