@@ -166,8 +166,8 @@ useEffect(() => {
   return () => window.removeEventListener("resize", checkMobile);
 }, []);
 
-const currentInset = !mounted ? "-15%" : (isMobile ? "-35%" : "-15%");
-const currentSize = !mounted ? "130%" : (isMobile ? "175%" : "130%");
+const currentInset = !mounted ? "-15%" : (isMobile ? "-30%" : "-15%");
+const currentSize = !mounted ? "130%" : (isMobile ? "170%" : "130%");
 
 const layerStyle: React.CSSProperties = {
   position: "absolute",
@@ -291,7 +291,7 @@ const layerStyle: React.CSSProperties = {
           )}
         >
           <h1
-            className={cn("anim-title", "font-serif font-light text-white text-center uppercase", "px-6 md:px-0" )}
+            className={cn("anim-title", "font-serif font-light text-white text-center uppercase px-6! md:px-0!")}
             style={{
                fontSize: "clamp(1.6rem, 5vw, 5rem)",
               letterSpacing: "0.22em",
