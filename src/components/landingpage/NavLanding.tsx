@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { Button, buttonVariants } from "../ui/button";
+import { Button } from "../ui/button";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
@@ -46,13 +46,13 @@ export default function NavLanding() {
       </div>
       <ul className={navLinksClass}>
         <li>
-          <a href="#pianeti">Planets</a>
+          <a href="#planets">Planets</a>
         </li>
         <li>
-          <a href="#sicurezza">Security</a>
+          <a href="#safety">Safety</a>
         </li>
         <li>
-          <a href="#perche-noi">Why Us</a>
+          <a href="#why-us">Why Us</a>
         </li>
       </ul>
       <div className={buttonDiv}>

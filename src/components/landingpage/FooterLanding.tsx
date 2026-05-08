@@ -34,9 +34,9 @@ export default function FooterLanding() {
         <div className={footerColClass}>
           <h5>Links</h5>
           <div className={footerLinksClass}>
-            <a href="#pianeti">Destinations</a>
-            <a href="#sicurezza">Security</a>
-            <a href="#perche-noi">Why Us</a>
+            <a href="#planets">Destinations</a>
+            <a href="#safety">Safety</a>
+            <a href="#why-us">Why Us</a>
           </div>
         </div>
 

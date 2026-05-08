@@ -1,10 +1,14 @@
+import { Variants } from "framer-motion";
 export interface PlanetType {
+ 
     id: number;
     type: string;
     name: string;
     image: string;
     description: string;
     activities: string[];
+    variants?: Variants;
+  
 }
 
 export const planets : PlanetType[] = [{

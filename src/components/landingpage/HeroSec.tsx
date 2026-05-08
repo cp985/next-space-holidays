@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef,useState } from "react";
 import { cn } from "@/lib/utils";
 
 // ─────────────────────────────────────────────
@@ -155,19 +155,35 @@ useEffect(() => {
 }, []);
 
   // Layer condiviso: inset largo per dare margine al pan senza vedere bordi
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+ const [mounted, setMounted] = useState(false);
+const [isMobile, setIsMobile] = useState(false);
 
-  const layerStyle: React.CSSProperties = {
-    position: "absolute",
-   inset:  isMobile ? "-25%" : "-15%",
-  width:  isMobile ? "150%" : "130%",
-  height: isMobile ? "150%" : "130%",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center center",
-    transformOrigin: "center center",
-    willChange: "transform",
-  };
+useEffect(() => {
+  setMounted(true);
+  const checkMobile = () => setIsMobile(window.innerWidth < 768);
+  checkMobile();
+  window.addEventListener("resize", checkMobile);
+  return () => window.removeEventListener("resize", checkMobile);
+}, []);
+
+const currentInset = !mounted ? "-15%" : (isMobile ? "-25%" : "-15%");
+const currentSize = !mounted ? "130%" : (isMobile ? "170%" : "130%");
+
+const layerStyle: React.CSSProperties = {
+  position: "absolute",
+  top: currentInset,
+  left: currentInset,
+  right: currentInset,
+  bottom: currentInset,
+  width: currentSize,
+  height: currentSize,
+  backgroundSize: "cover",
+  backgroundRepeat: "no-repeat",
+  backgroundPosition: "center center",
+  transformOrigin: "center center",
+  willChange: "transform",
+  zIndex: 0 
+};
   return (
     <>
       <style>{`
@@ -194,6 +210,7 @@ useEffect(() => {
           "mix-blend-difference transition-opacity duration-300",
           "hidden md:block"
         )}
+         style={{ opacity: 0 }}
       />
       {/* Cursor ring */}
       <div
@@ -205,6 +222,7 @@ useEffect(() => {
           "transition-opacity duration-300",
           "hidden md:block"
         )}
+         style={{ opacity: 0 }}
       />
 
       <section

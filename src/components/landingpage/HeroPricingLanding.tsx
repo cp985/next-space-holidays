@@ -1,4 +1,6 @@
+"use client";
 import { cn } from "@/lib/utils";
+import { motion, Variants } from "framer-motion";
 
 import { planets, systemCard, type PlanetType } from "@/lib/content";
 import Planet from "../custom/Planet";
@@ -23,6 +25,40 @@ export default function HeroPricingLanding() {
 
   const previewPlanets = planets.slice(0, 3);
 
+  //motion framer
+const secVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.3, 
+    },
+  },
+};
+
+const contVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+    },
+  },
+};
+
+
   return (
     <div>
       {/* SEZIONE HERO */}
@@ -31,7 +67,14 @@ export default function HeroPricingLanding() {
       </section>
 
       {/* SEZIONE PIANETI (PRICING) */}
-      <section className={planetsSectionClass} id="pianeti">
+      <motion.section
+        className={planetsSectionClass}
+        variants={secVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1}}
+        id="planets"
+      >
         <div className={containerClass}>
           <span className={sectionLabelClass}>Destinations</span>
           <h2 className={sectionTitleClass}>
@@ -41,14 +84,16 @@ export default function HeroPricingLanding() {
             Choose your favorite planet and embark on a journey to the stars.
           </p>
 
-          <div className={planetsGridClass}>
+          <motion.div variants={contVariants} className={planetsGridClass}>
             {previewPlanets.map((planet: PlanetType) => (
-              <Planet key={planet.id} {...planet} />
+           
+                <Planet key={planet.id} variants={cardVariants}  {...planet} />
+          
             ))}
             <Planet {...systemCard} />
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 }
