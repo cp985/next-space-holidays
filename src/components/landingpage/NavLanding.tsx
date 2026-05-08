@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
+
 export default function NavLanding() {
   const navClass = cn("nav");
   const logoClass = cn("logo");
@@ -20,6 +21,8 @@ export default function NavLanding() {
 
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+
+
 
   useEffect(() => {
     setMounted(true);
