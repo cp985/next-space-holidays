@@ -31,6 +31,7 @@ const secVariants = {
   visible: {
     opacity: 1,
     transition: {
+      duration: 0.5,
       staggerChildren: 0.3, 
     },
   },
@@ -90,7 +91,7 @@ const cardVariants = {
                 <Planet key={planet.id} variants={cardVariants}  {...planet} />
           
             ))}
-            <Planet {...systemCard} />
+            <Planet variants={cardVariants}  {...systemCard} />
           </motion.div>
         </div>
       </motion.section>
