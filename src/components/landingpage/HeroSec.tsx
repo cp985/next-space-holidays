@@ -155,18 +155,19 @@ useEffect(() => {
 }, []);
 
   // Layer condiviso: inset largo per dare margine al pan senza vedere bordi
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
   const layerStyle: React.CSSProperties = {
     position: "absolute",
-    inset: "-15%",
-    width: "130%",
-    height: "130%",
+   inset:  isMobile ? "-25%" : "-15%",
+  width:  isMobile ? "150%" : "130%",
+  height: isMobile ? "150%" : "130%",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center center",
     transformOrigin: "center center",
     willChange: "transform",
   };
-
   return (
     <>
       <style>{`
@@ -272,9 +273,9 @@ useEffect(() => {
           )}
         >
           <h1
-            className={cn("anim-title", "font-serif font-light text-white text-center uppercase")}
+            className={cn("anim-title", "font-serif font-light text-white text-center uppercase", "px-6 md:px-0" )}
             style={{
-              fontSize: "clamp(2.4rem, 6vw, 5rem)",
+               fontSize: "clamp(1.6rem, 5vw, 5rem)",
               letterSpacing: "0.22em",
               textShadow: "0 0 80px rgba(120,160,255,0.35), 0 2px 24px rgba(0,0,0,0.9)",
             }}
