@@ -29,7 +29,7 @@ export default function FormLogin() {
   // const errorFieldClass = cn("text-destructive");
 
   const footerClass = cn(
-  "!flex !flex-row !justify-center !items-center !gap-3 !pt-4 !px-2"
+  "!flex !flex-col-reverse md:!flex-row !justify-center !items-center !gap-3 !pt-4 !px-2"
 );
 
 const toggleBtnClass = cn(
@@ -45,7 +45,7 @@ const fieldGroupCont = cn(
 );
 
 const formClass = cn(
-  "!flex !flex-col !h-full !gap-2 !px-4 !pt-2"
+  "!flex !flex-col !h-full !gap-2 !px-4 "
 );
 
 const inputClass = cn(
@@ -57,19 +57,10 @@ const inputClass = cn(
 
 const dialogClass = cn(
   "w-[95vw] md:w-2/3 max-h-[80vh]",
-  "!overflow-y-auto !rounded-2xl !p-6",
-  "!bg-[#050d1a]/95 !backdrop-blur-xl",
-  "!border !border-cyan-500/30",
+  "overflow-y-auto! rounded-2xl! px-6! py-3!",
+  "bg-[#050d1a]/95! backdrop-blur-xl!",
+  "border! border-cyan-500/30!",
 );
-
-
-
-
-
-
-
-
-
 
 
 const errorFieldClass = cn(
@@ -81,7 +72,6 @@ const labelClass = cn(
   "text-cyan-300/80 text-sm font-medium tracking-wide uppercase",
 );
 
-// Input — da aggiungere direttamente agli Input
 
 
 // Titolo dialog — da aggiungere al DialogTitle
@@ -98,7 +88,7 @@ const descClass = cn(
 
 // Bottone submit principale
 const submitBtnClass = cn(
-  "bg-gradient-to-r from-cyan-500 to-blue-600",
+  "bg-gradient-to-r from-cyan-500 to-blue-600 w-full md:!w-2/5",
   "hover:from-cyan-400 hover:to-blue-500",
   "text-white font-medium tracking-wider uppercase text-sm",
   "border-0 rounded-xl px-6",
@@ -109,12 +99,14 @@ const submitBtnClass = cn(
 
 // Bottone cancel/outline
 const cancelBtnClass = cn(
-  "bg-transparent border border-white/10",
+  "bg-transparent border border-white/10 md:!w-2/5",
   "text-white/60 hover:text-white",
   "hover:bg-white/5 hover:border-white/20",
   "rounded-xl tracking-wider uppercase text-sm",
   "transition-all duration-200",
 );
+
+
 
   const [isSignIn, setIsSignIn] = useState(true);
   const [data, actionF, isPending] = useActionState(
@@ -178,7 +170,7 @@ const cancelBtnClass = cn(
             )}
           </Field>
         </FieldGroup>
-        <DialogFooter>
+        <DialogFooter className={footerClass}>
           <DialogClose asChild>
             <Button className={cancelBtnClass} variant="outline">Cancel</Button>
           </DialogClose>
