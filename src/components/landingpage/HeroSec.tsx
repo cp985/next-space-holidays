@@ -166,7 +166,7 @@ useEffect(() => {
   return () => window.removeEventListener("resize", checkMobile);
 }, []);
 
-const currentInset = !mounted ? "-15%" : (isMobile ? "-30%" : "-15%");
+const currentInset = !mounted ? "-15%" : (isMobile ? "-25%" : "-15%");
 const currentSize = !mounted ? "130%" : (isMobile ? "170%" : "130%");
 
 const layerStyle: React.CSSProperties = {
