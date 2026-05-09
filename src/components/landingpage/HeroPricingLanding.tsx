@@ -6,6 +6,7 @@ import { planets, systemCard, type PlanetType } from "@/lib/content";
 import Planet from "../custom/Planet";
 
 import SpaceParallaxHero from "./HeroSec";
+import SpaceParallaxHero2 from "./Herosec2";
 
 export default function HeroPricingLanding() {
   // Hero Classes
@@ -64,7 +65,7 @@ const cardVariants = {
     <div>
       {/* SEZIONE HERO */}
       <section className={heroPlaceholderClass}>
-        <SpaceParallaxHero />
+        <SpaceParallaxHero2 />
       </section>
 
       {/* SEZIONE PIANETI (PRICING) */}

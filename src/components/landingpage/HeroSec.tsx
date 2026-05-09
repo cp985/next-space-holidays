@@ -29,6 +29,8 @@ const PAN_BASE = {
   mid:  90,
 };
 
+const MOBILE_PAN_REDUCER = 0.6;
+
 // Quanto cresce il pan quando sei zoomato (rivela pianeti ai lati)
 const PAN_ZOOM_MULT = 3.0;
 
@@ -49,6 +51,8 @@ export default function SpaceParallaxHero() {
   const midRef    = useRef<HTMLDivElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
   const ringRef   = useRef<HTMLDivElement>(null);
+
+  
 
 useEffect(() => {
   let mouseX = 0, mouseY = 0;
@@ -157,6 +161,7 @@ useEffect(() => {
   // Layer condiviso: inset largo per dare margine al pan senza vedere bordi
  const [mounted, setMounted] = useState(false);
 const [isMobile, setIsMobile] = useState(false);
+
 
 useEffect(() => {
   setMounted(true);
