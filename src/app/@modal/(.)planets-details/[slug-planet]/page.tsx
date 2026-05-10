@@ -1,8 +1,4 @@
-
-
 import PlanetsDialog from  "@/components/planet-details/PlanetsDialog"
-
-
 
 
 interface Props {
