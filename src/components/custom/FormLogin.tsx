@@ -180,9 +180,9 @@ export default function FormLogin() {
                 defaultValue={data.currentData.confirmPassword || ""}
               />
 
-                         {data.errors.password && data.errors.confirmPassword?.length > 0 && (
+                         {data.errors.confirmPassword && data.errors.confirmPassword?.length > 0 && (
               <FieldError className={errorFieldClass}>
-                {data.errors.password?.[0]}
+                {data.errors.confirmPassword?.[0]}
               </FieldError>
             )}
             </Field>
