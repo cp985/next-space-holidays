@@ -215,14 +215,14 @@ export default function PlanetsDialog({ slug, description }: Props) {
                 className={cn(
                   "!bg-gradient-to-r !from-cyan-500 !to-blue-600",
                   "hover:!from-cyan-400 hover:!to-blue-500",
-                  "!text-white !font-medium !tracking-wider !uppercase !text-xs !px-5",
+                  "!text-white font-semibold !tracking-wider !uppercase !text-xs !px-5",
                   "!border-0 !rounded-xl",
                   "!shadow-[0_0_20px_rgba(0,200,255,0.2)]",
                   "!transition-all !duration-200"
                 )}
-                onClick={() => router.push(`/planets-details/${imgPath}/info`)}
+                onClick={() => router.push(`/login`)}
               >
-                View Details
+               Book now a unic holiday
               </Button>
             </div>
           </div>
