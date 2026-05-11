@@ -5,7 +5,6 @@ import { motion, Variants } from "framer-motion";
 import { planets, systemCard, type PlanetType } from "@/lib/content";
 import Planet from "../custom/Planet";
 
-import SpaceParallaxHero from "./HeroSec";
 import SpaceParallaxHero2 from "./Herosec2";
 
 export default function HeroPricingLanding() {
