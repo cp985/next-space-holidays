@@ -1,7 +1,13 @@
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
-import { useState, useActionState, useRef } from "react";
-import { actionFormSub, type FormStateSub } from "../../../action/actionForm";
+import { Eye, EyeOff } from "lucide-react";
+import { useState, useActionState } from "react";
+import {
+  actionFormSub,
+  type FormStateSub,
+  actionFormLogIn,
+  type FormStateLogin,
+} from "../../../action/actionForm";
 import {
   DialogClose,
   DialogContent,
@@ -14,30 +20,56 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Field, FieldGroup, FieldError } from "../ui/field";
 
-const initialState: FormStateSub = {
+const initialStateSub: FormStateSub = {
   success: false,
   errors: {},
   currentData: { email: "", username: "", password: "", confirmPassword: "" },
 };
 
+const initialStateLogIn: FormStateLogin = {
+  success: false,
+  errors: {},
+  currentData: { email: "", password: "" },
+};
+
 export default function FormLogin() {
+  const [isSignIn, setIsSignIn] = useState(true);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  const [dataLogIn, actionLogIn, isPendingLogIn] = useActionState(
+    actionFormLogIn,
+    initialStateLogIn,
+  );
+
+  const [dataSub, actionSub, isPendingSub] = useActionState(
+    actionFormSub,
+    initialStateSub,
+  );
+
+  const data = !isSignIn ? dataLogIn : dataSub;
+
+  const action = !isSignIn ? actionLogIn : actionSub;
+  const isPending = !isSignIn ? isPendingLogIn : isPendingSub;
+
   const footerClass = cn(
-    "!flex !flex-col-reverse md:!flex-row !justify-center !items-center !gap-3 !pt-4 !px-2",
+    "flex mt-3! flex-col-reverse sm:flex-row justify-center items-center gap-3 pt-4 px-2",
   );
 
   const toggleBtnClass = cn(
     "!bg-transparent !border-0 !w-auto !h-auto",
     "!mx-auto !block",
-    "text-cyan-400/60 hover:text-cyan-300",
+    "text-cyan-400/60! hover:text-cyan-300!",
     "!text-[0.65rem] !tracking-widest !uppercase",
     "!px-2 !py-1 !mt-1",
   );
 
   const fieldGroupCont = cn("!overflow-y-auto !px-4 !py-1 ", "flex flex-col");
 
-  const fieldTwoInput = cn("flex flex-col md:flex-row md:justify-between md:items-center gap-3");
+  const fieldTwoInput = cn(
+    "flex flex-col md:flex-row md:justify-between md:items-center gap-3",
+  );
 
-  const formClass = cn("!flex !flex-col !h-full !gap-2 !px-4 ");
+  const formClass = cn("!flex !flex-col justify-start !h-full !gap-2 !px-4 ");
 
   const inputClass = cn(
     "!h-10 !bg-white/5 !border-white/10",
@@ -51,6 +83,7 @@ export default function FormLogin() {
     "overflow-y-auto! rounded-2xl! px-6! py-3!",
     "bg-[#050d1a]/95! backdrop-blur-xl!",
     "border! border-cyan-500/30!",
+    "flex flex-col justify-start",
   );
 
   const errorFieldClass = cn("text-red-400 text-xs mt-1");
@@ -72,29 +105,31 @@ export default function FormLogin() {
 
   // Bottone submit principale
   const submitBtnClass = cn(
-    "bg-gradient-to-r from-cyan-500 to-blue-600 w-full md:!w-2/5",
+    "bg-gradient-to-r from-cyan-500 to-blue-600 w-full sm:w-2/5",
     "hover:from-cyan-400 hover:to-blue-500",
-    "text-white font-medium tracking-wider uppercase text-sm",
+    "text-white! font-medium tracking-wider uppercase text-sm",
     "border-0 rounded-xl px-6",
-    "transition-all duration-200",
+    "transition-all duration-200 ",
     "shadow-[0_0_20px_rgba(0,200,255,0.25)]",
-    "hover:shadow-[0_0_30px_rgba(0,200,255,0.4)]",
+    "hover:shadow-[0_0_30px_rgba(0,200,255,0.4)] ",
   );
+
+  const spinnerButtonClass = cn(
+    "animate-spin rounded-full h-4 w-4 border-t-2 border-cyan-400!  ",
+  );
+
+  const spanLoader = cn("flex w-full gap-4 items-center space-x-3 ");
 
   // Bottone cancel/outline
   const cancelBtnClass = cn(
     "bg-transparent border border-white/10 md:!w-2/5",
-    "text-white/60 hover:text-white",
-    "hover:bg-white/5 hover:border-white/20",
+    "text-white/60! hover:text-white!",
+    "hover:bg-white/5! hover:border-white/20",
     "rounded-xl tracking-wider uppercase text-sm",
     "transition-all duration-200",
   );
 
-  const [isSignIn, setIsSignIn] = useState(true);
-  const [data, actionF, isPending] = useActionState(
-    actionFormSub,
-    initialState,
-  );
+  const passCont = cn("flex items-center gap-2 sm:pr-5");
 
   return (
     <DialogContent className={dialogClass}>
@@ -108,13 +143,14 @@ export default function FormLogin() {
             : "Enter your email and password to sign in"}
         </DialogDescription>
       </DialogHeader>
-      <form className={formClass} action={actionF}>
+      <form className={formClass} action={action}>
         <FieldGroup className={fieldGroupCont}>
           <div className={fieldTwoInput}>
             <Field>
               <Label className={labelClass} htmlFor="email">
                 Email
               </Label>
+
               <Input
                 className={inputClass}
                 required
@@ -122,75 +158,101 @@ export default function FormLogin() {
                 name="email"
                 defaultValue={data.currentData.email || ""}
               />
+
               {data.errors.email && data.errors.email?.length > 0 && (
                 <FieldError className={errorFieldClass}>
                   {data.errors.email?.[0]}
                 </FieldError>
               )}
             </Field>
-            <Field>
-              <Label className={labelClass} htmlFor="username">
-                Username
-              </Label>
-              <Input
-                className={inputClass}
-                required
-                id="username"
-                name="username"
-                defaultValue={data.currentData.username || ""}
-              />
-              {data.errors.username && data.errors.username?.length > 0 && (
-                <FieldError className={errorFieldClass}>
-                  {data.errors.username?.[0]}
-                </FieldError>
-              )}
-            </Field>
+            {isSignIn && (
+              <Field>
+                <Label className={labelClass} htmlFor="username">
+                  Username
+                </Label>
+                <Input
+                  className={inputClass}
+                  required
+                  id="username"
+                  name="username"
+                  defaultValue={
+                    (data as FormStateSub).currentData.username || ""
+                  }
+                />
+                {data.errors.username && data.errors.username?.length > 0 && (
+                  <FieldError className={errorFieldClass}>
+                    {data.errors.username?.[0]}
+                  </FieldError>
+                )}
+              </Field>
+            )}
           </div>
 
           <div className={fieldTwoInput}>
-
-                     <Field>
-            <Label className={labelClass} htmlFor="password">
-              Password
-            </Label>
-            <Input
-              className={inputClass}
-              required
-              id="password"
-              name="password"
-              defaultValue={data.currentData.password || ""}
-            />
-            {data.errors.password && data.errors.password?.length > 0 && (
-              <FieldError className={errorFieldClass}>
-                {data.errors.password?.[0]}
-              </FieldError>
-            )}
-          </Field>
-
-          {isSignIn && (
             <Field>
-              <Label className={labelClass} htmlFor="confirmPassword">
-                Confirm Password
+              <Label className={labelClass} htmlFor="password">
+                Password
               </Label>
-              <Input
-                className={inputClass}
-                required
-                id="confirmPassword"
-                name="confirmPassword"
-                defaultValue={data.currentData.confirmPassword || ""}
-              />
+              <div className={passCont}>
+                <Input
+                  className={inputClass}
+                  required
+                  type={isPasswordVisible ? "text" : "password"}
+                  id="password"
+                  name="password"
+                  defaultValue={data.currentData.password || ""}
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+                >
+                  {isPasswordVisible ? <Eye /> : <EyeOff />}
+                </Button>
+              </div>
 
-                         {data.errors.confirmPassword && data.errors.confirmPassword?.length > 0 && (
-              <FieldError className={errorFieldClass}>
-                {data.errors.confirmPassword?.[0]}
-              </FieldError>
-            )}
+              {data.errors.password && data.errors.password?.length > 0 && (
+                <FieldError className={errorFieldClass}>
+                  {data.errors.password?.[0]}
+                </FieldError>
+              )}
             </Field>
-            
-          )}
-          </div>
 
- 
+            {isSignIn && (
+              <Field>
+                <Label className={labelClass} htmlFor="confirmPassword">
+                  Confirm Password
+                </Label>
+
+                <div className={passCont}>
+                  <Input
+                    className={inputClass}
+                    required
+                    type={isPasswordVisible ? "text" : "password"}
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    defaultValue={
+                      (data as FormStateSub).currentData.confirmPassword || ""
+                    }
+                  />
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+                  >
+                    {isPasswordVisible ? <Eye /> : <EyeOff />}
+                  </Button>
+                </div>
+
+                {data.errors.confirmPassword &&
+                  data.errors.confirmPassword?.length > 0 && (
+                    <FieldError className={errorFieldClass}>
+                      {data.errors.confirmPassword?.[0]}
+                    </FieldError>
+                  )}
+              </Field>
+            )}
+          </div>
         </FieldGroup>
         <DialogFooter className={footerClass}>
           <DialogClose asChild>
@@ -199,15 +261,27 @@ export default function FormLogin() {
             </Button>
           </DialogClose>
           <Button className={submitBtnClass} disabled={isPending} type="submit">
-            {isSignIn ? "Sign Up" : "Sign In"}
+            {isPending ? (
+              <span className={spanLoader}>
+                <span className={spinnerButtonClass}></span>{" "}
+                <span> Loading</span>
+              </span>
+            ) : isSignIn ? (
+              "Sign Up"
+            ) : (
+              "Sign In"
+            )}
           </Button>
         </DialogFooter>
         <Button
+        
           className={toggleBtnClass}
           type="button"
           onClick={() => setIsSignIn(!isSignIn)}
         >
-          {!isSignIn ? "Don't have an account?" : "You have already an account?"}
+          {!isSignIn
+            ? "Don't have an account?"
+            : "You have already an account?"}
         </Button>
       </form>
     </DialogContent>
