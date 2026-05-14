@@ -77,7 +77,7 @@ useEffect(() => {
 
   const t = setTimeout(() => {
     router.replace("/shop");
-  }, 2500);
+  }, 1500);
 
   return () => clearTimeout(t);
 }, [isSuccess, router]);
@@ -94,7 +94,7 @@ useEffect(() => {
     "!px-2 !py-1 !mt-1",
   );
 
-  const fieldGroupCont = cn("!overflow-y-auto !px-4 !py-1 ", "flex flex-col");
+  const fieldGroupCont = cn("!overflow-y-auto !px-4 !py-1 ", "flex flex-col gap-2");
 
   const fieldTwoInput = cn(
     "flex flex-col md:flex-row md:justify-between md:items-center gap-3",
@@ -291,7 +291,7 @@ useEffect(() => {
         </FieldGroup>
         <DialogFooter className={footerClass}>
           <DialogClose asChild>
-            <Button className={cancelBtnClass} variant="outline">
+            <Button className={cancelBtnClass} disabled={isPending} variant="outline">
               Cancel
             </Button>
           </DialogClose>
@@ -309,7 +309,7 @@ useEffect(() => {
           </Button>
         </DialogFooter>
         <Button
-        
+        disabled={isPending}
           className={toggleBtnClass}
           type="button"
           onClick={() => setIsSignIn(!isSignIn)}

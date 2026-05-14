@@ -9,9 +9,7 @@ import {
   DialogTitle,
 } from "../ui/dialog";
 
-interface Props {
-  setOpen: (open: boolean) => void;
-}
+
 
 export default function FormSuccess() {
 
@@ -39,7 +37,7 @@ export default function FormSuccess() {
 
   return (
     <DialogContent className={dialogClass}  onEscapeKeyDown={(e) => {
-    e.preventDefault(); // ❌ blocca ESC
+    e.preventDefault(); 
   }} onPointerDownOutside={(e) => {
     e.preventDefault(); 
   }}>
