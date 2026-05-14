@@ -1,7 +1,8 @@
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 import { Eye, EyeOff } from "lucide-react";
-import { useState, useActionState } from "react";
+import { useState, useActionState,useEffect } from "react";
+import { useRouter } from "next/navigation";
 import {
   actionFormSub,
   type FormStateSub,
@@ -19,6 +20,7 @@ import {
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Field, FieldGroup, FieldError } from "../ui/field";
+import FormSuccess from "./FormSuccess";
 
 const initialStateSub: FormStateSub = {
   success: false,
@@ -32,7 +34,16 @@ const initialStateLogIn: FormStateLogin = {
   currentData: { email: "", password: "" },
 };
 
-export default function FormLogin() {
+interface Props {
+  onPendingChange: (isPending: boolean) => void;
+  onSuccess?: () => void;
+}
+
+export default function FormLogin( { onPendingChange, onSuccess }: Props) {
+
+const router = useRouter();
+
+
   const [isSignIn, setIsSignIn] = useState(true);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
@@ -50,6 +61,26 @@ export default function FormLogin() {
 
   const action = !isSignIn ? actionLogIn : actionSub;
   const isPending = !isSignIn ? isPendingLogIn : isPendingSub;
+
+
+const isSuccess = !isSignIn
+  ? dataLogIn?.success
+  : dataSub?.success;
+
+
+ useEffect(() => {
+    onPendingChange?.(isPending);
+  }, [isPending]);
+
+useEffect(() => {
+  if (!isSuccess) return;
+
+  const t = setTimeout(() => {
+    router.replace("/shop");
+  }, 2500);
+
+  return () => clearTimeout(t);
+}, [isSuccess, router]);
 
   const footerClass = cn(
     "flex mt-3! flex-col-reverse sm:flex-row justify-center items-center gap-3 pt-4 px-2",
@@ -112,13 +143,14 @@ export default function FormLogin() {
     "transition-all duration-200 ",
     "shadow-[0_0_20px_rgba(0,200,255,0.25)]",
     "hover:shadow-[0_0_30px_rgba(0,200,255,0.4)] ",
+    "flex items-center justify-center gap-2 text-center",
   );
 
   const spinnerButtonClass = cn(
     "animate-spin rounded-full h-4 w-4 border-t-2 border-cyan-400!  ",
   );
 
-  const spanLoader = cn("flex w-full gap-4 items-center space-x-3 ");
+  const spanLoader = cn("flex justify-center w-full gap-4 items-center space-x-3 ");
 
   // Bottone cancel/outline
   const cancelBtnClass = cn(
@@ -130,6 +162,9 @@ export default function FormLogin() {
   );
 
   const passCont = cn("flex items-center gap-2 sm:pr-5");
+
+  if(data.success) return <FormSuccess   />
+
 
   return (
     <DialogContent className={dialogClass}>

@@ -8,6 +8,7 @@ import Testimonials from "@/components/landingpage/Testimonials";
 import { usePathname } from "next/navigation";
 export default function Home() {
   const pathname = usePathname();
+
   const noShowPath = ["/login", "/planets-details"];
   const noNav = noShowPath.some((path) => pathname.startsWith(path));
   return (

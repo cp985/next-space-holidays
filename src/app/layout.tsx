@@ -17,6 +17,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NODE_ENV === "production" 
+      ? "https://next-space-holidays.vercel.app/" 
+      : "http://localhost:3000"
+  ),
   title: "Galactic Horizons | Space Travel Agency",
   description:
     "Explore Mars, Saturn, and beyond with us. Your journey to the stars starts here.",
@@ -63,12 +68,15 @@ export default function RootLayout({
   children: React.ReactNode;
   modal: React.ReactNode;
 }>) {
+
   
   return (
     <html
+     data-scroll-behavior="smooth"
       lang="en"
       suppressHydrationWarning
       className={cn(
+        "scroll-smooth",
         "h-full",
         "antialiased",
         geistSans.variable,

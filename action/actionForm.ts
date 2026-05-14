@@ -1,6 +1,9 @@
 "use server";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
+import { createClient } from "@/lib/supabase/server";
+import { signIn } from "../src/auth/auth";
+import { AuthError } from "next-auth";
 
 const formSchemaLogin = z.object({
   email: z
@@ -65,6 +68,7 @@ export async function actionFormSub(
   formData: FormData,
 ): Promise<FormStateSub> {
   await new Promise((resolve) => setTimeout(resolve, 2000));
+  const supabase = await createClient();
 
   const rawData = Object.fromEntries(formData);
   const data = {
@@ -83,6 +87,51 @@ export async function actionFormSub(
       currentData: data,
     };
   }
+  const hashedPassword = await bcrypt.hash(data.password, 12);
+  const { confirmPassword, ...user } = data;
+
+  const newEmail = user.email.toLowerCase();
+  user.email = newEmail;
+  user.password = hashedPassword;
+
+  const { error } = await supabase.from("users").insert(user);
+  if (error) {
+    return {
+      success: false,
+      errors: {
+        username: [error.message],
+        email: [error.message],
+        password: [error.message],
+      },
+      currentData: data,
+    };
+  }
+
+  try {
+    const result = await signIn("credentials", {
+      email: data.email,
+      password: data.password,
+      redirect: false,
+    });
+    if (result?.error) {
+      return {
+        success: false,
+        errors: { email: ["Account creato, ma credenziali non riconosciute."] },
+        currentData: data,
+      };
+    }
+  } catch (e) {
+    if (e instanceof AuthError) {
+      // Login fallito dopo registrazione
+      return {
+        success: false,
+        errors: { email: ["Account creato ma login fallito, riprova"] },
+        currentData: data,
+      };
+    }
+    throw e; // ← FONDAMENTALE: rilancia il redirect di Next.js
+  }
+
   return {
     success: true,
     errors: {},
@@ -90,6 +139,7 @@ export async function actionFormSub(
   };
 }
 
+//login
 
 export async function actionFormLogIn(
   prevS: FormStateLogin,
