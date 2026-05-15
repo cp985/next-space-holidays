@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import { createClient } from "@/lib/supabase/server";
 import { signIn } from "../src/auth/auth";
 import { AuthError } from "next-auth";
+import { revalidatePath } from "next/cache";
 
 const formSchemaLogin = z.object({
   email: z
@@ -120,6 +121,10 @@ export async function actionFormSub(
         currentData: data,
       };
     }
+
+revalidatePath("/", "layout"); 
+  revalidatePath("/shop");
+
   } catch (e) {
     if (e instanceof AuthError) {
       // Login fallito dopo registrazione
@@ -131,6 +136,8 @@ export async function actionFormSub(
     }
     throw e; // ← FONDAMENTALE: rilancia il redirect di Next.js
   }
+
+  
 
   return {
     success: true,
