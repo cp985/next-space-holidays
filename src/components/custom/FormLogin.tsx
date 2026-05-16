@@ -72,14 +72,21 @@ const isSuccess = !isSignIn
     onPendingChange?.(isPending);
   }, [isPending]);
 
+// CLIENT COMPONENT FIX
+
 useEffect(() => {
+
   if (!isSuccess) return;
+
+  // IMPORTANTISSIMO
+  router.refresh();
 
   const t = setTimeout(() => {
     router.replace("/shop");
-  }, 1500);
+  }, 2000);
 
   return () => clearTimeout(t);
+
 }, [isSuccess, router]);
 
   const footerClass = cn(
@@ -165,6 +172,9 @@ useEffect(() => {
 
   if(data.success) return <FormSuccess   />
 
+  function toggleSignIn() {
+    setIsSignIn((prev) => !prev);
+  }
 
   return (
     <DialogContent className={dialogClass}>
@@ -312,7 +322,7 @@ useEffect(() => {
         disabled={isPending}
           className={toggleBtnClass}
           type="button"
-          onClick={() => setIsSignIn(!isSignIn)}
+          onClick={toggleSignIn}
         >
           {!isSignIn
             ? "Don't have an account?"

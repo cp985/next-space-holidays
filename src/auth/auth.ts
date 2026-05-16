@@ -1,92 +1,3 @@
-// import NextAuth from "next-auth";
-// import bcrypt from "bcryptjs";
-// import { createClient } from "@/lib/supabase/server";
-// import CredentialsP from "next-auth/providers/credentials";
-
-// export const { handlers, signIn, signOut, auth } = NextAuth({
-//   providers: [
-//     CredentialsP({
-//       name: "Credentials",
-//       credentials: {
-//         email: { label: "Email", type: "email", placeholder: "Email" },
-//         password: {
-//           label: "Password",
-//           type: "password",
-//           placeholder: "Password",
-//         },
-//       },
-
-//       async authorize(credentials) {
-//         if (!credentials?.email || !credentials.password) {
-//           return null;
-//         }
-//         const supabase =await createClient();
-//         const email = credentials.email as string;
-//         const password = credentials.password as string;
-
-//         const resp = await supabase
-//           .from("users")
-//           .select("*")
-//           .eq("email", email)
-//           .maybeSingle();
-
-//         const user = resp.data;
-//         const error = resp.error;
-//         if (error || !user) {
- 
-//           return null;
-//         }
-
-//         const isValid = await bcrypt.compare(password, user.password);
-//         if (!isValid) {
-//           return null;
-//         }
-
-//         return {
-//           id: user.id,
-//           username: user.username,
-//           email: user.email,
-//         };
-//       },
-//     }),
-//   ],
-
-//   session: {
-//     strategy: "jwt",
-//   },
-//   callbacks: {
-//     async jwt({ token, user }) {
-//       if (user) {
-//         token.id = user.id;
-//         token.username = user.username;
-//         token.email = user.email;
-//       }
-//       return token;
-//     },
-//     async session({ session, token }) {
-//       if (token) {
-//         session.user.id = token.id as string;
-//         session.user.name = token.username as string;
-//         session.user.email = token.email as string;
-//       }
-//       return session;
-//     },
-//     async authorized({ auth, request }) {
-//       const { pathname } = request.nextUrl;
-
-//       if (pathname.startsWith("/shop")) {
-//         return !!auth?.user?.email;
-//       }
-
-//       return true;
-//     },
-//   },
-//   pages: {
-//     signIn: "/login",
-//     signOut: "/login",
-//     error: "/login",
-//   },
-// });
 
 
 import NextAuth from "next-auth";
@@ -189,3 +100,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     error: "/login",
   },
 });
+
+
+

@@ -65,9 +65,12 @@ export interface FormStateSub {
 }
 
 export async function actionFormSub(
+  
   prevS: FormStateSub,
   formData: FormData,
 ): Promise<FormStateSub> {
+  console.log('Inizio registrazione');
+  
   await new Promise((resolve) => setTimeout(resolve, 2000));
   const supabase = await createClient();
 
@@ -117,7 +120,7 @@ export async function actionFormSub(
     if (result?.error) {
       return {
         success: false,
-        errors: { email: ["Account creato, ma credenziali non riconosciute."] },
+        errors: { email: ["Account created but credentials not recognized."] },
         currentData: data,
       };
     }
@@ -130,11 +133,11 @@ revalidatePath("/", "layout");
       // Login fallito dopo registrazione
       return {
         success: false,
-        errors: { email: ["Account creato ma login fallito, riprova"] },
+        errors: { email: ["Account created but credentials not recognized."] },
         currentData: data,
       };
     }
-    throw e; // ← FONDAMENTALE: rilancia il redirect di Next.js
+    throw e; 
   }
 
   
@@ -152,6 +155,7 @@ export async function actionFormLogIn(
   prevS: FormStateLogin,
   formData: FormData,
 ): Promise<FormStateLogin> {
+  console.log("--- INIZIO ACTION LOGIN ---");
   await new Promise((resolve) => setTimeout(resolve, 2000));
 
   const rawData = Object.fromEntries(formData);
@@ -169,9 +173,36 @@ export async function actionFormLogIn(
       currentData: data,
     };
   }
+
+ 
+    console.log("Eseguo signIn...");
+    const result = await signIn("credentials", {
+      email: data.email,
+      password: data.password,
+      redirect: false,
+    });
+    console.log("Risultato signIn:", result);
+
+    if (result?.error) {
+      return {
+        success: false,
+        errors: { email: ["Login Error, try again"] },
+        currentData: data,
+      };
+    }
+
+
+revalidatePath("/", "layout"); 
+  revalidatePath("/shop");
+
+
+
   return {
     success: true,
     errors: {},
     currentData: data,
   };
 }
+
+
+

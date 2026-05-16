@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "next-themes";
+import { SessionProvider } from "next-auth/react";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -18,9 +19,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NODE_ENV === "production" 
-      ? "https://next-space-holidays.vercel.app/" 
-      : "http://localhost:3000"
+    process.env.NODE_ENV === "production"
+      ? "https://next-space-holidays.vercel.app/"
+      : "http://localhost:3000",
   ),
   title: "Galactic Horizons | Space Travel Agency",
   description:
@@ -68,11 +69,9 @@ export default function RootLayout({
   children: React.ReactNode;
   modal: React.ReactNode;
 }>) {
-
-  
   return (
     <html
-     data-scroll-behavior="smooth"
+      data-scroll-behavior="smooth"
       lang="en"
       suppressHydrationWarning
       className={cn(
@@ -83,13 +82,18 @@ export default function RootLayout({
         geistMono.variable,
         "font-sans",
         inter.variable,
-        
       )}
     >
       <body className="min-h-full flex flex-col">
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-          {children}
-          {modal}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+        >
+          <SessionProvider>
+            {children}
+            {modal}
+          </SessionProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -6,13 +6,15 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-
+import { useSession, signOut } from "next-auth/react";
 
 export default function NavLanding() {
   const navClass = cn("nav");
   const logoClass = cn("logo");
-  const imgLogoClass = cn(`${'img-logo'} w-full!`);
-  const logoIconClass = cn(`${'logo-icon'} min-w-11 min-h-11  sm:w-13! sm:h-13!`);
+  const imgLogoClass = cn(`${"img-logo"} w-full!`);
+  const logoIconClass = cn(
+    `${"logo-icon"} min-w-11 min-h-11  sm:w-13! sm:h-13!`,
+  );
   const navLinksClass = cn("nav-links");
   const navCtaClass = cn("nav-cta");
   const darkToggleClass = cn("dark-toggle");
@@ -22,7 +24,7 @@ export default function NavLanding() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-
+  const { data: session } = useSession();
 
   useEffect(() => {
     setMounted(true);
@@ -59,13 +61,28 @@ export default function NavLanding() {
         </li>
       </ul>
       <div className={buttonDiv}>
-        <Button type="button" onClick={() => setTheme(theme === "dark" ? "light" : "dark")} className={darkToggleClass}>
+        <Button
+          type="button"
+          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          className={darkToggleClass}
+        >
           {theme === "dark" ? "🌞" : "🌙"}
         </Button>
-     
-        <Button type="button"   className={navCtaClass} asChild>
-           <Link href="/login"> Book Now</Link>
-        </Button>
+
+        {session ? (
+          <Button
+            type="button"
+            onClick={() => signOut()}
+            className={navCtaClass}
+            asChild
+          >
+            <Link href="#"> Logout</Link>
+          </Button>
+        ) : (
+          <Button type="button" className={navCtaClass} asChild>
+            <Link href="/login"> Book Now</Link>
+          </Button>
+        )}
       </div>
     </nav>
   );
