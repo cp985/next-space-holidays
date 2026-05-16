@@ -44,8 +44,6 @@ interface Props {
 export default function FormLogin( { onPendingChange, onSuccess }: Props) {
 
 const router = useRouter();
-const searchParams = useSearchParams();
-  const error = searchParams.get("error");
 
 
   const [isSignIn, setIsSignIn] = useState(true);
