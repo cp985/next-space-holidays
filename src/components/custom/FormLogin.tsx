@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 import { Eye, EyeOff } from "lucide-react";
 import { useState, useActionState,useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-
+import { Suspense } from 'react';
 import { useRouter } from "next/navigation";
 import {
   actionFormSub,
@@ -181,6 +181,7 @@ useEffect(() => {
   }
 
   return (
+<Suspense fallback={<div>Loading...</div>}>
     <DialogContent className={dialogClass}>
       <DialogHeader>
         <DialogTitle className={titleClass}>
@@ -335,5 +336,6 @@ useEffect(() => {
         </Button>
       </form>
     </DialogContent>
+</Suspense>
   );
 }
