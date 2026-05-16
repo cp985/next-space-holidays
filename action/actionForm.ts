@@ -5,6 +5,7 @@ import { createClient } from "@/lib/supabase/server";
 import { signIn } from "../src/auth/auth";
 import { AuthError } from "next-auth";
 import { revalidatePath } from "next/cache";
+import { isRedirectError } from "next/dist/client/components/redirect-error";
 
 const formSchemaLogin = z.object({
   email: z
@@ -176,32 +177,59 @@ export async function actionFormLogIn(
 
  
     console.log("Eseguo signIn...");
-    const result = await signIn("credentials", {
-      email: data.email,
-      password: data.password,
-      redirect: false,
-    });
-    console.log("Risultato signIn:", result);
+try {
+  const result = await signIn("credentials", {
+    email: data.email,
+    password: data.password,
+    redirect: false,
+  });
 
-    if (result?.error) {
-      return {
-        success: false,
-        errors: { email: ["Login Error, try again"] },
-        currentData: data,
-      };
-    }
+  if (result?.error) {
+    return {
+      success: false,
+      errors: { email: ["Credenziali non riconosciute."] },
+      currentData: data,
+    };
+  }
 
-
-revalidatePath("/", "layout"); 
+  revalidatePath("/", "layout"); 
   revalidatePath("/shop");
-
-
 
   return {
     success: true,
     errors: {},
     currentData: data,
   };
+
+} catch (e: any) {
+  // 1. IMPORTANTE: Se Next.js sta provando a fare un redirect nativo, lascialo passare
+  if (isRedirectError(e)) {
+    throw e;
+  }
+
+  // 2. Sicurezza per Auth.js: se l'errore contiene la firma di Auth.js o un fallimento di credenziali
+  const isAuthError = e instanceof AuthError || e.type?.includes("AuthError") || e.message?.includes("CredentialsSignin");
+
+  if (isAuthError) {
+    return {
+      success: false,
+      errors: { email: ["Email o password errati."] },
+      currentData: data,
+    };
+  }
+
+  // 3. Fallback definitivo: Evita il 500 bloccando qualsiasi altro errore imprevisto (es. Supabase giù)
+  console.error("Errore di login intercettato:", e);
+  return {
+    success: false,
+    errors: { email: ["Servizio momentaneamente non disponibile. Riprova."] },
+    currentData: data,
+  };
+
+
+}
+
+
 }
 
 
