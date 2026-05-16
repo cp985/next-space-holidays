@@ -191,7 +191,7 @@ useEffect(() => {
             : "Enter your email and password to sign in"}
         </DialogDescription>
       </DialogHeader>
-{error && <h2 className={errorFieldClass}>Login error.Please try again </h2> }
+
       <form className={formClass} action={action}>
         <FieldGroup className={fieldGroupCont}>
           <div className={fieldTwoInput}>
