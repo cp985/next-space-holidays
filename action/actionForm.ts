@@ -183,13 +183,14 @@ export async function actionFormLogIn(
     });
     console.log("Risultato signIn:", result);
 
-    if (!result?.ok) {
-      return {
-        success: false,
-        errors: { email: ["Login Error, try again"] },
-        currentData: data,
-      };
-    }
+    if (result?.error) {
+    return {
+      success: false,
+      errors: { email: ["Email o password non validi"] },
+      currentData: data,
+    };
+  }
+
 
 
 revalidatePath("/", "layout"); 
