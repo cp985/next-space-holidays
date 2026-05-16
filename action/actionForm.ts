@@ -183,7 +183,7 @@ export async function actionFormLogIn(
     });
     console.log("Risultato signIn:", result);
 
-    if (result?.error) {
+    if (!result?.ok) {
       return {
         success: false,
         errors: { email: ["Login Error, try again"] },
