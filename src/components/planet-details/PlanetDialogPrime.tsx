@@ -110,7 +110,7 @@ export default function PlanetDetailPage( {slug,description }: Props ) {
   );
 
   const sceneContainer = cn(
-    "relative overflow-hidden rounded-full md:rounded-[4rem]", // Oblò più tondo su mobile
+    "relative overflow-hidden  md:rounded-[4rem]", // Oblò più tondo su mobile
     "w-[min(95vw,90vh)] aspect-square",
     "border-4 border-white/5 shadow-[0_0_100px_rgba(0,0,0,0.8)]",
     "bg-black"
@@ -119,18 +119,20 @@ export default function PlanetDetailPage( {slug,description }: Props ) {
   const titleClass = cn(
     "absolute top-0 left-0 w-full z-40 pt-12 px-6 pb-16",
     "text-center text-white uppercase tracking-[0.4em]",
-    "text-3xl md:text-6xl font-black pointer-events-none",
+    "text-4xl  font-black pointer-events-none",
     "bg-gradient-to-b from-black/80 via-black/40 to-transparent",
     "drop-shadow-[0_4px_10px_rgba(0,0,0,0.5)]"
   );
 
   const footerClass = cn(
-    "absolute bottom-8 left-1/2 -translate-x-1/2 z-40",
-    "w-[85%] md:w-[60%]",
-    "px-8 py-6 flex flex-col gap-5",
-    "rounded-3xl bg-black/40 backdrop-blur-xl",
-    "border border-white/10 shadow-2xl",
-    "animate-in fade-in slide-in-from-bottom-4 duration-700"
+   "absolute bottom-0 left-1/2 -translate-x-1/2 z-40",
+    "w-[85%]",
+    "px-6 pt-3 pb-4",
+    "flex flex-col gap-3",
+    "rounded-2xl",
+    "bg-black/25 backdrop-blur-md",
+    "border border-white/8",
+    "shadow-[0_4px_30px_rgba(0,0,0,0.25)]"
   );
 
   return (
@@ -195,21 +197,20 @@ export default function PlanetDetailPage( {slug,description }: Props ) {
 
         {/* Footer Info (Didascalia aumentata) */}
         <div className={footerClass}>
-          <p className="text-white/70 text-sm md:text-base font-light leading-relaxed text-center tracking-wide">
+          <p className="text-white/70 text-sm -base font-light leading-relaxed text-center tracking-wide">
            
             Prepare for an unprecedented journey to the heart of ${slug}. Witness breathtaking cosmic landscapes and experience the luxury of space travel in our tiered orbital suites.
           </p>
           
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+          <div className="flex justify-center items-center gap-3">
             <Button
               variant="outline"
               className={cn(
-                "w-full sm:w-auto",
-                "bg-transparent border border-white/20",
-                "text-white/60 hover:text-white hover:bg-white/10",
-                "rounded-xl tracking-widest uppercase text-xs px-8 py-6",
-                "transition-all duration-300"
-              )}
+                  "!bg-transparent !border !border-white/15",
+                  "!text-white/60 hover:!text-white hover:!bg-white/5",
+                  "!rounded-xl !tracking-wider !uppercase !text-xs !px-5",
+                  "!transition-all !duration-200"
+                )}
               onClick={() => router.back()}
             >
               <ArrowLeft size={14} className="mr-2" /> Return to Map
@@ -217,13 +218,13 @@ export default function PlanetDetailPage( {slug,description }: Props ) {
             
             <Button
               className={cn(
-                "w-full sm:w-auto",
-                "bg-gradient-to-r from-cyan-600 to-blue-700",
-                "hover:from-cyan-500 hover:to-blue-600",
-                "text-white font-bold tracking-widest uppercase text-xs px-8 py-6",
-                "border-0 rounded-xl shadow-[0_0_30px_rgba(0,200,255,0.3)]",
-                "transition-all duration-300 hover:scale-105 active:scale-95"
-              )}
+                  "!bg-gradient-to-r !from-cyan-500 !to-blue-600",
+                  "hover:!from-cyan-400 hover:!to-blue-500",
+                  "!text-white font-semibold !tracking-wider !uppercase !text-xs !px-5",
+                  "!border-0 !rounded-xl",
+                  "!shadow-[0_0_20px_rgba(0,200,255,0.2)]",
+                  "!transition-all !duration-200"
+                )}
               onClick={() => router.push(`/login`)}
             >
               Book your holiday
