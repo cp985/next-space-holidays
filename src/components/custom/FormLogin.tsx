@@ -2,6 +2,8 @@ import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 import { Eye, EyeOff } from "lucide-react";
 import { useState, useActionState,useEffect } from "react";
+
+
 import { useRouter } from "next/navigation";
 import {
   actionFormSub,
@@ -72,13 +74,13 @@ const isSuccess = !isSignIn
     onPendingChange?.(isPending);
   }, [isPending]);
 
-// CLIENT COMPONENT FIX
+
 
 useEffect(() => {
 
   if (!isSuccess) return;
 
-  // IMPORTANTISSIMO
+  
   router.refresh();
 
   const t = setTimeout(() => {
@@ -177,6 +179,7 @@ useEffect(() => {
   }
 
   return (
+
     <DialogContent className={dialogClass}>
       <DialogHeader>
         <DialogTitle className={titleClass}>
@@ -188,6 +191,7 @@ useEffect(() => {
             : "Enter your email and password to sign in"}
         </DialogDescription>
       </DialogHeader>
+
       <form className={formClass} action={action}>
         <FieldGroup className={fieldGroupCont}>
           <div className={fieldTwoInput}>
