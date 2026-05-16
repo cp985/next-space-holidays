@@ -2,6 +2,8 @@ import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 import { Eye, EyeOff } from "lucide-react";
 import { useState, useActionState,useEffect } from "react";
+import { useSearchParams } from "next/navigation";
+
 import { useRouter } from "next/navigation";
 import {
   actionFormSub,
@@ -42,6 +44,8 @@ interface Props {
 export default function FormLogin( { onPendingChange, onSuccess }: Props) {
 
 const router = useRouter();
+const searchParams = useSearchParams();
+  const error = searchParams.get("error");
 
 
   const [isSignIn, setIsSignIn] = useState(true);
@@ -72,13 +76,13 @@ const isSuccess = !isSignIn
     onPendingChange?.(isPending);
   }, [isPending]);
 
-// CLIENT COMPONENT FIX
+
 
 useEffect(() => {
 
   if (!isSuccess) return;
 
-  // IMPORTANTISSIMO
+  
   router.refresh();
 
   const t = setTimeout(() => {
@@ -188,6 +192,7 @@ useEffect(() => {
             : "Enter your email and password to sign in"}
         </DialogDescription>
       </DialogHeader>
+{error && <h2 className={errorFieldClass}>Login error.Please try again </h2> }
       <form className={formClass} action={action}>
         <FieldGroup className={fieldGroupCont}>
           <div className={fieldTwoInput}>
