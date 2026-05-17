@@ -1,8 +1,10 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { motion, Variants } from "framer-motion";
+import { useState } from "react";
+import { Button } from "../ui/button";
 
-import { planets, systemCard, type PlanetType } from "@/lib/content";
+import { planets, type PlanetType } from "@/lib/content";
 import Planet from "../custom/Planet";
 
 import SpaceParallaxHero2 from "./Herosec2";
@@ -22,58 +24,54 @@ export default function HeroPricingLanding() {
   const planetsGridClass = cn(
     `${"planets-grid"} w-full flex flex-wrap justify-center  items-center gap-4!`,
   );
+  const previewPlanets = planets.slice(0, 4);
+  const remainingPlanets = planets.slice(4);
 
-  const previewPlanets = planets.slice(0, 3);
-
-  //motion framer
-const secVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      duration: 0.5,
-      staggerChildren: 0.3, 
+  const secVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        staggerChildren: 0.3,
+      },
     },
-  },
-};
+  };
 
-const contVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
+  const contVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+      },
     },
-  },
-};
+  };
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+      },
     },
-  },
-};
+  };
 
-
+  const [planetsVisible, setPlanetsVisible] = useState<boolean>(false);
   return (
     <div>
-      {/* SEZIONE HERO */}
       <section className={heroPlaceholderClass}>
         <SpaceParallaxHero2 />
       </section>
-
-      {/* SEZIONE PIANETI (PRICING) */}
       <motion.section
         className={planetsSectionClass}
         variants={secVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.2}}
+        viewport={{ once: true, amount: 0.2 }}
         id="planets"
       >
         <div className={containerClass}>
@@ -85,15 +83,35 @@ const cardVariants = {
             Choose your favorite planet and embark on a journey to the stars.
           </p>
 
-          <motion.div variants={contVariants} className={planetsGridClass}>
+          <motion.div variants={contVariants} className={cn(planetsGridClass)}>
             {previewPlanets.map((planet: PlanetType) => (
-           
-                <Planet key={planet.id} variants={cardVariants}  {...planet} />
-          
+              <Planet key={planet.id} variants={cardVariants} {...planet} />
             ))}
-            <Planet variants={cardVariants}  {...systemCard} />
+         
           </motion.div>
-        </div>
+        </div>{" "}
+        <div
+          className={cn(containerClass, {
+            "block": planetsVisible ,
+            "hidden": !planetsVisible
+          })}
+        >
+          <motion.div variants={contVariants} className={planetsGridClass}>
+            {remainingPlanets.map((planet: PlanetType) => (
+              <Planet key={planet.id} variants={cardVariants} {...planet} />
+            ))}
+          </motion.div>
+        </div>{" "}
+        <Button
+          type="button"
+          variant="outline"
+          className={cn(
+            "ml-8! mt-8! p-4! italic border! border-cyan-400! full-rounded hover:bg-cyan-400! hover:text-black!",
+          )}
+          onClick={() => setPlanetsVisible((prevS: boolean) => !prevS)}
+        >
+          {planetsVisible ? "See Less..." : "See All..."}
+        </Button>
       </motion.section>
     </div>
   );

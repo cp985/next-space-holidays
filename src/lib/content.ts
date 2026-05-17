@@ -40,7 +40,7 @@ export const planets : PlanetType[] = [{
     name: "Mercury",
     type: "Premium",
     image: "/planets/mercury.webp",
-    description: "The closest world to our Sun. A land of extreme contrasts, where you can watch the sunrise twice in one day from the edge of vast iron craters.",
+    description: "The closest world to our Sun. A land of extreme contrasts, where you can watch the sunrise twice in one day.",
     activities: ["Solar Flare Observation", "Magma Trekking"],
   },
   {
@@ -48,43 +48,33 @@ export const planets : PlanetType[] = [{
     name: "Venus",
     type: "Luxury",
     image: "/planets/venus.webp",
-    description: "Hidden beneath thick golden clouds, our sister planet offers high-altitude floating resorts far above its crushing surface pressures.",
+    description: "Hidden beneath thick golden clouds, our sister planet offers high-altitude floating resorts.",
     activities: ["Cloud-City Dining", "Sulfuric Sunset Photography"],
   },
   {
-    id: 5,
+    id: 6,
     name: "Uranus",
     type: "Premium",
     image: "/planets/uranus.webp",
-    description: "The tilted ice giant. A cyan-hued world where diamonds may rain from the sky and the rings glow with a ghostly, pale light.",
+    description: "The tilted ice giant. A cyan-hued world where diamonds may rain from the sky.",
     activities: ["Deep-Core Sound Harvesting", "Vertical Ring-Gliding"],
   },
   {
-    id: 6,
+    id: 7,
     name: "Neptune",
     type: "Exclusive",
     image: "/planets/neptune.webp",
-    description: "The furthest sentinel of our system. A deep cobalt sphere whipped by the fastest winds in the galaxy, orbiting in eternal twilight.",
+    description: "The furthest sentinel of our system. A deep cobalt sphere whipped by the fastest winds in the galaxy.",
     activities: ["Supersonic Wind-Surfing", "Triton Cryo-Geyser Tours"],
   },
   {
-    id: 7,
+    id: 8,
     name: "The Moon",
     type: "Basic",
     image: "/planets/moon.webp",
-    description: "Our closest celestial neighbor. Walk where legends first left their footprints and experience the breathtaking 'Earthrise' from the desolate beauty of the Sea of Tranquility.",
+    description: "Our closest celestial neighbor. Walk where legends first left their footprints and experience the breathtaking of the Moon.",
     activities: ["Low-Gravity Lunar Hikes", "Apollo Site Pilgrimages"],
 }
 
 ]
 
-export const systemCard : PlanetType ={
-      
-    id: 7,
-    name: "The Solar System",
-    type: "Adventure",
-    image: "/planets/system.jpg",
-    description: "Explore the planets of our solar system and discover the wonders of the universe whit us .",
-    activities: ["Adventures in the space", "The lower price for the best experience"],
-
-}

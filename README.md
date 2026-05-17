@@ -19,6 +19,10 @@ This project leverages the most modern web technologies to ensure top performanc
 
 ---
 
+# Deployinng on Vercel
+
+"https://next-space-holidays.vercel.app/"
+
 ## ✨ Features
 
 - **Space Hero Banner**: A high-impact hero section with a clear Call to Action (CTA) for user registration.
@@ -89,8 +93,13 @@ MikePetrucci "https://unsplash.com/it/foto/fotografia-di-luna-piena-uIf6H1or1nE"
 
 PlanetVolumes "https://unsplash.com/it/foto/un-pianeta-blu-con-uno-sfondo-nero-yTo1u-i1pVI?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink"
 
+MaryanDembitskyi "https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=8855057"
+
+TheSpaceway "https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=6618698"
+
+WikiImages "https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=11629"
+
+AdisResic "https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7292552"
 
 
-# Deployinng on Vercel
 
-"https://next-space-holidays.vercel.app/"

@@ -37,7 +37,6 @@ export default function FeaturesFaqCtaLanding() {
     },
   };
 
-  // Variant per le card (Entrata da SINISTRA)
   const cardVariantsX: Variants = {
     hidden: { opacity: 0, x: -150 },
     visible: {
@@ -66,7 +65,6 @@ export default function FeaturesFaqCtaLanding() {
 
   return (
     <div>
-      {/* 1. SEZIONE SICUREZZA (FEATURES) */}
       <motion.section
         variants={secVariants}
         initial="hidden"
@@ -171,7 +169,6 @@ export default function FeaturesFaqCtaLanding() {
         </div>
       </motion.section>
 
-      {/* 2. SEZIONE PERCHÉ NOI */}
       <motion.section
         variants={secVariants}
         initial="hidden"
@@ -254,7 +251,6 @@ export default function FeaturesFaqCtaLanding() {
         </motion.div>
       </motion.section>
 
-      {/* 3. CTA BANNER FINALE */}
       <motion.section         variants={secVariants}
         initial="hidden"
         whileInView="visible"

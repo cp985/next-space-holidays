@@ -60,17 +60,11 @@ export default function Planet({
             {activities[1]}
           </div>
         </div>
-        {id === 7 ? (
-          <Button asChild>
-            <Link href="/login" className={`${planetCtaClass} ${linkBook}`}>
-              Book Now
-            </Link>
-          </Button>
-        ) : (
+
           <Button asChild>
             <Link href={`/planets-details/${name}`} className={planetCtaClass}>Discover {name}</Link>
           </Button>
-        )}
+        
       </div>
     </motion.div>
   );
