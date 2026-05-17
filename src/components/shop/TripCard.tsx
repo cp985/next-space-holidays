@@ -21,11 +21,11 @@ const S_CARD = cn(
   "hover:-translate-y-1",
 );
 const S_CARD_VISUAL = cn("relative h-[160px] w-full overflow-hidden");
-const S_CARD_BODY   = cn("flex flex-col flex-1 p-6");
-const S_CARD_NAME   = cn("text-[1.1rem] font-bold text-[#e8eeff] leading-tight mb-1");
-const S_CARD_DEST   = cn("text-[0.78rem] text-[#6878a8] mb-3 tracking-[0.08em] uppercase");
-const S_CARD_DESC   = cn("text-[0.85rem] text-[#a8b8e8] font-light leading-[1.6] mb-4 flex-1");
-const S_DIVIDER     = cn("border-t border-[rgba(34,211,238,0.1)] mt-auto pt-4");
+const S_CARD_BODY   = cn("flex flex-col flex-1 p-6!");
+const S_CARD_NAME   = cn("text-[1.1rem] font-bold text-[#e8eeff] leading-tight mb-1!");
+const S_CARD_DEST   = cn("text-[0.78rem] text-[#6878a8] mb-3! tracking-[0.08em] uppercase");
+const S_CARD_DESC   = cn("text-[0.85rem] text-[#a8b8e8] font-light leading-[1.6] mb-4! flex-1");
+const S_DIVIDER     = cn("border-t border-[rgba(34,211,238,0.1)] mt-auto! pt-4!");
 
 export default function TripCard({
   trip,
@@ -73,10 +73,8 @@ export default function TripCard({
           )}
         />
 
-        {/* Overlay scuro per leggibilità testo */}
         <div className={cn("absolute inset-0 bg-gradient-to-t from-[rgba(2,8,23,0.85)] via-transparent to-transparent")} />
 
-        {/* Badge zona + rischio */}
         <div className={cn("absolute top-3 left-3 flex items-center gap-2")}>
           <span
             className={cn(
@@ -91,7 +89,6 @@ export default function TripCard({
           <RiskBadge risk={trip.risk} />
         </div>
 
-        {/* Seats rimasti */}
         {trip.seats <= 4 && (
           <span
             className={cn(
@@ -105,7 +102,6 @@ export default function TripCard({
           </span>
         )}
 
-        {/* Nome destinazione in basso */}
         <div className={cn("absolute bottom-3 left-3")}>
           <p className={cn("text-[0.68rem] tracking-[0.2em] uppercase text-[#6878a8]")}>
             {trip.departure}
@@ -113,21 +109,18 @@ export default function TripCard({
         </div>
       </div>
 
-      {/* ── Body ───────────────────────────────────────────────────────── */}
       <div className={S_CARD_BODY}>
         <h3 className={S_CARD_NAME}>{trip.name}</h3>
         <p className={S_CARD_DEST}>{trip.destination} · {trip.zone === "deep" ? "Deep Space" : trip.zone === "inner" ? "Inner System" : "Outer Planets"}</p>
 
         <p className={S_CARD_DESC}>{trip.description}</p>
 
-        {/* Stats */}
         <div className={cn("flex flex-col gap-1.5 mb-4")}>
           <StatRow icon={<Clock size={13} />} label="Duration"   value={trip.duration} />
           <StatRow icon={<Users size={13} />} label="Seats left" value={`${trip.seats} remaining`} />
           <StatRow icon={<Shield size={13} />} label="Risk" value={trip.risk} />
         </div>
 
-        {/* Highlights */}
         <div className={cn("flex flex-col gap-1 mb-5")}>
           {trip.highlights.map((h) => (
             <div key={h} className={cn("flex items-start gap-2 text-[0.78rem] text-[#6878a8]")}>
@@ -137,7 +130,6 @@ export default function TripCard({
           ))}
         </div>
 
-        {/* Footer prezzo + CTA */}
         <div className={cn(S_DIVIDER, "flex items-end justify-between gap-3")}>
           <div>
             <p className={cn("text-[0.65rem] tracking-[0.15em] uppercase text-[#6878a8] mb-0.5")}>
@@ -148,7 +140,6 @@ export default function TripCard({
             </p>
           </div>
 
-          {/* Controllo quantità */}
           {inCart ? (
             <div className={cn("flex items-center gap-2")}>
               <Button
@@ -183,10 +174,10 @@ export default function TripCard({
               onClick={onAdd}
               className={cn(
                 "flex items-center gap-2",
-                "px-4 py-2 rounded-full",
-                "bg-[rgba(34,211,238,0.12)] border border-[rgba(34,211,238,0.35)]",
+                "px-4! py-2! rounded-full",
+                "bg-[rgba(34,211,238,0.12)]! border border-[rgba(34,211,238,0.35)]!",
                 "text-[#22d3ee] text-[0.78rem] font-semibold tracking-wide",
-                "hover:bg-[rgba(34,211,238,0.22)] hover:border-[rgba(34,211,238,0.6)]",
+                "hover:bg-[rgba(34,211,238,0.22)]! hover:border-[rgba(34,211,238,0.6)]!",
                 "transition-all duration-200 cursor-pointer",
               )}
             >

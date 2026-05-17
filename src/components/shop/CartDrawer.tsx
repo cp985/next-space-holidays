@@ -58,14 +58,14 @@ export default function CartDrawer({
         <div
           className={cn(
             "flex items-center justify-between",
-            "px-6 py-5",
-            "border-b border-[rgba(34,211,238,0.15)]",
+            "px-6! py-5!",
+            "border-b! border-[rgba(34,211,238,0.15)]!",
           )}
         >
           <div>
             <span
               className={cn(
-                "block text-[0.65rem] tracking-[0.25em] uppercase text-[#22d3ee] mb-1",
+                "block text-[0.65rem] tracking-[0.25em] uppercase text-[#22d3ee]! mb-1!",
               )}
             >
               Mission Cart
@@ -80,8 +80,8 @@ export default function CartDrawer({
             onClick={onClose}
             className={cn(
               "w-9 h-9 rounded-full flex items-center justify-center",
-              "border border-[rgba(34,211,238,0.25)] bg-[rgba(34,211,238,0.08)]",
-              "text-[#6878a8] hover:text-[#e8eeff]",
+              "border border-[rgba(34,211,238,0.25)]! bg-[rgba(34,211,238,0.08)]!",
+              "text-[#6878a8]! hover:text-[#e8eeff]!",
               "transition-all duration-150 cursor-pointer",
             )}
           >
@@ -89,11 +89,11 @@ export default function CartDrawer({
           </Button>
         </div>
 
-        <div className={cn("flex-1 overflow-y-auto py-4 px-6 space-y-4")}>
+        <div className={cn("flex-1 overflow-y-auto py-4! px-6! space-y-4!")}>
           {items.length === 0 ? (
             <div
               className={cn(
-                "flex flex-col items-center justify-center h-full gap-4 py-20",
+                "flex flex-col items-center justify-center h-full gap-4! py-20!",
               )}
             >
               <Rocket size={40} className={cn("text-[#6878a8]")} />
@@ -110,14 +110,14 @@ export default function CartDrawer({
               <div
                 key={item.trip.id}
                 className={cn(
-                  "rounded-[14px] p-4",
-                  "border border-[rgba(34,211,238,0.15)]",
+                  "rounded-[14px] p-4!",
+                  "border border-[rgba(34,211,238,0.15)]!",
                   "bg-[rgba(15,31,61,0.5)]",
                   "backdrop-blur-sm",
                 )}
               >
                 <div
-                  className={cn("flex items-start justify-between gap-3 mb-3")}
+                  className={cn("flex items-start justify-between gap-3 mb-3!")}
                 >
                   <div>
                     <p
@@ -129,7 +129,7 @@ export default function CartDrawer({
                     </p>
                     <p
                       className={cn(
-                        "text-[0.72rem] text-[#6878a8] mt-0.5 tracking-wide uppercase",
+                        "text-[0.72rem] text-[#6878a8]! mt-0.5! tracking-wide uppercase",
                       )}
                     >
                       {item.trip.destination} · {item.trip.duration}
@@ -145,8 +145,8 @@ export default function CartDrawer({
                       onClick={() => onRemove(item.trip.id)}
                       className={cn(
                         "w-7 h-7 rounded-full flex items-center justify-center",
-                        "border border-[rgba(34,211,238,0.3)] bg-[rgba(34,211,238,0.06)]",
-                        "text-[#22d3ee] hover:bg-[rgba(34,211,238,0.18)] transition-all cursor-pointer",
+                        "border border-[rgba(34,211,238,0.3)]! bg-[rgba(34,211,238,0.06)]!",
+                        "text-[#22d3ee]! hover:bg-[rgba(34,211,238,0.18)]! transition-all cursor-pointer",
                       )}
                     >
                       <Minus size={11} />
@@ -163,13 +163,13 @@ export default function CartDrawer({
                       onClick={() => onAdd(item.trip.id)}
                       className={cn(
                         "w-7 h-7 rounded-full flex items-center justify-center",
-                        "border border-[rgba(34,211,238,0.3)] bg-[rgba(34,211,238,0.06)]",
-                        "text-[#22d3ee] hover:bg-[rgba(34,211,238,0.18)] transition-all cursor-pointer",
+                        "border border-[rgba(34,211,238,0.3)]! bg-[rgba(34,211,238,0.06)]!",
+                        "text-[#22d3ee]! hover:bg-[rgba(34,211,238,0.18)]! transition-all cursor-pointer",
                       )}
                     >
                       <Plus size={11} />
                     </Button>
-                    <span className={cn("text-[0.72rem] text-[#6878a8] ml-1")}>
+                    <span className={cn("text-[0.72rem] text-[#6878a8] ml-1!")}>
                       pax
                     </span>
                   </div>
@@ -185,7 +185,7 @@ export default function CartDrawer({
         {items.length > 0 && (
           <div
             className={cn(
-              "px-6 py-5 space-y-4",
+              "px-6! py-5! space-y-4!",
               "border-t border-[rgba(34,211,238,0.15)]",
               "bg-[rgba(2,8,23,0.6)]",
             )}
@@ -211,10 +211,10 @@ export default function CartDrawer({
               type="button"
               className={cn(
                 "w-full flex items-center justify-center gap-2",
-                "py-3.5 rounded-full",
-                "bg-[#22d3ee] text-[#020817]",
+                "py-3.5! rounded-full",
+                "bg-[#22d3ee]! text-[#020817]!",
                 "font-bold text-[0.9rem] tracking-[0.08em] uppercase",
-                "hover:bg-[#67e8f9] transition-all duration-200",
+                "hover:bg-[#67e8f9]! transition-all duration-200",
                 "cursor-pointer",
               )}
             >
@@ -227,7 +227,7 @@ export default function CartDrawer({
               onClick={onClear}
               className={cn(
                 "w-full text-center text-[0.72rem] text-[#6878a8]",
-                "hover:text-[#a8b8e8] transition-colors duration-150 cursor-pointer",
+                "hover:text-[#a8b8e8]! transition-colors duration-150 cursor-pointer",
                 "tracking-wide",
               )}
             >

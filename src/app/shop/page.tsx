@@ -287,7 +287,7 @@ const fmt = (n: number) =>
 // ─── Costanti di stile ────────────────────────────────────────────────────────
 
 // Layout
-const S_PAGE = cn("min-h-screen bg-[#020817] pb-100! sm:pb-6! p-5!");
+const S_PAGE = cn("min-h-screen bg-[#020817] pb-17! sm:pb-6! pt-5! px-5!");
 const S_INNER = cn("max-w-[1280px] mx-auto px-6 md:px-10 lg:px-16");
 
 // Header
@@ -379,8 +379,8 @@ export default function SpaceShop() {
 
   return (
     <main className={S_PAGE}>
-      <header>
-        <div className={cn(S_INNER, "pt-16 pb-10")}>
+      <header >
+        <div className={cn(S_INNER, "flex flex-col gap-2 pt-16 pb-10")}>
           <span className={S_LABEL}>Destinations</span>
           <h1 className={S_TITLE}>
             Choose Your <em className={S_TITLE_EM}>Mission</em>
@@ -494,7 +494,6 @@ export default function SpaceShop() {
                       <p>
                         {`${totalItems} ${totalItems === 1 ? "passenger" : "passengers"}`}
                         
-                      
                       </p>
                     </div>
                   </div>
