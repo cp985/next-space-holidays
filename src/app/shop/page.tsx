@@ -423,21 +423,24 @@ export default function SpaceShop() {
           </div>
         </div>
       </header>
-      <section>
-        <motion.div layout className={S_GRID}>
-          <AnimatePresence mode="popLayout">
-            {visible.map((trip) => (
-              <TripCard
-                key={trip.id}
-                trip={trip}
-                qty={getQty(trip.id)}
-                onAdd={() => addToCart(trip)}
-                onRemove={() => removeFromCart(trip.id)}
-              />
-            ))}
-          </AnimatePresence>
-        </motion.div>
-      </section>
+{/* 🚀 MODIFICATO: Sostituisci l'intera <section> delle card con questa */}
+<section>
+  <div className={S_GRID}>
+    <AnimatePresence mode="popLayout">
+      {visible.map((trip) => (
+     
+          <TripCard
+            key={trip.id}
+            trip={trip}
+            qty={getQty(trip.id)}
+            onAdd={() => addToCart(trip)}
+            onRemove={() => removeFromCart(trip.id)}
+          />
+        
+      ))}
+    </AnimatePresence>
+  </div>
+</section>
 
       <footer>
         <AnimatePresence>

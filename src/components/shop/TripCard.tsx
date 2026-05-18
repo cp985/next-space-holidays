@@ -1,24 +1,20 @@
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
-import {motion} from "framer-motion"
+import { motion } from "framer-motion";
 import { Plus, Minus, Clock, Shield, Users } from "lucide-react";
-import { type Trip} from "@/types/shop/types"
+import { type Trip } from "@/types/shop/types";
 import RiskBadge from "./RiskBadge";
 import StatRow from "./StatRow";
 
 const fmt = (n: number) =>
   new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(n);
 
-
 const S_CARD = cn(
-  "group relative flex flex-col",
+"group relative flex flex-col",
   "rounded-[20px] overflow-hidden",
   "border border-[rgba(34,211,238,0.15)]",
   "bg-[rgba(15,31,61,0.55)]",
   "backdrop-blur-xl",
-  "transition-all duration-300",
-  "hover:border-[rgba(34,211,238,0.35)]",
-  "hover:-translate-y-1",
 );
 const S_CARD_VISUAL = cn("relative h-[160px] w-full overflow-hidden");
 const S_CARD_BODY   = cn("flex flex-col flex-1 p-6!");
@@ -41,20 +37,31 @@ export default function TripCard({
   const inCart = qty > 0;
 
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 8 }}
-      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-      className={cn(S_CARD, inCart && "border-[rgba(34,211,238,0.45)]")}
-    >
+ <motion.div
+    layout="position"
+    // Corsa ridotta al minimo (solo 6px) per un ingresso immediato
+    initial={{ opacity: 0, y: 6 }} 
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -4 }} 
+    
+    // Spostiamo l'effetto hover qui, così non rompe le animazioni di uscita
+    whileHover={{ 
+      y: -4, 
+      borderColor: inCart ? "rgba(34,211,238,0.6)" : "rgba(34,211,238,0.35)" 
+    }}
+    
+    // Transizione secca, fluida e super veloce (0.2 secondi)
+    transition={{
+      type: "tween",
+      ease: [0.25, 1, 0.5, 1], // Cubic-bezier personalizzato per uno stop netto e pulito
+      duration: 0.2
+    }}
+    className={cn(S_CARD, inCart && "border-[rgba(34,211,238,0.45)]")}
+  >
       {/* ── Visual pianeta ─────────────────────────────────────────────── */}
       <div className={S_CARD_VISUAL}>
-        {/* Gradiente base del pianeta */}
         <div className={cn("absolute inset-0 bg-gradient-to-br", trip.visual)} />
 
-        {/* Cerchio pianeta */}
         <div
           className={cn(
             "absolute bottom-[-30%] right-[-10%]",

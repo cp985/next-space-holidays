@@ -175,7 +175,9 @@ export default function PlanetsDialog({ slug, description }: Props) {
           >
             <Image
               src={`/planets-detail/${imgPath}.png`}
-              fill priority alt={`planet ${slug}`}
+              fill 
+              priority 
+              alt={`planet ${slug}`}
               className="object-contain drop-shadow-[0_0_60px_rgba(0,0,0,0.7)]"
             />
           </div>

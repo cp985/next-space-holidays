@@ -177,8 +177,11 @@ export default function PlanetDetailPage( {slug,description }: Props ) {
           }}
         >
           <Image
+          
             src={`/planets-detail/${imgPath}.png`}
-            fill priority alt={`planet ${slug}`}
+            fill 
+            priority 
+            alt={`planet ${slug}`}
             className="object-contain drop-shadow-[0_0_80px_rgba(0,0,0,0.9)]"
           />
         </div>
