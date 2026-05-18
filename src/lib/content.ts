@@ -69,7 +69,7 @@ export const planets : PlanetType[] = [{
   },
   {
     id: 8,
-    name: "The Moon",
+    name: "Moon",
     type: "Basic",
     image: "/planets/moon.webp",
     description: "Our closest celestial neighbor. Walk where legends first left their footprints and experience the breathtaking of the Moon.",

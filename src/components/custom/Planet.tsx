@@ -26,9 +26,7 @@ export default function Planet({
   const attractionClass = cn("attraction");
   const attractionDotClass = cn("attraction-dot");
   const planetCtaClass = cn("planet-cta");
-  const linkBook = cn(
-    "w-full text-xl! sm:text-xl! animate-pulse border-2! border-blue-400",
-  );
+
 
   return (
     <motion.div

@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 // CONFIGURAZIONI PARALLAX
 // ─────────────────────────────────────────────
 const LERP = 0.04;
-const MOBILE_PAN_REDUCER = 0.4; // Riduce la corsa del pan su mobile per non uscire dai bordi
+const MOBILE_PAN_REDUCER = 0.30; //! Riduce la corsa del pan su mobile per non uscire dai bordi
 
 const ZOOM_MAX = {
   bg: 0.08,
@@ -84,8 +84,8 @@ export default function SpaceParallaxHero2() {
         const scale = 1 + zoom * ZOOM_MAX[layer];
         // Usiamo adjustedPanBase per evitare tagli su schermi stretti
         const tx = -nx * adjustedPanBase[layer] * panBoost;
-        // Ridotto leggermente il ty su mobile per evitare tagli verticali
-        const tyMult = isMobile ? 4 : 6;
+        //! Ridotto leggermente il ty su mobile per evitare tagli verticali
+        const tyMult = isMobile ? 3 : 6;
         const ty = ny * tyMult * (1 - zoom * 0.8);
         return `scale(${scale}) translate(${tx}px, ${ty}px)`;
       };
@@ -168,9 +168,9 @@ export default function SpaceParallaxHero2() {
     };
   }, [mounted, isMobile]);
  
-  // 3. Calcolo Matematico Inset (Centramento Perfetto)
+  //! 3. Calcolo Matematico Inset (Centramento Perfetto)
   // Su mobile usiamo 200% di larghezza per avere un buffer totale del 50% per lato
-  const currentSizeNum = !mounted ? 130 : (isMobile ? 160 : 130);
+  const currentSizeNum = !mounted ? 130 : (isMobile ? 140 : 130);
   const currentInsetNum = (100 - currentSizeNum) / 2; // Centra l'immagine matematicamente
 
   const layerStyle: React.CSSProperties = {
