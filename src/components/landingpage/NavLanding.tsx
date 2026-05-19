@@ -7,9 +7,11 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { useSession, signOut } from "next-auth/react";
+import { usePathname } from "next/navigation";
 
 export default function NavLanding() {
-  const navClass = cn("nav");
+  const pathname = usePathname();
+
   const logoClass = cn("logo");
   const imgLogoClass = cn(`${"img-logo"} w-full!`);
   const logoIconClass = cn(
@@ -24,16 +26,32 @@ export default function NavLanding() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  const { data: session } = useSession();
+  const { data: session, status, update } = useSession();
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
+
+
   if (!mounted) {
     return null;
   }
 
+  const noShowPath = ["/login", "/planets-details"];
+  const noNav = noShowPath.some((path) => pathname.startsWith(path));
+  if (noNav) {
+    return null;
+  }
+  const isFixed = "/";
+  const isBlock = "/shop";
+
+  const navClass = cn("nav", {
+    "fixed! left-0 right-0  top-0": pathname === isFixed,
+    "flex!": pathname === isBlock,
+  });
+
+  const isLogged = !!session || pathname.startsWith("/shop");
   return (
     <nav className={navClass}>
       <div className={logoClass}>
@@ -49,7 +67,7 @@ export default function NavLanding() {
         </div>
         <span className={spanLogo}>Galactic Horizons</span>
       </div>
-      <ul className={navLinksClass}>
+     {pathname === isFixed && <ul className={navLinksClass}>
         <li>
           <a href="#planets">Planets</a>
         </li>
@@ -59,7 +77,7 @@ export default function NavLanding() {
         <li>
           <a href="#why-us">Why Us</a>
         </li>
-      </ul>
+      </ul>}
       <div className={buttonDiv}>
         <Button
           type="button"
@@ -69,14 +87,13 @@ export default function NavLanding() {
           {theme === "dark" ? "🌞" : "🌙"}
         </Button>
 
-        {session ? (
+        {isLogged ? (
           <Button
             type="button"
             onClick={() => signOut()}
             className={navCtaClass}
-            asChild
           >
-            <Link href="#"> Logout</Link>
+            Logout
           </Button>
         ) : (
           <Button type="button" className={navCtaClass} asChild>

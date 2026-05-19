@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "next-themes";
 import { SessionProvider } from "next-auth/react";
+import NavLanding from "@/components/landingpage/NavLanding";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -91,6 +92,7 @@ export default function RootLayout({
           enableSystem={false}
         >
           <SessionProvider>
+            <NavLanding />
             {children}
             {modal}
           </SessionProvider>

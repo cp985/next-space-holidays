@@ -187,7 +187,7 @@ try {
   if (result?.error) {
     return {
       success: false,
-      errors: { email: ["Credenziali non riconosciute."] },
+      errors: { email: ["Credentials not recognized."] },
       currentData: data,
     };
   }

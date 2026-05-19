@@ -1,87 +1,4 @@
-// import { cn } from "@/lib/utils";
-// import { Button } from "@/components/ui/button";
 
-// const  container=cn("min-h-screen bg-[#020617] text-slate-100 p-6 md:p-12 font-sans selection:bg-cyan-500 selection:text-black")
-// const   headerTitle=cn("text-3xl md:text-5xl font-black tracking-wider uppercase text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600")
-
-// const   headerDesc = cn("text-slate-400 text-sm md:text-base mt-2 max-w-xl font-light tracking-wide")
-// const   filterContainer= cn( "flex gap-3 overflow-x-auto pb-4 my-8 border-b border-slate-800/60 scrollbar-none")
-// const   filterTabActive= cn("bg-cyan-950/40 text-cyan-400 border border-cyan-500/50 px-4 py-2 rounded-md text-xs font-mono uppercase tracking-widest shadow-[0_0_15px_rgba(34,211,238,0.15)] transition-all duration-300")
-// const   filterTabInactive= cn("bg-slate-900/40 text-slate-400 border border-slate-800/80 px-4 py-2 rounded-md text-xs font-mono uppercase tracking-widest hover:text-slate-200 hover:border-slate-700 transition-all duration-300")
-// const   grid=cn("grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6")
-
-// const   card=cn("group relative bg-slate-900/30 border border-slate-800/80 rounded-xl overflow-hidden backdrop-blur-md transition-all duration-500 hover:border-cyan-500/40 hover:shadow-[0_0_30px_rgba(6,182,212,0.15)] hover:-translate-y-1 flex flex-col justify-between")
-// const   cardImageWrapper=cn("relative h-48 w-full bg-slate-950 overflow-hidden border-b border-slate-800/50")
-
-//  const  cardImage =cn( "w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out")
-//  const  cardBadge =cn( "absolute top-3 right-3 bg-slate-950/80 text-cyan-400 border border-cyan-500/30 text-[10px] font-mono px-2 py-1 rounded uppercase tracking-wider")
-
-//   const cardBody=cn( "p-5 flex-1 flex flex-col justify-between")
-//   const cardTitle=cn( "text-xl font-bold tracking-wide text-slate-100 group-hover:text-cyan-400 transition-colors duration-300")
-//  const  cardStats=cn( "grid grid-cols-2 gap-2 my-4 p-3 bg-slate-950/40 rounded-lg border border-slate-900 text-[11px] font-mono text-slate-400")
-
-//  const  cardFooter=cn( "mt-4 pt-3 border-t border-slate-800/40 flex items-center justify-between")
-//  const  cardPrice=cn( "text-lg font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-slate-100 to-slate-300")
-
-//  const  buyButton=cn( "px-4 py-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-md text-xs font-mono font-bold uppercase tracking-wider hover:from-blue-500 hover:to-cyan-500 active:scale-95 transition-all duration-300 shadow-[0_4px_12px_rgba(6,182,212,0.2)] hover:shadow-[0_4px_20px_rgba(6,182,212,0.4)]")
-
-// export default function SpaceShop() {
-//   const spaceTrips = [
-//     { id: "1", name: "Neo-Tokyo Orbit", zone: "Orbita", price: "4,200 α", duration: "3 Earth Days", danger: "LOW" },
-//     { id: "2", name: "Titan Ice Canyons", zone: "Deep Space", price: "24,500 α", duration: "1.2 Years", danger: "MEDIUM" },
-//   ];
-
-//   return (
-//     <div className={container}>
-//       <header>
-//         <h1 className={headerTitle}>Galaxy Horizon</h1>
-//         <p className={headerDesc}>
-//           Seleziona la tua prossima destinazione interstellare. Tutti i vettori di lancio sono certificati per salti quantici.
-//         </p>
-//       </header>
-
-//       <div className={filterContainer}>
-//         <Button type="button" className={filterTabActive}>Tutte le rotte</Button>
-//         <Button type="button" className={filterTabInactive}>Sistema Interno</Button>
-//         <Button type="button" className={filterTabInactive}>Spazio Profondo</Button>
-//       </div>
-
-//       <main className={grid}>
-//         {spaceTrips.map((trip) => (
-//           <div key={trip.id} className={card}>
-//             <div className={cardImageWrapper}>
-//               <div className="w-full h-full bg-gradient-to-b from-slate-900 to-slate-950 flex items-center justify-center text-slate-700 font-mono text-xs">
-//                 [ RENDER SPAZIALE O PIXEL ART ]
-//               </div>
-//               <span className={cardBadge}>{trip.zone}</span>
-//             </div>
-
-//             <div className={cardBody}>
-//               <div>
-//                 <h3 className={cardTitle}>{trip.name}</h3>
-
-//                 <div className={cardStats}>
-//                   <div>DURATA: {trip.duration}</div>
-//                   <div>PERICOLO: <span className={trip.danger === 'LOW' ? 'text-green-400' : 'text-amber-400'}>{trip.danger}</span></div>
-//                 </div>
-//               </div>
-
-//               <div className={cardFooter}>
-//                 <div>
-//                   <span className="text-[10px] text-slate-500 block font-mono">TARIFFA</span>
-//                   <span className={cardPrice}>{trip.price}</span>
-//                 </div>
-//                 <Button type="button" className={buyButton}>
-//                   Prenota
-//                 </Button>
-//               </div>
-//             </div>
-//           </div>
-//         ))}
-//       </main>
-//     </div>
-//   );
-// }
 
 "use client";
 
@@ -100,6 +17,27 @@
  *   --accent3:     #84cc16   (lime)
  *   --border2:     rgba(34,211,238,0.35)
  *   --pill-bg:     rgba(34,211,238,0.12)
+ * 
+ * light mode design system:
+ *     --bg: #f8f9fb;
+      --bg2: #eef0f5;
+      --bg3: #e4e8f0;
+      --surface: #ffffff;
+      --surface2: rgba(255, 255, 255, 0.8);
+      --txt: #0d1526;
+      --txt2: #3a4a6b;
+      --txt3: #6b7a99;
+      --accent: #1e3a8a;
+      --accent2: #3b5fcf;
+      --accent3: #7c93c8;
+      --neon1: #1e3a8a;
+      --neon2: #3b5fcf;
+      --neon3: #6b7a99;
+      --border: rgba(30, 58, 138, 0.12);
+      --border2: rgba(30, 58, 138, 0.22);
+      --card-bg: #ffffff;
+      --card-border: rgba(59, 95, 207, 0.15);
+      --pill-bg: rgba(30, 58, 138, 0.08);
  */
 
 import { useState } from "react";
@@ -109,6 +47,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ShoppingCart, ChevronRight, Rocket, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import NavLanding from "@/components/landingpage/NavLanding";
 import { type Trip, type CartItem, type Zone } from "@/types/shop/types";
 
 const TRIPS: Trip[] = [
@@ -286,53 +225,71 @@ const fmt = (n: number) =>
 
 // ─── Costanti di stile ────────────────────────────────────────────────────────
 
-// Layout
-const S_PAGE = cn("min-h-screen bg-[#020817] pb-17! sm:pb-6! pt-5! px-5!");
+// ── LAYOUT ───────────────────────────────────────────────────────────────────
+// Usa la variabile globale del background e del testo principale
+const S_PAGE = cn(
+  "min-h-screen pb-17! sm:pb-6! pt-5! px-5!",
+  "bg-[var(--bg)] text-[var(--txt)] transition-colors duration-200"
+);
 const S_INNER = cn("max-w-[1280px] mx-auto px-6 md:px-10 lg:px-16");
 
-// Header
+// ── HEADER ───────────────────────────────────────────────────────────────────
+// Il label usa l'accento (Cyan in Dark, Deep Blue in Light)
 const S_LABEL = cn(
-  "block text-[0.7rem] tracking-[0.3em] uppercase text-[#22d3ee] mb-3",
+  "block text-[0.7rem] tracking-[0.3em] uppercase mb-3",
+  "text-[var(--accent)]"
 );
+// Il titolo usa il colore del testo principale
 const S_TITLE = cn(
-  "text-[clamp(2.2rem,5vw,3.5rem)] leading-[1.05] text-[#e8eeff] font-bold mb-4",
+  "text-[clamp(2.2rem,5vw,3.5rem)] leading-[1.05] font-bold mb-4",
+  "text-[var(--txt)]"
 );
-const S_TITLE_EM = cn("italic font-serif font-light text-[#e879f9]");
+// L'enfasi vira tra Magenta (Dark) e Blue-Cdf (Light) grazie alle var native
+const S_TITLE_EM = cn(
+  "italic font-serif font-light",
+  "text-[var(--accent2)]"
+);
+// Il sottotitolo usa il colore text-muted secondario
 const S_SUB = cn(
-  "text-[1.05rem] text-[#6878a8] font-light max-w-[540px] leading-[1.7]",
+  "text-[1.05rem] font-light max-w-[540px] leading-[1.7]",
+  "text-[var(--txt2)]"
 );
 
-// Filtri
+// ── FILTRI ───────────────────────────────────────────────────────────────────
 const S_FILTER_WRAP = cn(
-  "flex flex-col-reverse gap-2 overflow-x-auto pb-1 scrollbar-none",
-  "border-b border-[rgba(34,211,238,0.1)]",
-  "mb-10",
+  "flex flex-col-reverse gap-2 overflow-x-auto pb-1 scrollbar-none mb-10",
+  "border-b border-[var(--border)]"
 );
 const S_TAB_BASE = cn(
   "shrink-0 px-5 py-2 rounded-full text-[0.72rem] tracking-[0.12em] uppercase font-semibold",
-  "border transition-all duration-200 cursor-pointer",
+  "border transition-all duration-200 cursor-pointer"
 );
+// Tab Attivo: Sfondo pillola attivo e testo accento
 const S_TAB_ON = cn(
   S_TAB_BASE,
-  "p-1! bg-[rgba(34,211,238,0.12)]! text-[#22d3ee]! border-[rgba(34,211,238,0.4)]!",
+  "p-1! bg-[var(--pill-bg)]! text-[var(--accent)]! border-[var(--card-border)]!"
 );
+// Tab Disattivo: Sfumato, prende i colori di hover dinamici
 const S_TAB_OFF = cn(
   S_TAB_BASE,
-  "p-1! bg-transparent text-[#6878a8]! border-[rgba(34,211,238,0.12)]!",
-  "hover:text-[#a8b8e8]! hover:border-[rgba(34,211,238,0.25)]!",
+  "p-1! bg-transparent text-[var(--txt3)]! border-[var(--border)]!",
+  "hover:text-[var(--txt2)]! hover:border-[var(--border2)]!"
 );
 
-// Cards
+// ── CARDS GRID ───────────────────────────────────────────────────────────────
 const S_GRID = cn(
-  "grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 mb-6! ",
+  "grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 mb-6!"
 );
 
-// Cart bar
+// ── CART BAR ─────────────────────────────────────────────────────────────────
+// La barra del carrello in basso ora diventa bianca/opaca in light mode e scura in dark mode
 const S_CART_BAR = cn(
   "fixed bottom-0 left-0 right-0 z-50",
-  "bg-[rgba(2,8,23,0.95)] backdrop-blur-xl",
-  "border-t border-[rgba(34,211,238,0.2)]",
+  "bg-[#6b7a99] dark:bg-[rgba(2,8,23,0.95)]",
+  "backdrop-blur-xl",
+  "border-t border-[var(--card-border)]",
   "px-6 md:px-12 py-4",
+  "text-[var(--txt)]"
 );
 
 export default function SpaceShop() {
@@ -423,7 +380,6 @@ export default function SpaceShop() {
           </div>
         </div>
       </header>
-{/* 🚀 MODIFICATO: Sostituisci l'intera <section> delle card con questa */}
 <section>
   <div className={S_GRID}>
     <AnimatePresence mode="popLayout">
@@ -481,7 +437,7 @@ export default function SpaceShop() {
                   <div>
                     <p
                       className={cn(
-                        "text-[0.68rem] tracking-[0.18em] uppercase text-[#6878a8]",
+                        "text-[0.68rem] tracking-[0.18em] uppercase text-[#a8b8e8] dark:text-[#6878a8]",
                       )}
                     >
                       Selected missions
@@ -506,7 +462,7 @@ export default function SpaceShop() {
                   <div className={cn("text-right  hidden block ")}>
                     <p
                       className={cn(
-                        "text-[0.68rem] tracking-[0.18em] uppercase text-[#6878a8]",
+                        "text-[0.68rem] tracking-[0.18em] uppercase text-[#a8b8e8] dark:text-[#6878a8]",
                       )}
                     >
                       Total cost
