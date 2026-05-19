@@ -71,7 +71,6 @@ export async function actionFormSub(
   formData: FormData,
 ): Promise<FormStateSub> {
   
-  await new Promise((resolve) => setTimeout(resolve, 2000));
   const supabase = await createClient();
 
   const rawData = Object.fromEntries(formData);
@@ -113,7 +112,7 @@ export async function actionFormSub(
 
   try {
     const result = await signIn("credentials", {
-      email: data.email,
+      email: user.email,
       password: data.password,
       redirect: false,
     });
@@ -130,7 +129,6 @@ revalidatePath("/", "layout");
 
   } catch (e) {
     if (e instanceof AuthError) {
-      // Login fallito dopo registrazione
       return {
         success: false,
         errors: { email: ["Account created but credentials not recognized."] },
@@ -176,7 +174,7 @@ export async function actionFormLogIn(
  
 try {
   const result = await signIn("credentials", {
-    email: data.email,
+    email: data.email.toLowerCase(),
     password: data.password,
     redirect: false,
   });

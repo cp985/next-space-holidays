@@ -45,18 +45,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         const error = resp.error;
 
         if (error || !user) {
-          console.log("❌ Utente non trovato:", error);
           return null;
         }
 
         const isValid = await bcrypt.compare(password, user.password);
 
         if (!isValid) {
-          console.log("❌ Password errata");
           return null;
         }
 
-        console.log("✅ Login OK");
 
         return {
           id: user.id,
