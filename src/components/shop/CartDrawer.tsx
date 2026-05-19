@@ -27,7 +27,7 @@ export default function CartDrawer({
 }) {
   // Cart drawer
   const S_DRAWER = cn(
-    "fixed inset-y-0 right-0 z-[60] w-full max-w-[420px]",
+    "fixed inset-y-0 right-0 z-[106] w-full max-w-[420px]",
     "bg-[#030d1e] border-l border-[rgba(34,211,238,0.2)]",
     "flex flex-col",
     "shadow-[-20px_0_60px_rgba(0,0,0,0.6)]",
@@ -43,7 +43,7 @@ export default function CartDrawer({
         exit={{ opacity: 0 }}
         transition={{ duration: 0.2 }}
         className={cn(
-          "fixed inset-0 z-[55] bg-[rgba(2,8,23,0.7)] backdrop-blur-sm",
+          "fixed inset-0 z-[105] bg-[rgba(2,8,23,0.7)] backdrop-blur-sm",
         )}
         onClick={onClose}
       />

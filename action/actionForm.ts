@@ -70,7 +70,6 @@ export async function actionFormSub(
   prevS: FormStateSub,
   formData: FormData,
 ): Promise<FormStateSub> {
-  console.log('Inizio registrazione');
   
   await new Promise((resolve) => setTimeout(resolve, 2000));
   const supabase = await createClient();
@@ -156,7 +155,6 @@ export async function actionFormLogIn(
   prevS: FormStateLogin,
   formData: FormData,
 ): Promise<FormStateLogin> {
-  console.log("--- INIZIO ACTION LOGIN ---");
   await new Promise((resolve) => setTimeout(resolve, 2000));
 
   const rawData = Object.fromEntries(formData);
@@ -176,7 +174,6 @@ export async function actionFormLogIn(
   }
 
  
-    console.log("Eseguo signIn...");
 try {
   const result = await signIn("credentials", {
     email: data.email,
@@ -202,27 +199,23 @@ try {
   };
 
 } catch (e: any) {
-  // 1. IMPORTANTE: Se Next.js sta provando a fare un redirect nativo, lascialo passare
   if (isRedirectError(e)) {
     throw e;
   }
 
-  // 2. Sicurezza per Auth.js: se l'errore contiene la firma di Auth.js o un fallimento di credenziali
   const isAuthError = e instanceof AuthError || e.type?.includes("AuthError") || e.message?.includes("CredentialsSignin");
 
   if (isAuthError) {
     return {
       success: false,
-      errors: { email: ["Email o password errati."] },
+      errors: { email: ["Wrong credentials, try again."] },
       currentData: data,
     };
   }
 
-  // 3. Fallback definitivo: Evita il 500 bloccando qualsiasi altro errore imprevisto (es. Supabase giù)
-  console.error("Errore di login intercettato:", e);
   return {
     success: false,
-    errors: { email: ["Servizio momentaneamente non disponibile. Riprova."] },
+    errors: { email: ["Something went wrong. Please try again later."] },
     currentData: data,
   };
 
