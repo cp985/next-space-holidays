@@ -6,6 +6,8 @@ import bcrypt from "bcryptjs";
 
 import { createClient } from "@/lib/supabase/server";
 
+
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     CredentialsP({

@@ -1,8 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 import { Eye, EyeOff } from "lucide-react";
-import { useState, useActionState,useEffect } from "react";
-
+import { useState, useActionState, useEffect } from "react";
 
 import { useRouter } from "next/navigation";
 import {
@@ -23,6 +22,7 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Field, FieldGroup, FieldError } from "../ui/field";
 import FormSuccess from "./FormSuccess";
+import { useSession } from "next-auth/react";
 
 const initialStateSub: FormStateSub = {
   success: false,
@@ -41,10 +41,8 @@ interface Props {
   onSuccess?: () => void;
 }
 
-export default function FormLogin( { onPendingChange, onSuccess }: Props) {
-
-const router = useRouter();
-
+export default function FormLogin({ onPendingChange, onSuccess }: Props) {
+  const router = useRouter();
 
   const [isSignIn, setIsSignIn] = useState(true);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -64,32 +62,25 @@ const router = useRouter();
   const action = !isSignIn ? actionLogIn : actionSub;
   const isPending = !isSignIn ? isPendingLogIn : isPendingSub;
 
+  const isSuccess = !isSignIn ? dataLogIn?.success : dataSub?.success;
 
-const isSuccess = !isSignIn
-  ? dataLogIn?.success
-  : dataSub?.success;
-
-
- useEffect(() => {
+  useEffect(() => {
     onPendingChange?.(isPending);
   }, [isPending]);
 
+  const { data: session, status, update } = useSession();
+  useEffect(() => {
+    if (!isSuccess) return;
 
+    router.refresh();
 
-useEffect(() => {
-
-  if (!isSuccess) return;
-
-  
-  router.refresh();
-
-  const t = setTimeout(() => {
+    const up = async () => {await update();
     router.replace("/shop");
-  }, 2000);
+}
+    const t = setTimeout(up, 2000);
 
-  return () => clearTimeout(t);
-
-}, [isSuccess, router]);
+    return () => clearTimeout(t);
+  }, [isSuccess, router]);
 
   const footerClass = cn(
     "flex mt-3! flex-col-reverse sm:flex-row justify-center items-center gap-3 pt-4 px-2",
@@ -103,7 +94,10 @@ useEffect(() => {
     "!px-2 !py-1 !mt-1",
   );
 
-  const fieldGroupCont = cn("!overflow-y-auto !px-4 !py-1 ", "flex flex-col gap-2");
+  const fieldGroupCont = cn(
+    "!overflow-y-auto !px-4 !py-1 ",
+    "flex flex-col gap-2",
+  );
 
   const fieldTwoInput = cn(
     "flex flex-col md:flex-row md:justify-between md:items-center gap-3",
@@ -159,7 +153,9 @@ useEffect(() => {
     "animate-spin rounded-full h-4 w-4 border-t-2 border-cyan-400!  ",
   );
 
-  const spanLoader = cn("flex justify-center w-full gap-4 items-center space-x-3 ");
+  const spanLoader = cn(
+    "flex justify-center w-full gap-4 items-center space-x-3 ",
+  );
 
   // Bottone cancel/outline
   const cancelBtnClass = cn(
@@ -172,14 +168,13 @@ useEffect(() => {
 
   const passCont = cn("flex items-center gap-2 sm:pr-5");
 
-  if(data.success) return <FormSuccess   />
+  if (data.success) return <FormSuccess />;
 
   function toggleSignIn() {
     setIsSignIn((prev) => !prev);
   }
 
   return (
-
     <DialogContent className={dialogClass}>
       <DialogHeader>
         <DialogTitle className={titleClass}>
@@ -305,7 +300,11 @@ useEffect(() => {
         </FieldGroup>
         <DialogFooter className={footerClass}>
           <DialogClose asChild>
-            <Button className={cancelBtnClass} disabled={isPending} variant="outline">
+            <Button
+              className={cancelBtnClass}
+              disabled={isPending}
+              variant="outline"
+            >
               Cancel
             </Button>
           </DialogClose>
@@ -323,7 +322,7 @@ useEffect(() => {
           </Button>
         </DialogFooter>
         <Button
-        disabled={isPending}
+          disabled={isPending}
           className={toggleBtnClass}
           type="button"
           onClick={toggleSignIn}

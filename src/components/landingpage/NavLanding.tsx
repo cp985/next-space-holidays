@@ -12,6 +12,9 @@ import { usePathname } from "next/navigation";
 export default function NavLanding() {
   const pathname = usePathname();
 
+
+ 
+
   const logoClass = cn("logo");
   const imgLogoClass = cn(`${"img-logo"} w-full!`);
   const logoIconClass = cn(
@@ -32,10 +35,8 @@ export default function NavLanding() {
     setMounted(true);
   }, []);
 
-
-
-  if (!mounted) {
-    return null;
+if (!mounted || status === "loading") {
+    return null; 
   }
 
   const noShowPath = ["/login", "/planets-details"];
@@ -43,15 +44,18 @@ export default function NavLanding() {
   if (noNav) {
     return null;
   }
-  const isFixed = "/";
-  const isBlock = "/shop";
+  const isHome = "/";
+  const isShop = "/shop";
 
   const navClass = cn("nav", {
-    "fixed! left-0 right-0  top-0": pathname === isFixed,
-    "flex!": pathname === isBlock,
+    "fixed! left-0 right-0  top-0": pathname === isHome,
+    "flex!": pathname === isShop,
   });
 
-  const isLogged = !!session || pathname.startsWith("/shop");
+  const isLogged = !!session ;
+
+  const href = isLogged && pathname === isHome ? "/shop" : "/";
+  const text = isLogged && pathname === isHome ? "Shop" : "Home";
   return (
     <nav className={navClass}>
       <div className={logoClass}>
@@ -67,17 +71,19 @@ export default function NavLanding() {
         </div>
         <span className={spanLogo}>Galactic Horizons</span>
       </div>
-     {pathname === isFixed && <ul className={navLinksClass}>
-        <li>
-          <a href="#planets">Planets</a>
-        </li>
-        <li>
-          <a href="#safety">Safety</a>
-        </li>
-        <li>
-          <a href="#why-us">Why Us</a>
-        </li>
-      </ul>}
+      {pathname === isHome && (
+        <ul className={navLinksClass}>
+          <li>
+            <a href="#planets">Planets</a>
+          </li>
+          <li>
+            <a href="#safety">Safety</a>
+          </li>
+          <li>
+            <a href="#why-us">Why Us</a>
+          </li>
+        </ul>
+      )}
       <div className={buttonDiv}>
         <Button
           type="button"
@@ -86,7 +92,12 @@ export default function NavLanding() {
         >
           {theme === "dark" ? "🌞" : "🌙"}
         </Button>
-
+        {isLogged && (
+          <Button type="button" className={navCtaClass} asChild>
+        
+            <Link href={href}>{text}</Link>
+          </Button>
+        )}
         {isLogged ? (
           <Button
             type="button"

@@ -91,7 +91,7 @@ export default function RootLayout({
           defaultTheme="dark"
           enableSystem={false}
         >
-          <SessionProvider>
+          <SessionProvider refetchOnWindowFocus={true} refetchInterval={5}>
             <NavLanding />
             {children}
             {modal}

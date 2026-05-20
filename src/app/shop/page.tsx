@@ -1,5 +1,3 @@
-
-
 "use client";
 
 /**
@@ -48,6 +46,7 @@ import { ShoppingCart, ChevronRight, Rocket, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { type Trip, type CartItem, type Zone } from "@/types/shop/types";
+import { useSession } from "next-auth/react";
 
 const TRIPS: Trip[] = [
   {
@@ -236,6 +235,7 @@ const S_LABEL = cn(
   "block text-[0.7rem] tracking-[0.3em] uppercase mb-3",
   "text-[var(--accent)]"
 );
+const S_NAME=cn("text-[#e6c000] animate-pulse ");
 const S_TITLE = cn(
   "text-[clamp(2.2rem,5vw,3.5rem)] leading-[1.05] font-bold mb-4",
   "text-[var(--txt)]"
@@ -288,6 +288,12 @@ export default function SpaceShop() {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [drawerOpen, setDrawerOpen] = useState(false);
 
+  const { data: session, status } = useSession();
+  const name = session?.user.name
+    ? session.user.name
+    : "Cosmonaut";
+
+ 
   // ── Logica carrello ────────────────────────────────────────────────────────
 
   const addToCart = (trip: Trip) => {
@@ -330,8 +336,9 @@ export default function SpaceShop() {
       <header >
         <div className={cn(S_INNER, "flex flex-col gap-2 pt-16 pb-10")}>
           <span className={S_LABEL}>Destinations</span>
+          <h2 className={cn("text-2xl md:text-3xl")}> Welcome <span className={S_NAME}>{name}</span>, </h2>
           <h1 className={S_TITLE}>
-            Choose Your <em className={S_TITLE_EM}>Mission</em>
+          Choose Your <em className={S_TITLE_EM}>Mission</em>
           </h1>
           <p className={cn(S_SUB, "mb-10")}>
             Every vessel is safety-certified, every route is meticulously
