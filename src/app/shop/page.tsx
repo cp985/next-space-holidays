@@ -47,7 +47,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ShoppingCart, ChevronRight, Rocket, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import NavLanding from "@/components/landingpage/NavLanding";
 import { type Trip, type CartItem, type Zone } from "@/types/shop/types";
 
 const TRIPS: Trip[] = [
@@ -223,7 +222,6 @@ const fmt = (n: number) =>
     maximumFractionDigits: 0,
   }).format(n);
 
-// ─── Costanti di stile ────────────────────────────────────────────────────────
 
 // ── LAYOUT ───────────────────────────────────────────────────────────────────
 // Usa la variabile globale del background e del testo principale
@@ -234,22 +232,18 @@ const S_PAGE = cn(
 const S_INNER = cn("max-w-[1280px] mx-auto px-6 md:px-10 lg:px-16");
 
 // ── HEADER ───────────────────────────────────────────────────────────────────
-// Il label usa l'accento (Cyan in Dark, Deep Blue in Light)
 const S_LABEL = cn(
   "block text-[0.7rem] tracking-[0.3em] uppercase mb-3",
   "text-[var(--accent)]"
 );
-// Il titolo usa il colore del testo principale
 const S_TITLE = cn(
   "text-[clamp(2.2rem,5vw,3.5rem)] leading-[1.05] font-bold mb-4",
   "text-[var(--txt)]"
 );
-// L'enfasi vira tra Magenta (Dark) e Blue-Cdf (Light) grazie alle var native
 const S_TITLE_EM = cn(
   "italic font-serif font-light",
   "text-[var(--accent2)]"
 );
-// Il sottotitolo usa il colore text-muted secondario
 const S_SUB = cn(
   "text-[1.05rem] font-light max-w-[540px] leading-[1.7]",
   "text-[var(--txt2)]"
@@ -264,12 +258,10 @@ const S_TAB_BASE = cn(
   "shrink-0 px-5 py-2 rounded-full text-[0.72rem] tracking-[0.12em] uppercase font-semibold",
   "border transition-all duration-200 cursor-pointer"
 );
-// Tab Attivo: Sfondo pillola attivo e testo accento
 const S_TAB_ON = cn(
   S_TAB_BASE,
   "p-1! bg-[var(--pill-bg)]! text-[var(--accent)]! border-[var(--card-border)]!"
 );
-// Tab Disattivo: Sfumato, prende i colori di hover dinamici
 const S_TAB_OFF = cn(
   S_TAB_BASE,
   "p-1! bg-transparent text-[var(--txt3)]! border-[var(--border)]!",
@@ -278,17 +270,16 @@ const S_TAB_OFF = cn(
 
 // ── CARDS GRID ───────────────────────────────────────────────────────────────
 const S_GRID = cn(
-  "grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 mb-6!"
+  "grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 mb-13!"
 );
 
 // ── CART BAR ─────────────────────────────────────────────────────────────────
-// La barra del carrello in basso ora diventa bianca/opaca in light mode e scura in dark mode
 const S_CART_BAR = cn(
   "fixed bottom-0 left-0 right-0 z-50",
   "bg-[#6b7a99] dark:bg-[rgba(2,8,23,0.95)]",
   "backdrop-blur-xl",
   "border-t border-[var(--card-border)]",
-  "px-6 md:px-12 py-4",
+  "pb-5! pt-2! px-4! sm:px-5! sm:px-10!  sm:py-4! ",
   "text-[var(--txt)]"
 );
 
