@@ -39,26 +39,34 @@ export default function DropDownProfile() {
   return (
     <div className="flex items-center gap-4">
       <DropdownMenu>
+       
+        {/* TRIGGER - Avatar Bottone Responsivo */}
         <DropdownMenuTrigger asChild>
           <Button
             variant="ghost"
             className={cn(
-              "relative h-14! w-14! rounded-xl p-0 overflow-hidden",
+              // Su mobile h-12 (48px) per non rompere la nav in landscape
+              // Su schermi più grandi (md) torna ad h-14 (56px)
+              "relative h-12! w-12! md:h-14! md:w-14! rounded-xl p-0 overflow-hidden",
               "border border-cyan-500/20 bg-[#050A14]/50 backdrop-blur-md",
               "hover:border-cyan-500/50 hover:bg-cyan-950/30 transition-all",
               "focus-visible:ring-1 focus-visible:ring-cyan-500 focus-visible:ring-offset-0"
             )}
           >
-            <div className="flex flex-col items-center justify-center w-full h-full">
-              <FaUserAstronaut className="w-7 h-7 text-cyan-400/80 mb-2" />
-              <div className="absolute bottom-0 inset-x-0 h-4 bg-cyan-950/80 backdrop-blur-sm border-t border-cyan-500/20 flex items-center justify-center">
-                <span className="text-[10px] font-mono tracking-widest text-cyan-200/80 truncate px-1">
+            {/* pb-3.5 o pb-4 tiene l'icona centrata nello spazio rimanente, senza farla coprire dal testo in basso */}
+            <div className="flex flex-col items-center justify-center w-full h-full pb-3 md:pb-3.5">
+              <FaUserAstronaut className="w-5 h-5 md:w-6 md:h-6 text-cyan-400/80 transition-all" />
+              
+              <div className="absolute bottom-0 inset-x-0 h-3.5 md:h-4 bg-cyan-950/80 backdrop-blur-sm border-t border-cyan-500/20 flex items-center justify-center">
+                <span className="text-[9px] md:text-[10px] font-mono tracking-widest text-cyan-200/80 truncate px-1 transition-all">
                   {userName.substring(0, 8)}
                 </span>
               </div>
             </div>
           </Button>
         </DropdownMenuTrigger>
+
+
 
         {/* MODIFICHE CHIAVE APPLICATE QUI SOTTO */}
         <DropdownMenuContent
