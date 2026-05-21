@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { ThemeProvider } from "next-themes";
 import { SessionProvider } from "next-auth/react";
 import NavLanding from "@/components/landingpage/NavLanding";
-
+import LoadingGlobal from "@/components/landingpage/LoadingGlobal"
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 const geistSans = Geist({
@@ -70,6 +70,9 @@ export default function RootLayout({
   children: React.ReactNode;
   modal: React.ReactNode;
 }>) {
+
+
+
   return (
     <html
       data-scroll-behavior="smooth"
@@ -92,7 +95,9 @@ export default function RootLayout({
           enableSystem={false}
         >
           <SessionProvider refetchOnWindowFocus={true} refetchInterval={5}>
-            <NavLanding />
+           <LoadingGlobal/>
+
+ <NavLanding />
             {children}
             {modal}
           </SessionProvider>
