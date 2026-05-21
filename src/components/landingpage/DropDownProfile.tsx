@@ -49,7 +49,7 @@ export default function DropDownProfile() {
                 "focus:outline-none! focus:ring-0! focus-visible:ring-0",
               )}
             >
-              <FaUserAstronaut className="w-12! h-12! text-cyan-400  " />
+              <FaUserAstronaut className="w-14! h-14! text-cyan-400  " />
               <div className="w-full h-fit p-0 bg-cyan-900/90! absolute bottom-0 left-0 text-center text-white text-shadow-black text-sm ">
                 {userName}
               </div>
