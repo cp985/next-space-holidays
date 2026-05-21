@@ -20,7 +20,7 @@ export default function LoadingGlobal() {
   return (
     <div
       className={cn(
-        "fixed inset-0 z-50 flex flex-col items-center justify-center",
+        "fixed inset-0 z-110 flex flex-col items-center justify-center",
         "bg-background text-foreground select-none pointer-events-auto"
       )}
     >
