@@ -10,7 +10,7 @@ export default function LoadingGlobal() {
     // Gestisce il tempo di visibilità del loader all'ingresso
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 800); // Puoi regolare i millisecondi in base alle tue esigenze
+    }, 1500); // Puoi regolare i millisecondi in base alle tue esigenze
 
     return () => clearTimeout(timer);
   }, []);
