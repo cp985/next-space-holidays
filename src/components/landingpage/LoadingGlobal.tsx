@@ -24,8 +24,8 @@ export default function LoadingGlobal() {
         "bg-background text-foreground select-none pointer-events-auto"
       )}
     >
-      <div className="flex flex-col items-center gap-4">
-        <div className="text-6xl! text-cyan-600 animate-bounce">
+      <div className="flex text-cyan-600 flex-col items-center gap-4">
+        <div className="text-6xl! text-cyan-600! animate-bounce">
           🚀
         </div>
         <div className="text-4xl! font-mono text-cyan-600 tracking-widest uppercase animate-pulse">
