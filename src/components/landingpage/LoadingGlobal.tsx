@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { cn } from "@/lib/utils";
+import { Rocket } from 'lucide-react';
 
 export default function LoadingGlobal() {
   const [isLoading, setIsLoading] = useState(true);
@@ -26,7 +27,7 @@ export default function LoadingGlobal() {
     >
       <div className="flex text-cyan-600 flex-col items-center gap-4">
         <div className="text-6xl! text-cyan-600! animate-bounce">
-          <p className={cn("text-cyan-600")}>🚀</p>
+          <p className={cn("text-cyan-600")}><Rocket/></p>
         </div>
         <div className="text-4xl! font-mono text-cyan-600 tracking-widest uppercase animate-pulse">
           Loading...
