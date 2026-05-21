@@ -26,7 +26,7 @@ export default function LoadingGlobal() {
     >
       <div className="flex text-cyan-600 flex-col items-center gap-4">
         <div className="text-6xl! text-cyan-600! animate-bounce">
-          🚀
+          <p className={cn("text-cyan-600")}>🚀</p>
         </div>
         <div className="text-4xl! font-mono text-cyan-600 tracking-widest uppercase animate-pulse">
           Loading...
