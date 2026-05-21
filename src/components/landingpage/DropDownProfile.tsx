@@ -24,38 +24,37 @@ export default function DropDownProfile() {
 
   const userName = session?.user?.name || session?.user?.email || "Astronaut";
 
-  // Stili condivisi per gli item per garantire coerenza e gestire i micro-hover (Punto 6 e 11)
+  // Stili condivisi forzati con '!' per scavalcare shadcn e garantire ampie touch-area
   const menuItemClass = cn(
-    "group flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer",
+    "group flex items-center gap-4! px-4! py-3.5! rounded-lg cursor-pointer",
     "transition-all duration-300 ease-out",
-    "focus:bg-cyan-950/30 focus:text-white focus:outline-none",
-    "text-sm font-medium tracking-wide text-slate-300"
+    "focus:bg-cyan-950/40! focus:text-white! focus:outline-none!",
+    "text-[16px]! font-medium tracking-wide text-slate-200"
   );
 
   const menuIconClass = cn(
-    "w-4 h-4 text-cyan-600 group-hover:text-cyan-400 group-focus:text-cyan-400",
+    "w-5! h-5! text-cyan-600 group-hover:text-cyan-400 group-focus:text-cyan-400",
     "transition-colors duration-300"
   );
 
   return (
     <div className="flex items-center gap-4">
       <DropdownMenu>
-        {/* TRIGGER - Reso più elegante e meno "pesante" */}
+        {/* TRIGGER - Avatar Bottone */}
         <DropdownMenuTrigger asChild>
           <Button
             variant="ghost"
             className={cn(
-              "relative h-12 w-12 rounded-xl p-0 overflow-hidden",
+              "relative h-14! w-14! rounded-xl p-0 overflow-hidden",
               "border border-cyan-500/20 bg-[#050A14]/50 backdrop-blur-md",
               "hover:border-cyan-500/50 hover:bg-cyan-950/30 transition-all",
               "focus-visible:ring-1 focus-visible:ring-cyan-500 focus-visible:ring-offset-0"
             )}
           >
             <div className="flex flex-col items-center justify-center w-full h-full">
-              <FaUserAstronaut className="w-6 h-6 text-cyan-400/80 mb-2" />
-              {/* Piccola label fusa nel bordo inferiore */}
+              <FaUserAstronaut className="w-7 h-7 text-cyan-400/80 mb-2" />
               <div className="absolute bottom-0 inset-x-0 h-4 bg-cyan-950/80 backdrop-blur-sm border-t border-cyan-500/20 flex items-center justify-center">
-                <span className="text-[9px] font-mono tracking-widest text-cyan-200/80 truncate px-1">
+                <span className="text-[10px] font-mono tracking-widest text-cyan-200/80 truncate px-1">
                   {userName.substring(0, 8)}
                 </span>
               </div>
@@ -63,39 +62,36 @@ export default function DropDownProfile() {
           </Button>
         </DropdownMenuTrigger>
 
+        {/* CONTENUTO DEL MENU - Dimensioni aumentate ed ergonomiche */}
         <DropdownMenuContent
-          sideOffset={14} // Punto 12: Stacco netto dalla navbar
+          sideOffset={14}
           className={cn(
-            // Punto 1, 2 e 9: Dimensioni compatte, niente h-svh per mobile, bg navy trasparente
-            "w-[240px] sm:w-[220px] p-2",
-            "bg-[#040814]/85 backdrop-blur-2xl",
-            // Punto 4: Bordo morbidissimo, solo il top è leggermente accentato
-            "border border-white/5 border-t-cyan-500/30 rounded-xl",
-            // Punto 3: Soft glow diffuso (non neon accecante)
-            "shadow-[0_0_40px_-10px_rgba(0,243,255,0.15)]",
-            // Punto 10: Motion cinematica
+            "w-[280px]! p-3!", // Larghezza maggiore e padding globale generoso
+            "bg-[#040814]/90! backdrop-blur-2xl!",
+            "border! border-white/5! border-t-cyan-500/40! rounded-xl!",
+            "shadow-[0_0_50px_-10px_rgba(0,243,255,0.2)]!",
             "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=open]:slide-in-from-top-4 duration-300 ease-out",
-            "flex flex-col gap-1"
+            "flex! flex-col! gap-2!" // Gap garantito tra i bottoni
           )}
           align="end"
           forceMount
         >
-          {/* Punto 5: Header personalizzato e immersivo */}
-          <DropdownMenuLabel className="flex items-center gap-3 px-2 py-3">
-            <div className="flex-shrink-0 w-10 h-10 rounded-full border border-cyan-500/30 bg-cyan-950/50 flex items-center justify-center shadow-[0_0_15px_rgba(0,243,255,0.1)]">
-              <FaUserAstronaut className="w-5 h-5 text-cyan-300" />
+          {/* HEADER UTENTE - Più arioso */}
+          <DropdownMenuLabel className="flex items-center gap-4! px-3! py-4!">
+            <div className="flex-shrink-0 w-12 h-12 rounded-full border border-cyan-500/30 bg-cyan-950/50 flex items-center justify-center shadow-[0_0_15px_rgba(0,243,255,0.1)]">
+              <FaUserAstronaut className="w-6 h-6 text-cyan-300" />
             </div>
-            <div className="flex flex-col overflow-hidden">
-              <span className="text-slate-100 font-medium text-sm truncate">
+            <div className="flex flex-col overflow-hidden gap-1">
+              <span className="text-slate-100 font-medium text-[16px]! truncate">
                 {userName}
               </span>
-              <span className="text-[10px] font-mono tracking-widest text-cyan-400/60 uppercase">
+              <span className="text-[11px]! font-mono tracking-widest text-cyan-400/70 uppercase">
                 Explorer
               </span>
             </div>
           </DropdownMenuLabel>
 
-          <DropdownMenuSeparator className="bg-white/5 my-1" />
+          <DropdownMenuSeparator className="bg-white/10! my-2!" />
 
           {/* VOCI DEL MENU */}
           {isHome && (
@@ -121,18 +117,18 @@ export default function DropDownProfile() {
             </Link>
           </DropdownMenuItem>
 
-          {/* Punto 8: Logout semanticamente isolato */}
-          <div className="mt-3 mb-1 px-2">
+          {/* LOGOUT - Spaziatura dedicata per non cliccarlo per sbaglio */}
+          <div className="mt-4! mb-2! px-2!">
             <DropdownMenuItem
               onClick={() => signOut({ callbackUrl: "/" })}
               className={cn(
-                "group flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer",
+                "group flex items-center gap-4! px-4! py-3.5! rounded-lg cursor-pointer",
                 "transition-all duration-300",
-                "text-xs font-medium tracking-wide text-rose-500/70",
-                "focus:bg-rose-950/30 focus:text-rose-400 focus:outline-none"
+                "text-[15px]! font-medium tracking-wide text-rose-500/80!",
+                "focus:bg-rose-950/40! focus:text-rose-400! focus:outline-none!"
               )}
             >
-              <LogOut className="w-4 h-4 text-rose-500/50 group-hover:text-rose-400 transition-colors" />
+              <LogOut className="w-5! h-5! text-rose-500/60 group-hover:text-rose-400 transition-colors" />
               <span>Disconnect</span>
             </DropdownMenuItem>
           </div>
