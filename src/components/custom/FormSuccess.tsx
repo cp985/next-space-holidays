@@ -52,7 +52,7 @@ export default function FormSuccess() {
           🚀 Systems Online 🪐
         </DialogTitle>
         <DialogDescription className={descClass}>
-          Authentication successful. Preparing for jump to <span className="text-cyan-300/60 font-mono">/shop</span>...
+          Authentication successful. Preparing for jump to <span className="text-cyan-300/60 font-mono">/SpaceShop</span>...
         </DialogDescription>
       </DialogHeader>
 
