@@ -18,14 +18,19 @@ export default function LoadingGlobal() {
   if (!isLoading) return null;
 
   return (
-    <div
+       <div
       className={cn(
-        "fixed inset-0 z-110 flex flex-col items-center justify-center",
+        "fixed inset-0 z-50 flex flex-col items-center justify-center",
         "bg-background text-foreground select-none pointer-events-auto"
       )}
     >
-      <div className="font-mono text-sm tracking-widest uppercase animate-pulse">
-        Loading...
+      <div className="flex flex-col items-center gap-4">
+        <div className="text-4xl animate-bounce">
+          🚀
+        </div>
+        <div className="font-mono text-sm tracking-widest uppercase animate-pulse">
+          Loading...
+        </div>
       </div>
     </div>
   );
