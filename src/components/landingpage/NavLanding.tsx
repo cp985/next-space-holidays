@@ -8,6 +8,9 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { useSession, signOut } from "next-auth/react";
 import { usePathname } from "next/navigation";
+import DropDownProfile from "./DropDownProfile";
+import SkeletonNav from "./SkeletonNav";
+
 
 export default function NavLanding() {
   const pathname = usePathname();
@@ -22,7 +25,7 @@ export default function NavLanding() {
   }, []);
 
   if (!mounted || status === "loading") {
-    return null;
+    return <SkeletonNav />;
   }
 
   const noShowPath = ["/login", "/planets-details"];
@@ -90,19 +93,11 @@ export default function NavLanding() {
         >
           {theme === "dark" ? "🌞" : "🌙"}
         </Button>
-        {isLogged && (
-          <Button type="button" className={navCtaClass} asChild>
-            <Link href={href}>{text}</Link>
-          </Button>
-        )}
+  
         {isLogged ? (
-          <Button
-            type="button"
-            onClick={() => signOut()}
-            className={navCtaClass}
-          >
-            Logout
-          </Button>
+          (
+     <DropDownProfile />
+        )
         ) : (
           <Button type="button" className={navCtaClass} asChild>
             <Link href="/login"> Book Now</Link>
