@@ -40,7 +40,7 @@ export default function FormSuccessPrime() {
           🚀 Systems Online 🪐
         </h2>
         <p className={descClass}>
-          Authentication successful. Preparing for jump to <span className="text-cyan-300/60 font-mono">/shop</span>...
+          Authentication successful. Preparing for jump to <span className="text-cyan-300/60 font-mono">/SpaceShop</span>...
         </p>
       </header>
 
