@@ -24,7 +24,6 @@ export default function DropDownProfile() {
 
   const userName = session?.user?.name || session?.user?.email || "Astronaut";
 
-  // Stili condivisi forzati con '!' per scavalcare shadcn e garantire ampie touch-area
   const menuItemClass = cn(
     "group flex items-center gap-4! px-4! py-3.5! rounded-lg cursor-pointer",
     "transition-all duration-300 ease-out",
@@ -40,7 +39,6 @@ export default function DropDownProfile() {
   return (
     <div className="flex items-center gap-4">
       <DropdownMenu>
-        {/* TRIGGER - Avatar Bottone */}
         <DropdownMenuTrigger asChild>
           <Button
             variant="ghost"
@@ -62,21 +60,24 @@ export default function DropDownProfile() {
           </Button>
         </DropdownMenuTrigger>
 
-        {/* CONTENUTO DEL MENU - Dimensioni aumentate ed ergonomiche */}
+        {/* MODIFICHE CHIAVE APPLICATE QUI SOTTO */}
         <DropdownMenuContent
+          side="bottom" // Forza SEMPRE l'apertura verso il basso
+          align="end"
           sideOffset={14}
+          collisionPadding={10} // Mantiene 10px di margine dal bordo dello schermo
           className={cn(
-            "w-[280px]! p-3!", // Larghezza maggiore e padding globale generoso
+            "z-[110]!", // LIVELLO Z MASSIMO: Non finirà MAI sotto la Navbar
+            "w-[280px]! p-3!",
             "bg-[#040814]/90! backdrop-blur-2xl!",
             "border! border-white/5! border-t-cyan-500/40! rounded-xl!",
             "shadow-[0_0_50px_-10px_rgba(0,243,255,0.2)]!",
             "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=open]:slide-in-from-top-4 duration-300 ease-out",
-            "flex! flex-col! gap-2!" // Gap garantito tra i bottoni
+            "flex! flex-col! gap-2!",
+            "max-h-[85vh]! overflow-y-auto! overscroll-contain" // Previene lo scroll dell'intera pagina limitando l'altezza
           )}
-          align="end"
           forceMount
         >
-          {/* HEADER UTENTE - Più arioso */}
           <DropdownMenuLabel className="flex items-center gap-4! px-3! py-4!">
             <div className="flex-shrink-0 w-12 h-12 rounded-full border border-cyan-500/30 bg-cyan-950/50 flex items-center justify-center shadow-[0_0_15px_rgba(0,243,255,0.1)]">
               <FaUserAstronaut className="w-6 h-6 text-cyan-300" />
@@ -93,7 +94,6 @@ export default function DropDownProfile() {
 
           <DropdownMenuSeparator className="bg-white/10! my-2!" />
 
-          {/* VOCI DEL MENU */}
           {isHome && (
             <DropdownMenuItem asChild className={menuItemClass}>
               <Link href="/shop" className="w-full">
@@ -117,7 +117,6 @@ export default function DropDownProfile() {
             </Link>
           </DropdownMenuItem>
 
-          {/* LOGOUT - Spaziatura dedicata per non cliccarlo per sbaglio */}
           <div className="mt-4! mb-2! px-2!">
             <DropdownMenuItem
               onClick={() => signOut({ callbackUrl: "/" })}
