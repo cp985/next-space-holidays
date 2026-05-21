@@ -1,6 +1,6 @@
 export default function LoadingSkeleton() {
   return (
-    <div className="w-full max-w-2xl p-6 mx-auto space-y-6">
+    <div className="w-full flex flex-col max-w-2xl p-6 mx-auto gap-5 space-y-6">
       {/* Rettangolo per il Titolo di saluto */}
       <div className="h-18 w-3/4 bg-gray-700/50 rounded-md animate-pulse" />
 

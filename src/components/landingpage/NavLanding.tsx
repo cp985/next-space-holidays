@@ -12,20 +12,6 @@ import { usePathname } from "next/navigation";
 export default function NavLanding() {
   const pathname = usePathname();
 
-
- 
-
-  const logoClass = cn("logo");
-  const imgLogoClass = cn(`${"img-logo"} w-full!`);
-  const logoIconClass = cn(
-    `${"logo-icon"} min-w-11 min-h-11  sm:w-13! sm:h-13!`,
-  );
-  const navLinksClass = cn("nav-links");
-  const navCtaClass = cn("nav-cta");
-  const darkToggleClass = cn("dark-toggle");
-  const buttonDiv = cn("flex items-center gap-1");
-  const spanLogo = cn("text-lg sm:text-xl");
-
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -35,8 +21,8 @@ export default function NavLanding() {
     setMounted(true);
   }, []);
 
-if (!mounted || status === "loading") {
-    return null; 
+  if (!mounted || status === "loading") {
+    return null;
   }
 
   const noShowPath = ["/login", "/planets-details"];
@@ -52,14 +38,26 @@ if (!mounted || status === "loading") {
     "flex!": pathname === isShop,
   });
 
-  const isLogged = !!session ;
+  const isLogged = !!session;
 
   const href = isLogged && pathname === isHome ? "/shop" : "/";
   const text = isLogged && pathname === isHome ? "Shop" : "Home";
+  const logoClass = cn("logo");
+  const imgLogoClass = cn(`${"img-logo"} w-full!`);
+  const logoIconClass = cn(
+    `${"logo-icon"} min-w-11 min-h-11  sm:w-13! sm:h-13!`,
+    {'cursor-pointer hover:opacity-80': pathname !== isHome},
+    {'cursor-default pointer-events-none': pathname === isHome},
+  );
+  const navLinksClass = cn("nav-links");
+  const navCtaClass = cn("nav-cta");
+  const darkToggleClass = cn("dark-toggle");
+  const buttonDiv = cn("flex items-center gap-1");
+  const spanLogo = cn("text-lg sm:text-xl");
   return (
     <nav className={navClass}>
       <div className={logoClass}>
-        <div className={logoIconClass}>
+        <Link href={"/"} className={logoIconClass}>
           <Image
             className={imgLogoClass}
             src="/logo/logo.png"
@@ -68,7 +66,7 @@ if (!mounted || status === "loading") {
             priority
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
-        </div>
+        </Link>
         <span className={spanLogo}>Galactic Horizons</span>
       </div>
       {pathname === isHome && (
@@ -94,7 +92,6 @@ if (!mounted || status === "loading") {
         </Button>
         {isLogged && (
           <Button type="button" className={navCtaClass} asChild>
-        
             <Link href={href}>{text}</Link>
           </Button>
         )}

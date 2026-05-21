@@ -3,8 +3,12 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { motion, Variants } from "framer-motion";
+import { useSession } from "next-auth/react";
+
 
 export default function FeaturesFaqCtaLanding() {
+  const { data: session } = useSession();
+  const isLogged = !!session;
   // Safety Section Classes
   const safetySectionClass = cn("section", "safety-section");
 
@@ -267,7 +271,7 @@ export default function FeaturesFaqCtaLanding() {
               <br />
               The universe won't wait — neither should you.
             </p>
-            <Link href="/login" className="btn-primary">
+            <Link href={isLogged ? '/shop' : '/login'} className="btn-primary">
               Create Your Account ✦
             </Link>
           </div>

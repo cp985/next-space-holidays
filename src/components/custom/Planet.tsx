@@ -60,7 +60,7 @@ export default function Planet({
         </div>
 
           <Button asChild>
-            <Link href={`/planets-details/${name}`} className={planetCtaClass}>Discover {name}</Link>
+            <Link href={`/planets-details/${name}`} className={planetCtaClass} >Discover {name}</Link>
           </Button>
         
       </div>

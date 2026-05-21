@@ -282,8 +282,9 @@ const S_CART_BAR = cn(
   "pb-5! pt-2! px-4! sm:px-5! sm:px-10!  sm:py-4! ",
   "text-[var(--txt)]"
 );
-
 export default function SpaceShop() {
+
+
   const [filter, setFilter] = useState<Zone>("all");
   const [cart, setCart] = useState<CartItem[]>([]);
   const [drawerOpen, setDrawerOpen] = useState(false);

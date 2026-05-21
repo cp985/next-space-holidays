@@ -8,6 +8,6 @@ export default async function PlanetsDetails({ params }: Props) {
 
   const slug = (await params)["slug-planet"];
   return (
-<PlanetsDialog slug={slug} />
+<PlanetsDialog key={slug} slug={slug} />
   );
 }

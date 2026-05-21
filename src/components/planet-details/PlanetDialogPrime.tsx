@@ -7,6 +7,10 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { ArrowLeft } from "lucide-react";
+import { useSession } from "next-auth/react";
+
+
+
 
 // ── Costanti parallax ─────────────────────────────────────────
 const LERP     = 0.055;
@@ -30,7 +34,9 @@ interface Props {
 
 export default function PlanetDetailPage( {slug,description }: Props ) {
   const router  = useRouter();
-  
+    const { data: session } = useSession();
+  const isLogged = !!session;
+  let path = isLogged ? "/shop" : "/login";
   
   const imgPath = slug.toLowerCase()
   
@@ -95,6 +101,8 @@ export default function PlanetDetailPage( {slug,description }: Props ) {
 
     document.addEventListener("mousemove", onMouseMove);
     rafId = requestAnimationFrame(animate);
+
+    
 
     return () => {
       document.removeEventListener("mousemove", onMouseMove);
@@ -228,7 +236,7 @@ export default function PlanetDetailPage( {slug,description }: Props ) {
                   "!shadow-[0_0_20px_rgba(0,200,255,0.2)]",
                   "!transition-all !duration-200"
                 )}
-              onClick={() => router.push(`/login`)}
+              onClick={() => router.push(path)}
             >
               Book your holiday
             </Button>

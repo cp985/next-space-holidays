@@ -1,19 +1,16 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { useSession } from "next-auth/react";
 
 // ── Costanti parallax ─────────────────────────────────────────
-const LERP     = 0.055;
-const S_BG     = 20;
+const LERP = 0.055;
+const S_BG = 20;
 const S_PLANET = 12;
 
 function lerp(a: number, b: number, t: number) {
@@ -21,34 +18,40 @@ function lerp(a: number, b: number, t: number) {
 }
 
 interface Props {
-  slug:         string;
+  slug: string;
   description?: string;
+  key: string;
 }
 
 export default function PlanetsDialog({ slug, description }: Props) {
-  const router  = useRouter();
+  const { data: session } = useSession();
+  const isLogged = !!session;
+  let path = isLogged ? "/shop" : "/login";
+  const [isOpen, setIsOpen] = useState(true);
+
+  const router = useRouter();
   const imgPath = slug.toLowerCase();
 
-  const sceneRef  = useRef<HTMLDivElement>(null);
-  const bgRef     = useRef<HTMLDivElement>(null);
+  const sceneRef = useRef<HTMLDivElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
   const planetRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let mouseX = 0, mouseY = 0;
-    let targetX = 0, targetY = 0;
-    let idleT   = 0;
+    let mouseX = 0,
+      mouseY = 0;
+    let targetX = 0,
+      targetY = 0;
+    let idleT = 0;
     let isActive = false;
     let timeout: ReturnType<typeof setTimeout>;
-    let rafId:   number;
+    let rafId: number;
 
     const applyTransforms = (nx: number, ny: number) => {
       if (bgRef.current)
-        bgRef.current.style.transform =
-          `translate(${-nx * S_BG}px, ${-ny * S_BG}px)`;
+        bgRef.current.style.transform = `translate(${-nx * S_BG}px, ${-ny * S_BG}px)`;
 
       if (planetRef.current)
-        planetRef.current.style.transform =
-          `translate(${nx * S_PLANET}px, ${ny * S_PLANET}px)`;
+        planetRef.current.style.transform = `translate(${nx * S_PLANET}px, ${ny * S_PLANET}px)`;
     };
 
     const animate = () => {
@@ -56,7 +59,7 @@ export default function PlanetsDialog({ slug, description }: Props) {
         targetX = lerp(targetX, mouseX, LERP);
         targetY = lerp(targetY, mouseY, LERP);
       } else {
-        idleT  += 0.003;
+        idleT += 0.003;
         targetX = lerp(targetX, Math.sin(idleT * 0.6) * 0.12, 0.012);
         targetY = lerp(targetY, Math.cos(idleT * 0.5) * 0.08, 0.012);
       }
@@ -64,9 +67,6 @@ export default function PlanetsDialog({ slug, description }: Props) {
       rafId = requestAnimationFrame(animate);
     };
 
-    // ✅ mousemove su DOCUMENT — non sulla scene
-    // Il Dialog di shadcn/Radix intercetta gli eventi sul suo overlay
-    // quindi ascoltiamo sul document e usiamo sceneRef solo per le coordinate
     const onMouseMove = (e: MouseEvent) => {
       const rect = sceneRef.current?.getBoundingClientRect();
       if (!rect) return;
@@ -75,7 +75,7 @@ export default function PlanetsDialog({ slug, description }: Props) {
       const inScene =
         e.clientX >= rect.left &&
         e.clientX <= rect.right &&
-        e.clientY >= rect.top  &&
+        e.clientY >= rect.top &&
         e.clientY <= rect.bottom;
 
       if (!inScene) {
@@ -84,12 +84,14 @@ export default function PlanetsDialog({ slug, description }: Props) {
       }
 
       // Normalizza -1 → +1 relativo alla scene
-      mouseX   = ((e.clientX - rect.left) / rect.width  - 0.5) * 2;
-      mouseY   = ((e.clientY - rect.top)  / rect.height - 0.5) * 2;
+      mouseX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+      mouseY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
       isActive = true;
 
       clearTimeout(timeout);
-      timeout = setTimeout(() => { isActive = false; }, 2500);
+      timeout = setTimeout(() => {
+        isActive = false;
+      }, 2500);
     };
 
     // ✅ Ascolta su document — bypassa l'overlay di Radix
@@ -110,14 +112,14 @@ export default function PlanetsDialog({ slug, description }: Props) {
     "!bg-transparent !border-none !shadow-none",
     "!w-[min(98vw,92vh)] !max-w-[min(98vw,92vh)]",
     "!h-[min(98vw,92vh)]",
-    "!rounded-3xl"
+    "!rounded-3xl",
   );
 
   const titleClass = cn(
     "absolute top-0 left-0 w-full z-40 pt-6 px-6 pb-10",
     "text-center text-white uppercase tracking-[0.25em]",
     "text-2xl md:text-4xl font-bold pointer-events-none",
-    "bg-gradient-to-b from-black/70 to-transparent"
+    "bg-gradient-to-b from-black/70 to-transparent",
   );
 
   const footerClass = cn(
@@ -128,25 +130,33 @@ export default function PlanetsDialog({ slug, description }: Props) {
     "rounded-2xl",
     "bg-black/25 backdrop-blur-md",
     "border border-white/8",
-    "shadow-[0_4px_30px_rgba(0,0,0,0.25)]"
+    "shadow-[0_4px_30px_rgba(0,0,0,0.25)]",
   );
+const handleClose = () => {
+  if (!isOpen) return;
 
+  setIsOpen(false);
+
+  setTimeout(() => {
+    router.back();
+  }, 150);
+};
   return (
-    <Dialog open={true} onOpenChange={(open) => !open && router.back()}>
+    <Dialog open={isOpen} onOpenChange={(open) => {  if (!open) handleClose()}}>
       <DialogContent className={contentClass}>
-        <div ref={sceneRef} className="relative w-full h-full overflow-hidden rounded-3xl">
-
+        <div
+          ref={sceneRef}
+          className="relative w-full h-full overflow-hidden rounded-3xl"
+        >
           <DialogTitle className={titleClass}>{slug}</DialogTitle>
 
-          {/* ── LAYER 1: BG — top/left -8%, 116% size
-              JS scrive transform senza conflitti CSS               */}
           <div
             ref={bgRef}
             className="absolute will-change-transform"
             style={{
-              top:    "-8%",
-              left:   "-8%",
-              width:  "116%",
+              top: "-8%",
+              left: "-8%",
+              width: "116%",
               height: "116%",
               transformOrigin: "center center",
               zIndex: 10,
@@ -154,7 +164,9 @@ export default function PlanetsDialog({ slug, description }: Props) {
           >
             <Image
               src="/planets-detail/bg-space.png"
-              fill priority alt="space background"
+              fill
+              priority
+              alt="space background"
               className="object-cover"
             />
           </div>
@@ -165,9 +177,9 @@ export default function PlanetsDialog({ slug, description }: Props) {
             ref={planetRef}
             className="absolute will-change-transform"
             style={{
-              top:    "17.5%",
-              left:   "17.5%",
-              width:  "65%",
+              top: "17.5%",
+              left: "17.5%",
+              width: "65%",
               height: "65%",
               transformOrigin: "center center",
               zIndex: 20,
@@ -175,8 +187,8 @@ export default function PlanetsDialog({ slug, description }: Props) {
           >
             <Image
               src={`/planets-detail/${imgPath}.png`}
-              fill 
-              priority 
+              fill
+              priority
               alt={`planet ${slug}`}
               className="object-contain drop-shadow-[0_0_60px_rgba(0,0,0,0.7)]"
             />
@@ -189,7 +201,9 @@ export default function PlanetsDialog({ slug, description }: Props) {
           >
             <Image
               src="/planets-detail/oblò.png"
-              fill priority alt="ship porthole"
+              fill
+              priority
+              alt="ship porthole"
               className="object-cover"
             />
           </div>
@@ -207,9 +221,9 @@ export default function PlanetsDialog({ slug, description }: Props) {
                   "!bg-transparent !border !border-white/15",
                   "!text-white/60 hover:!text-white hover:!bg-white/5",
                   "!rounded-xl !tracking-wider !uppercase !text-xs !px-5",
-                  "!transition-all !duration-200"
+                  "!transition-all !duration-200",
                 )}
-                onClick={() => router.back()}
+                onClick={ handleClose}
               >
                 Cancel
               </Button>
@@ -220,15 +234,17 @@ export default function PlanetsDialog({ slug, description }: Props) {
                   "!text-white font-semibold !tracking-wider !uppercase !text-xs !px-5",
                   "!border-0 !rounded-xl",
                   "!shadow-[0_0_20px_rgba(0,200,255,0.2)]",
-                  "!transition-all !duration-200"
+                  "!transition-all !duration-200",
                 )}
-                onClick={() => router.push(`/login`)}
+                onClick={() => {
+                  setIsOpen(false);
+                  router.push(path);
+                }}
               >
-               Book now a unic holiday
+                Book now a unic holiday
               </Button>
             </div>
           </div>
-
         </div>
       </DialogContent>
     </Dialog>
