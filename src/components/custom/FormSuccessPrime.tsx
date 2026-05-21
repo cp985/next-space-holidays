@@ -46,7 +46,7 @@ export default function FormSuccessPrime() {
 
       {/* Progress Bar Minimalista */}
       <div className="w-48 h-1 bg-white/5 rounded-full overflow-hidden mt-4">
-        <div className="h-full bg-gradient-to-r from-cyan-500 to-blue-500 animate-progress-fast shadow-[0_0_10px_#00f3ff]" />
+      <div className="h-full bg-gradient-to-r from-cyan-500 to-blue-500 animate-[fillUp_2s_ease-out_forwards] shadow-[0_0_10px_#00f3ff]" />
       </div>
     </div>
   );
