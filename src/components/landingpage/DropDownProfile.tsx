@@ -45,11 +45,7 @@ export default function DropDownProfile() {
   const handleResize = () => {
     if (isOpen) {
       setIsOpen(false);
-      setTimeout(() => {
-        document.body.style.removeProperty("overlay");
-        document.body.style.removeProperty("padding-right");
-        document.body.style.overflow = "unset";
-      }, 50);
+
     }
   };
 
@@ -68,6 +64,7 @@ export default function DropDownProfile() {
               "relative h-11! w-11! md:h-13! md:w-13! rounded-sm p-0 overflow-hidden",
               "border border-cyan-500/20 bg-[#050A14]/50 backdrop-blur-md",
               "hover:border-cyan-500/50 hover:bg-cyan-950/30 transition-all",
+              "focus:outline-none! focus:ring-0! outline-none!",
               "focus-visible:ring-1 focus-visible:ring-cyan-500 focus-visible:ring-offset-0"
             )}
           >
