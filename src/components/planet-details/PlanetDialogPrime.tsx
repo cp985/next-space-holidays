@@ -114,7 +114,7 @@ export default function PlanetDetailPage( {slug,description }: Props ) {
   // ── Classi ────────────────────────────────────────────────────
 
   const pageWrapper = cn(
-    "min-h-screen w-full bg-[#020617] flex items-center justify-center p-4 overflow-hidden"
+    "min-h-dvh w-full bg-[#020617] flex items-center justify-center p-4 overflow-hidden"
   );
 
   const sceneContainer = cn(

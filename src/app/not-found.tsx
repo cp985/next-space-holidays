@@ -5,7 +5,7 @@ import { Home, Rocket } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#050816] px-6">
+    <main className="relative flex min-h-dvh items-center justify-center overflow-hidden bg-[#050816] px-6">
       {/* background glow */}
       <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/10 blur-3xl" />
 

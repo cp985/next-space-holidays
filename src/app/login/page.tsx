@@ -73,7 +73,7 @@ export default function Login({ onPendingChange }: Props) {
   
   // Wrapper esterno per centrare la card nella pagina
   const pageWrapper = cn(
-    "min-h-screen w-full flex items-center justify-center p-4",
+    "min-h-dvh w-full flex items-center justify-center p-4",
     "bg-[#020817]" // Sfondo scuro profondo per far risaltare la card
   );
 

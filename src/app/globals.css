@@ -374,7 +374,7 @@ table {
   .nav {
    
 
-      z-index: 100;
+      z-index: 150 !important;
       padding: 1rem 2rem;
       display: flex;
       align-items: center;

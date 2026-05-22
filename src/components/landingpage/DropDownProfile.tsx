@@ -62,7 +62,7 @@ export default function DropDownProfile() {
             variant="ghost"
             className={cn(
               "relative h-11! w-11! md:h-13! md:w-13! rounded-sm p-0 overflow-hidden",
-              "border border-cyan-500/20 bg-[#050A14]/50 backdrop-blur-md",
+              "border border-cyan-500/20 hover:bg-[#0b2456]! backdrop-blur-md",
               "hover:border-cyan-500/50 hover:bg-cyan-950/30 transition-all",
               "focus:outline-none! focus:ring-0! outline-none!",
               "focus-visible:ring-1 focus-visible:ring-cyan-500 focus-visible:ring-offset-0"

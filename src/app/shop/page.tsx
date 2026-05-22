@@ -225,7 +225,7 @@ const fmt = (n: number) =>
 // ── LAYOUT ───────────────────────────────────────────────────────────────────
 // Usa la variabile globale del background e del testo principale
 const S_PAGE = cn(
-  "min-h-screen pb-17! sm:pb-6! pt-5! px-5!",
+  "min-h-dvh pb-17! sm:pb-6! pt-5! px-5!",
   "bg-[var(--bg)] text-[var(--txt)] transition-colors duration-200"
 );
 const S_INNER = cn("max-w-[1280px] mx-auto px-6 md:px-10 lg:px-16");

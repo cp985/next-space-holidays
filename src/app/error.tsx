@@ -13,7 +13,7 @@ export default function Error({
   reset: () => void;
 }) {
   return (
-    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#050816] px-6">
+    <main className="relative flex min-h-dvh items-center justify-center overflow-hidden bg-[#050816] px-6">
       {/* glow */}
       <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-500/10 blur-3xl" />
 

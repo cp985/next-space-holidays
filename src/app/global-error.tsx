@@ -13,7 +13,7 @@ export default function GlobalError({
   return (
     <html lang="en">
       <body>
-        <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#050816] px-6">
+        <main className="relative flex min-h-dvh items-center justify-center overflow-hidden bg-[#050816] px-6">
           {/* ambient glow */}
           <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/10 blur-3xl" />
 

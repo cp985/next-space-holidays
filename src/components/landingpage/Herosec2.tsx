@@ -229,7 +229,7 @@ export default function SpaceParallaxHero2() {
       <section
         ref={sceneRef}
         className={cn(
-          "relative w-full h-screen overflow-hidden",
+          "relative w-full h-dvh overflow-hidden",
           "bg-black cursor-none select-none"
         )}
       >
