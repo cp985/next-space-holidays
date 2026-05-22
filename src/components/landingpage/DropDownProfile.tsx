@@ -55,7 +55,7 @@ export default function DropDownProfile() {
 
   return (
     <div className="flex items-center gap-4">
-      <DropdownMenu open={isOpen} onOpenChange={setIsOpen} modal={false} >
+      <DropdownMenu open={isOpen} onOpenChange={setIsOpen}  >
        
         <DropdownMenuTrigger asChild>
           <Button

@@ -21,7 +21,7 @@ export default function LoadingGlobal() {
   return (
        <div
       className={cn(
-        "fixed inset-0 z-110 flex flex-col items-center justify-center",
+        "fixed inset-0 z-160 flex flex-col items-center justify-center",
         "bg-gradient-to-b from-[#0b0f19] via-[#05070c] to-[#010204] text-foreground select-none pointer-events-auto"
       )}
     >
