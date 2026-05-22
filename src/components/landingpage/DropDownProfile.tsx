@@ -40,20 +40,16 @@ export default function DropDownProfile() {
     <div className="flex items-center gap-4">
       <DropdownMenu>
        
-        {/* TRIGGER - Avatar Bottone Responsivo */}
         <DropdownMenuTrigger asChild>
           <Button
             variant="ghost"
             className={cn(
-              // Su mobile h-12 (48px) per non rompere la nav in landscape
-              // Su schermi più grandi (md) torna ad h-14 (56px)
               "relative h-12! w-12! md:h-14! md:w-14! rounded-xl p-0 overflow-hidden",
               "border border-cyan-500/20 bg-[#050A14]/50 backdrop-blur-md",
               "hover:border-cyan-500/50 hover:bg-cyan-950/30 transition-all",
               "focus-visible:ring-1 focus-visible:ring-cyan-500 focus-visible:ring-offset-0"
             )}
           >
-            {/* pb-3.5 o pb-4 tiene l'icona centrata nello spazio rimanente, senza farla coprire dal testo in basso */}
             <div className="flex flex-col items-center justify-center w-full h-full pb-3 md:pb-3.5">
               <FaUserAstronaut className="w-5 h-5 md:w-6 md:h-6 text-cyan-400/80 transition-all" />
               
@@ -68,30 +64,29 @@ export default function DropDownProfile() {
 
 
 
-        {/* MODIFICHE CHIAVE APPLICATE QUI SOTTO */}
         <DropdownMenuContent
-          side="bottom" // Forza SEMPRE l'apertura verso il basso
+          side="bottom" 
           align="end"
           sideOffset={14}
-          collisionPadding={10} // Mantiene 10px di margine dal bordo dello schermo
+          // collisionPadding={10} 
           className={cn(
-            "z-[110]!", // LIVELLO Z MASSIMO: Non finirà MAI sotto la Navbar
+            "z-[110]!", 
             "w-[280px]! p-3!",
-            "bg-[#040814]/90! backdrop-blur-2xl!",
-            "border! border-white/5! border-t-cyan-500/40! rounded-xl!",
+            " dark:bg-[#040814]/90! backdrop-blur-2xl!",
+            "border! border-white/5! border-t-cyan-500/30! rounded-xl!",
             "shadow-[0_0_50px_-10px_rgba(0,243,255,0.2)]!",
             "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=open]:slide-in-from-top-4 duration-300 ease-out",
             "flex! flex-col! gap-2!",
-            "max-h-[85vh]! overflow-y-auto! overscroll-contain" // Previene lo scroll dell'intera pagina limitando l'altezza
+            "max-h-[85vh]! overflow-y-auto! overscroll-contain" 
           )}
           forceMount
         >
           <DropdownMenuLabel className="flex items-center gap-4! px-3! py-4!">
-            <div className="flex-shrink-0 w-12 h-12 rounded-full border border-cyan-500/30 bg-cyan-950/50 flex items-center justify-center shadow-[0_0_15px_rgba(0,243,255,0.1)]">
+            <div className="flex-shrink-0 w-12 h-12 rounded-full border border-cyan-500/30 bg-cyan-950/80 flex items-center justify-center shadow-[0_0_15px_rgba(0,243,255,0.1)]">
               <FaUserAstronaut className="w-6 h-6 text-cyan-300" />
             </div>
             <div className="flex flex-col overflow-hidden gap-1">
-              <span className="text-slate-100 font-medium text-[16px]! truncate">
+              <span className="text-slate-600 dark:text-slate-100 font-medium text-[16px]! truncate">
                 {userName}
               </span>
               <span className="text-[11px]! font-mono tracking-widest text-cyan-400/70 uppercase">
