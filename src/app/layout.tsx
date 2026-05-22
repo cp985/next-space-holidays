@@ -28,11 +28,7 @@ export const viewport: Viewport = {
 
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NODE_ENV === "production"
-      ? "https://next-space-holidays.vercel.app/"
-      : "http://localhost:3000",
-  ),
+ metadataBase: new URL("https://galactic-horizons.vercel.app"),
   title: "Galactic Horizons | Space Travel Agency",
   description:
     "Explore Mars, Saturn, and beyond with us. Your journey to the stars starts here.",
@@ -103,7 +99,7 @@ export default function RootLayout({
           defaultTheme="dark"
           enableSystem={false}
         >
-          <SessionProvider refetchOnWindowFocus={true} refetchInterval={5}>
+          <SessionProvider refetchOnWindowFocus={false}>
            <LoadingGlobal/>
 
  <NavLanding />
