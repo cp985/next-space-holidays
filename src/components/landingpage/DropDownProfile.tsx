@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useSession, signOut } from "next-auth/react";
+import {useEffect, useState} from "react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -36,9 +37,22 @@ export default function DropDownProfile() {
     "transition-colors duration-300"
   );
 
+  // Stato per forzare il controllo di apertura/chiusura
+  const [isOpen, setIsOpen] = useState(false);
+
+  //  Listener per la rotazione/ridimensionamento dello schermo
+  useEffect(() => {
+    const handleResize = () => {
+      if (isOpen) setIsOpen(false); // Chiude istantaneamente la tendina se ruoti il telefono
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [isOpen]);
+
   return (
     <div className="flex items-center gap-4">
-      <DropdownMenu>
+      <DropdownMenu open={isOpen} onOpenChange={setIsOpen} modal={false}>
        
         <DropdownMenuTrigger asChild>
           <Button
@@ -79,7 +93,7 @@ export default function DropDownProfile() {
             "flex! flex-col! gap-2!",
             "max-h-[85vh]! overflow-y-auto! overscroll-contain" 
           )}
-          forceMount
+         
         >
           <DropdownMenuLabel className="flex items-center gap-4! px-3! py-4!">
             <div className="flex-shrink-0 w-12 h-12 rounded-full border border-cyan-500/30 bg-cyan-950/80 flex items-center justify-center shadow-[0_0_15px_rgba(0,243,255,0.1)]">
