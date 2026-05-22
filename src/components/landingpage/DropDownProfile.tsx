@@ -41,10 +41,17 @@ export default function DropDownProfile() {
   const [isOpen, setIsOpen] = useState(false);
 
   //  Listener per la rotazione/ridimensionamento dello schermo
-  useEffect(() => {
-    const handleResize = () => {
-      if (isOpen) setIsOpen(false); // Chiude istantaneamente la tendina se ruoti il telefono
-    };
+ useEffect(() => {
+  const handleResize = () => {
+    if (isOpen) {
+      setIsOpen(false);
+      setTimeout(() => {
+        document.body.style.removeProperty("overlay");
+        document.body.style.removeProperty("padding-right");
+        document.body.style.overflow = "unset";
+      }, 50);
+    }
+  };
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -58,13 +65,13 @@ export default function DropDownProfile() {
           <Button
             variant="ghost"
             className={cn(
-              "relative h-12! w-12! md:h-14! md:w-14! rounded-xl p-0 overflow-hidden",
+              "relative h-12! w-12! md:h-14! md:w-14! rounded-sm p-0 overflow-hidden",
               "border border-cyan-500/20 bg-[#050A14]/50 backdrop-blur-md",
               "hover:border-cyan-500/50 hover:bg-cyan-950/30 transition-all",
               "focus-visible:ring-1 focus-visible:ring-cyan-500 focus-visible:ring-offset-0"
             )}
           >
-            <div className="flex flex-col items-center justify-center w-full h-full pb-3 md:pb-3.5">
+            <div className="flex bg-[#1e3a8a14]! flex-col items-center justify-center w-full h-full pb-3 md:pb-3.5">
               <FaUserAstronaut className="w-5 h-5 md:w-6 md:h-6 text-cyan-400/80 transition-all" />
               
               <div className="absolute bottom-0 inset-x-0 h-3.5 md:h-4 bg-cyan-950/80 backdrop-blur-sm border-t border-cyan-500/20 flex items-center justify-center">
