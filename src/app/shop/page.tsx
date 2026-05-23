@@ -112,7 +112,7 @@ const S_TAB_OFF = cn(
 
 // ── CARDS GRID ───────────────────────────────────────────────────────────────
 const S_GRID = cn(
-  "grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 pb-40! sm:pb-20!"
+  "grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 pb-42! sm:pb-20!"
 );
 
 // ── CART BAR ─────────────────────────────────────────────────────────────────
