@@ -72,7 +72,6 @@ export default function TripCard({
       {/* ── Visual pianeta (Contenitore Relative) ───────────────────────── */}
       <div className={S_CARD_VISUAL}>
         
-        {/* 🌟 TAG IMAGE DI NEXT.JS CON FILL E OTTIMIZZAZIONE */}
         <Image
           src={trip.visual}
           alt={trip.name}
@@ -107,7 +106,7 @@ export default function TripCard({
         "text-[0.95rem] font-black tracking-widest uppercase",
         "px-2 py-0.5 rounded-md",
         // Stile neon ciano/purple spaziale per attirare l'occhio
-        "bg-cyan-500/10 border border-cyan-400/40 text-cyan-400 animate-pulse",
+        "bg-cyan-700/60 border border-cyan-400/40 text-cyan-400 animate-pulse",
         "shadow-[0_0_10px_rgba(34,211,238,0.2)]"
       )}
     >
