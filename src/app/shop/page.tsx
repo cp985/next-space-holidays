@@ -67,7 +67,7 @@ const fmt = (n: number) =>
 // ── LAYOUT ───────────────────────────────────────────────────────────────────
 // Usa la variabile globale del background e del testo principale
 const S_PAGE = cn(
-  "min-h-dvh pb-17! sm:pb-6! pt-5! px-5! sm:px-8!",
+  "min-h-dvh pb-19! sm:pb-6! pt-5! px-5! sm:px-8!",
   "bg-[var(--bg)] text-[var(--txt)] transition-colors duration-200"
 );
 const S_INNER = cn("max-w-[1280px] mx-auto px-6 md:px-10 lg:px-16");
@@ -112,7 +112,7 @@ const S_TAB_OFF = cn(
 
 // ── CARDS GRID ───────────────────────────────────────────────────────────────
 const S_GRID = cn(
-  "grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 pb-30! sm:pb-20!"
+  "grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 pb-32! sm:pb-20!"
 );
 
 // ── CART BAR ─────────────────────────────────────────────────────────────────
