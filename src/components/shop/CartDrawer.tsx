@@ -4,6 +4,7 @@ import RiskBadge from "./RiskBadge";
 import { motion } from "framer-motion";
 import type { CartItem } from "@/types/shop/types";
 import { X, Minus, Plus, Rocket, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 const fmt = (n: number) =>
   new Intl.NumberFormat("en-US", {
@@ -217,9 +218,11 @@ export default function CartDrawer({
                 "hover:bg-[#67e8f9]! transition-all duration-200",
                 "cursor-pointer",
               )}
+              asChild
             >
-              Proceed to Launch Checkout
-              <ChevronRight size={16} />
+              <Link href="/shop/checkout">    Proceed to Launch Checkout
+              <ChevronRight size={16} /></Link>
+          
             </Button>
 
             <Button

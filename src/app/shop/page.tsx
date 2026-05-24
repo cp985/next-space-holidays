@@ -48,6 +48,7 @@ import { Button } from "@/components/ui/button";
 import { type Trip, type CartItem, type Zone } from "@/types/shop/types";
 import { useSession } from "next-auth/react";
 import {TRIPS} from "@/lib/content"
+import {useCart} from '@/context/CartContext'
 
 const FILTERS: { label: string; value: Zone }[] = [
   { label: "All Routes", value: "all" },
@@ -127,7 +128,7 @@ const S_CART_BAR = cn(
 export default function SpaceShop() {
 
   const [filter, setFilter] = useState<Zone>("all");
-  const [cart, setCart] = useState<CartItem[]>([]);
+  const {cart, addToCart, removeFromCart,clearCart,itemsCount} = useCart();
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const { data: session, status } = useSession();
@@ -135,34 +136,9 @@ export default function SpaceShop() {
     ? session.user.name
     : "Cosmonaut";
 
- 
-  // ── Logica carrello ────────────────────────────────────────────────────────
 
-  const addToCart = (trip: Trip) => {
-    setCart((prev) => {
-      const existing = prev.find((i) => i.trip.id === trip.id);
-      if (existing) {
-        return prev.map((i) =>
-          i.trip.id === trip.id ? { ...i, passengers: i.passengers + 1 } : i,
-        );
-      }
-      return [...prev, { trip, passengers: 1 }];
-    });
-  };
 
-  const removeFromCart = (tripId: string) => {
-    setCart((prev) => {
-      const existing = prev.find((i) => i.trip.id === tripId);
-      if (!existing) return prev;
-      if (existing.passengers === 1)
-        return prev.filter((i) => i.trip.id !== tripId);
-      return prev.map((i) =>
-        i.trip.id === tripId ? { ...i, passengers: i.passengers - 1 } : i,
-      );
-    });
-  };
 
-  const clearCart = () => setCart([]);
 
   const getQty = (tripId: string) =>
     cart.find((i) => i.trip.id === tripId)?.passengers ?? 0;
@@ -229,7 +205,7 @@ export default function SpaceShop() {
             key={trip.id}
             trip={trip}
             qty={getQty(trip.id)}
-            onAdd={() => addToCart(trip)}
+            onAdd={() => addToCart(trip.id)}
             onRemove={() => removeFromCart(trip.id)}
           />
         
@@ -343,7 +319,7 @@ export default function SpaceShop() {
               onClose={() => setDrawerOpen(false)}
               onAdd={(id) => {
                 const t = TRIPS.find((t) => t.id === id);
-                if (t) addToCart(t);
+                if (t) addToCart(t.id);
               }}
               onRemove={removeFromCart}
               onClear={() => {

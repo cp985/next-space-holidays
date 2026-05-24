@@ -168,6 +168,7 @@ const handleClose = () => {
               priority
               alt="space background"
               className="object-cover"
+                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
 
@@ -190,6 +191,7 @@ const handleClose = () => {
               fill
               priority
               alt={`planet ${slug}`}
+                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-contain drop-shadow-[0_0_60px_rgba(0,0,0,0.7)]"
             />
           </div>
@@ -205,6 +207,7 @@ const handleClose = () => {
               priority
               alt="ship porthole"
               className="object-cover"
+                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
 

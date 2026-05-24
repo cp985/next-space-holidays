@@ -168,6 +168,7 @@ export default function PlanetDetailPage( {slug,description }: Props ) {
             src="/planets-detail/bg-space.png"
             fill priority alt="deep space"
             className="object-cover opacity-80"
+               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>
 
@@ -189,6 +190,7 @@ export default function PlanetDetailPage( {slug,description }: Props ) {
             src={`/planets-detail/${imgPath}.png`}
             fill 
             priority 
+               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             alt={`planet ${slug}`}
             className="object-contain drop-shadow-[0_0_80px_rgba(0,0,0,0.9)]"
           />
@@ -203,6 +205,7 @@ export default function PlanetDetailPage( {slug,description }: Props ) {
             src="/planets-detail/oblò.png"
             fill priority alt="ship porthole frame"
             className="object-cover"
+               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>
 
