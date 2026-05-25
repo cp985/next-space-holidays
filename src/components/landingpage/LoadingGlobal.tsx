@@ -8,10 +8,9 @@ export default function LoadingGlobal() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Gestisce il tempo di visibilità del loader all'ingresso
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000); // Puoi regolare i millisecondi in base alle tue esigenze
+    }, 3000); 
 
     return () => clearTimeout(timer);
   }, []);
