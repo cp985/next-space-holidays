@@ -20,6 +20,7 @@ import { User, LogOut, ShoppingBag, Rocket } from "lucide-react";
 export default function DropDownProfile() {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const isOrders = pathname === "/shop/orders";
   const { data: session } = useSession();
   const isLogged = !!session;
 
@@ -86,7 +87,6 @@ export default function DropDownProfile() {
           side="bottom" 
           align="end"
           sideOffset={14}
-          // collisionPadding={10} 
           className={cn(
             "z-[110]!", 
             "w-[280px]! p-3!",
@@ -115,24 +115,19 @@ export default function DropDownProfile() {
 
           <DropdownMenuSeparator className="bg-white/10! my-2!" />
 
-          {isHome && (
+          
             <DropdownMenuItem asChild className={menuItemClass}>
               <Link href="/shop" className="w-full">
                 <Rocket className={menuIconClass} />
                 <span>Shop</span>
               </Link>
             </DropdownMenuItem>
-          )}
+          
+
+  
 
           <DropdownMenuItem asChild className={menuItemClass}>
-            <Link href="/dashboard" className="w-full">
-              <User className={menuIconClass} />
-              <span>Profile</span>
-            </Link>
-          </DropdownMenuItem>
-
-          <DropdownMenuItem asChild className={menuItemClass}>
-            <Link href="/dashboard/orders" className="w-full">
+            <Link href="/shop/orders" className="w-full">
               <ShoppingBag className={menuIconClass} />
               <span>My Orders</span>
             </Link>
