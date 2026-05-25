@@ -220,7 +220,7 @@ export default function CartDrawer({
               )}
               asChild
             >
-              <Link href="/shop/checkout">    Proceed to Launch Checkout
+              <Link href="/shop/checkout" onClick={onClose}> Proceed to Launch Checkout
               <ChevronRight size={16} /></Link>
           
             </Button>
