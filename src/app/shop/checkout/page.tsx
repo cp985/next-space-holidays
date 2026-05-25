@@ -29,7 +29,7 @@ const fmt = (n: number) =>
 
 // ── COSTANTI STILI SCI-FI CHK ───────────────────────────────────────────────
 const S_PAGE_WRAPPER = cn(
-  "container max-w-6xl mx-auto! px-6! py-5! md:py-10! flex-1 flex flex-col  justify-center",
+  "container max-w-6xl mx-auto! px-5! pt-5! pb-10! s flex-1 flex flex-col  justify-center",
 );
 const S_GRID = cn("grid grid-cols-1 lg:grid-cols-12 gap-8! items-start");
 const S_PANEL = cn(
@@ -75,7 +75,7 @@ export default function CheckoutPage() {
 
   if (cart.length === 0 && !data.success) {
     return (
-      <main className={cn(S_PAGE_WRAPPER, "items-center text-center py-24!")}>
+      <main className={cn(S_PAGE_WRAPPER, "items-center text-center ")}>
         <header className="w-16 h-16 bg-muted/10! border border-[var(--border)]! rounded-full flex items-center justify-center mb-6! text-[var(--txt3)]!">
           <Rocket className="rotate-45!" size={24} />
         </header>
@@ -209,9 +209,9 @@ export default function CheckoutPage() {
             {data.errors.cc && <p className={S_ERROR}>{data.errors.cc}</p>}
           </div>
 
-          <Button className="w-full py-6! rounded-xl! bg-cyan-500/10! border border-cyan-400/30! text-cyan-400! font-bold tracking-widest uppercase hover:bg-cyan-500/20! transition-all shadow-[0_0_15px_rgba(34,211,238,0.1)]! cursor-pointer mt-4!">
+          <Button className="w-full py-6! rounded-xl! bg-cyan-500/10! border border-cyan-400/30! text-white! text-md font-bold  uppercase hover:bg-cyan-500/20! transition-all shadow-[0_0_15px_rgba(34,211,238,0.1)]! cursor-pointer mt-4!">
             {isPending ? (
-              <span className="flex items-center gap-3">
+              <span className="flex items-center gap-3!">
                 <span className="animate-spin rounded-full h-4 w-4 border-t-2 border-cyan-400"></span>
                 <span> Authorizing... </span>
               </span>
