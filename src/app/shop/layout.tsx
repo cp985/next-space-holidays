@@ -1,4 +1,3 @@
-import  {useCart,CartContext} from "@/context/CartContext"
 import CartContextProvider from "@/context/CartContext"
 
 

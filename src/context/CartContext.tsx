@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useEffect, useContext, useState } from "react";
-import { type CartItem } from '@/types/shop/types';
+import { type CartItem } from "@/types/shop/types";
 import { TRIPS } from "@/lib/content";
 
 type CartContextType = {
@@ -11,13 +11,13 @@ type CartContextType = {
   addToCart: (id: string) => void;
   removeFromCart: (id: string) => void;
   clearCart: () => void;
-}
+};
 
 export const CartContext = createContext<CartContextType | null>(null);
 
 type Props = {
   children: React.ReactNode;
-}
+};
 
 export default function CartContextProvider({ children }: Props) {
   const [cart, setCart] = useState<CartItem[]>([]);
@@ -41,7 +41,6 @@ export default function CartContextProvider({ children }: Props) {
     }
   }, [cart, isHydrated]);
 
-  
   const addToCart = (id: string) => {
     const originalTrip = TRIPS.find((t) => t.id === id);
     if (!originalTrip) return;
@@ -53,7 +52,9 @@ export default function CartContextProvider({ children }: Props) {
         if (existingItem.passengers >= originalTrip.seats) return prev;
 
         return prev.map((item) =>
-          item.trip.id === id ? { ...item, passengers: item.passengers + 1 } : item
+          item.trip.id === id
+            ? { ...item, passengers: item.passengers + 1 }
+            : item,
         );
       }
 
@@ -72,27 +73,31 @@ export default function CartContextProvider({ children }: Props) {
       }
 
       return prev.map((item) =>
-        item.trip.id === id ? { ...item, passengers: item.passengers - 1 } : item
+        item.trip.id === id
+          ? { ...item, passengers: item.passengers - 1 }
+          : item,
       );
     });
   };
 
   const clearCart = () => setCart([]);
 
-  
   const itemsCount = cart.reduce((total, item) => total + item.passengers, 0);
-  
-  const totalPrice = cart.reduce((sum, item) => sum + item.trip.price * item.passengers, 0);
+
+  const totalPrice = cart.reduce(
+    (sum, item) => sum + item.trip.price * item.passengers,
+    0,
+  );
 
   return (
     <CartContext.Provider
-      value={{ 
-        cart,           
-        addToCart, 
-        removeFromCart, 
-        clearCart, 
-        itemsCount, 
-        totalPrice 
+      value={{
+        cart,
+        addToCart,
+        removeFromCart,
+        clearCart,
+        itemsCount,
+        totalPrice,
       }}
     >
       {children}
@@ -102,6 +107,7 @@ export default function CartContextProvider({ children }: Props) {
 
 export function useCart() {
   const context = useContext(CartContext);
-  if (!context) throw new Error("useCart deve essere usato dentro un CartProvider");
+  if (!context)
+    throw new Error("useCart deve essere usato dentro un CartProvider");
   return context;
 }

@@ -79,6 +79,7 @@ export default async function OrdersPage() {
     .eq("email", session.user.email)
     .single();
 
+
   if (!user) redirect("/");
 
   // 3. Fetch Mission Manifest logs
@@ -101,6 +102,7 @@ export default async function OrdersPage() {
         <p className="text-sm text-[var(--txt2)] max-w-xl">
           Historical archive of all your deep-space orbital jumps, verified telemetry clearance, and active boarding passes.
         </p>
+           
       </header>
 
       {error || !orders || orders.length === 0 ? (

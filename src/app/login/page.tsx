@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Eye, EyeOff, ArrowLeft } from "lucide-react";
 import { useState, useActionState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link"; // Per il tasto cancel semantico
+import Link from "next/link"; 
 import {
   actionFormSub,
   type FormStateSub,
@@ -74,7 +74,7 @@ export default function Login({ onPendingChange }: Props) {
   // Wrapper esterno per centrare la card nella pagina
   const pageWrapper = cn(
     "min-h-dvh w-full flex items-center justify-center p-4",
-    "bg-[#020817]" // Sfondo scuro profondo per far risaltare la card
+    "bg-[#020817]" 
   );
 
   const cardClass = cn(

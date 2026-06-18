@@ -209,7 +209,7 @@ export default function CheckoutPage() {
             {data.errors.cc && <p className={S_ERROR}>{data.errors.cc}</p>}
           </div>
 
-          <Button className="w-full py-6! rounded-xl! bg-cyan-500/10! border border-cyan-400/30! text-white!  font-bold  uppercase hover:bg-cyan-500/40! transition-all shadow-[0_0_15px_rgba(34,211,238,0.1)]! cursor-pointer mt-4!">
+          <Button variant="ghost" className="w-full py-6! rounded-xl! bg-cyan-500! border border-cyan-400/30! text-white!  font-bold  uppercase hover:bg-cyan-500/40! transition-all shadow-[0_0_15px_rgba(34,211,238,0.1)]! cursor-pointer mt-4!">
             {isPending ? (
               <span className="flex items-center gap-3!">
                 <span className="animate-spin rounded-full h-4 w-4 border-t-2 border-cyan-400"></span>

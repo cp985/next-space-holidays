@@ -1,12 +1,8 @@
-
-
 import NextAuth from "next-auth";
 import CredentialsP from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 
 import { createClient } from "@/lib/supabase/server";
-
-
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -56,7 +52,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           return null;
         }
 
-
         return {
           id: user.id,
           username: user.username,
@@ -99,6 +94,3 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     error: "/login",
   },
 });
-
-
-
