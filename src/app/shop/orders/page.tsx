@@ -34,7 +34,7 @@ const S_SUBTITLE = cn(
   "text-xs uppercase tracking-[0.3em] text-cyan-400! font-mono font-bold"
 );
 const S_TITLE = cn(
-  "text-3xl md:text-4xl font-black text-slate-100 tracking-tight mt-3! mb-2!"
+  "text-3xl md:text-4xl font-black text-slate-400 tracking-tight mt-3! mb-2!"
 );
 const S_CARD = cn(
   "rounded-[24px] border border-[var(--card-border)] bg-[var(--card-bg)] backdrop-blur-xl overflow-hidden"
